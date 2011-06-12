@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Invaders United</title>
+    <script type="text/javascript">
+	 function init(){ 
+	 
+     var canvas = document.getElementById('tutorial');  
+     if (canvas.getContext){  
+     var ctx = canvas.getContext('2d');
+	 
+     ctx.beginPath(); 
+	 ctx.moveTo(1,85);  
+     ctx.lineTo(30,85); 
+	 ctx.lineTo(30,60);	 
+	 ctx.lineTo(60,60);
+	 ctx.lineTo(60,30);	 
+	 ctx.lineTo(85,30);	 
+	 ctx.lineTo(85,1);	 
+	 ctx.lineTo(140,1);	 
+	 ctx.lineTo(140,30);	 
+	 ctx.lineTo(170,30);	   
+	 ctx.lineTo(170,60);	  
+	 ctx.lineTo(200,60);	  
+	 ctx.lineTo(200,85);	   
+	 ctx.lineTo(230,85);	 
+	 ctx.lineTo(230,140);	 
+	 ctx.lineTo(170,140);	 
+	 ctx.lineTo(170,170);	 
+	 ctx.lineTo(200,170);	 
+	 ctx.lineTo(200,200);	 
+	 ctx.lineTo(225,200);	 
+	 ctx.lineTo(225,225);	 	
+	 ctx.lineTo(1,225);	 	
+	 ctx.lineTo(1,200);	  
+	 ctx.lineTo(30,200);	 
+	 ctx.lineTo(30,170);	 
+	 ctx.lineTo(60,170);	 
+	 ctx.lineTo(60,140);	 	 
+	 ctx.lineTo(1,140);	 
+	 
+	 
+	 
+	 ctx.fillStyle = "#0c0"; 
+	 ctx.fill();  
+	 ctx.clearRect(60,85,25,25);
+	 ctx.clearRect(140,85,25,25);
+	 ctx.clearRect(85,140,55,30);
+	 ctx.clearRect(60,170,25,30);
+	 ctx.clearRect(140,170,30,30);    
+	 ctx.clearRect(30,200,30,30); 
+	 ctx.clearRect(85,200,55,30); 
+	 ctx.clearRect(170,200,30,30);  	
+     
+	 }
+	 }  
+    </script>
+    <style type="text/css">
+      * { margin: 0; padding: 0; }
+      html, body { width: 800; height: 600; overflow: hidden;}
+      canvas { border: 0 solid black; overflow: hidden; }
+    </style>
+  </head>
+  <body onload="init();">
+    <canvas width="800" height="600" id="tutorial">Hey t-bag, get a decent browser</canvas>
+
+  </body>
+</html>

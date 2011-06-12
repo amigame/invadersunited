@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Invaders United</title>
+    <script type="text/javascript" src="assets/js/tween.js"></script>
+    <script type="text/javascript">
+    
+    //var i = 0;
+    var canvasWidth = 0;
+    var canvasHeight = 0;
+    var coordinates = {posX: 0, posY: 0}; 
+   
+      function init(){
+        stage = setInterval(drawStage, 50);
+        animation = setInterval(animateInvader, 3000);
+      }
+        
+      function drawStage(){
+        
+        var canvas = document.getElementById('tutorial');
+        if (canvas.getContext){
+          var ctx = canvas.getContext('2d');
+          canvasWidth = window.document.width;
+          canvasHeight = window.document.height;
+          canvas.width = canvasWidth;
+          canvas.height = canvasHeight;
+        }
+
+        //
+        var invader = new Invader();
+        invader.create(ctx);
+        //i++;
+        //
+      }
+      
+    
+    function Invader(){
+    
+        var invadeJSON = {"base": [
+        {"x": 1, "y": 50},
+        {"x": 25, "y": 50},
+        {"x": 25, "y": 25},
+        {"x": 95, "y": 25},
+        {"x": 95, "y": 1},
+        {"x": 185, "y": 1},
+        {"x": 185, "y": 25},
+        {"x": 255, "y": 25},
+        {"x": 255, "y": 50},
+        {"x": 275, "y": 50},
+        {"x": 275, "y": 120},
+        {"x": 210, "y": 120},
+        {"x": 210, "y": 145},
+        {"x": 230, "y": 145},
+        {"x": 230, "y": 170},
+        {"x": 280, "y": 170},
+        {"x": 280, "y": 195},
+        {"x": 230, "y": 195},
+        {"x": 230, "y": 170},
+        {"x": 185, "y": 170},
+        {"x": 185, "y": 150},
+        {"x": 165, "y": 150},
+        {"x": 165, "y": 170},
+        {"x": 120, "y": 170},
+        {"x": 120, "y": 150},
+        {"x": 95, "y": 150},
+        {"x": 95, "y": 170},
+        {"x": 50, "y": 170},
+        {"x": 50, "y": 195},
+        {"x": 1, "y": 195},
+        {"x": 1, "y": 170},
+        {"x": 50, "y": 170},
+        {"x": 50, "y": 145},
+        {"x": 70, "y": 145},
+        {"x": 70, "y": 125},
+        {"x": 1, "y": 125},
+        {"x": 1, "y": 50},
+        ]
+        };
+      this.create = function(ctx) {
+         var spacer = coordinates.posX;  
+         //ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+         ctx.beginPath(); 
+         ctx.moveTo(spacer+invadeJSON.base[0].x, invadeJSON.base[0].y);  
+
+  		 for( var i in invadeJSON.base  ) {
+			var invX = spacer+invadeJSON.base[i].x;
+			var invY = invadeJSON.base[i].y;
+            ctx.lineTo(invX, invY);
+         }
+         ctx.fillStyle = "#0C0"; 
+         ctx.fill();  
+         ctx.clearRect(spacer+70,75,50,25);
+         ctx.clearRect(spacer+165,75,50,25);
+         ctx.clearRect(spacer+120,125,45,25);
+         //console.log(spacer);
+      }
+
+    }
+      function animateInvader(){
+
+        t1 = new Tween(coordinates, 'posX', Tween.regularEaseInOut ,0 , 500, 2, '');
+        t1.start();
+      }
+    </script>
+    <style type="text/css">
+      * { margin: 0; padding: 0; }
+      html, body { width: 100%; height: 100%; overflow: hidden;}
+      canvas { border: 0 solid black; overflow: hidden; }
+    </style>
+  </head>
+  <body onload="init();">
+    <canvas id="tutorial">Hey t-bag, get a decent browser</canvas>
+
+  </body>
+</html>
