@@ -1,10 +1,10 @@
 WINDOW_WIDTH 		= window.innerWidth;
 WINDOW_HEIGHT 		= window.innerHeight;
 
-SPRITE_SCALE = 40;
-SPRITE_SIZE = [SPRITE_SCALE * 0, SPRITE_SCALE * 0, SPRITE_SCALE * 12, SPRITE_SCALE * 8]
+SPRITE_SCALE = 4;
 SPRITE_WIDTH = 12;
 SPRITE_HEIGHT = 8;
+SPRITE_SIZE = [SPRITE_SCALE * 0, SPRITE_SCALE * 0, SPRITE_SCALE * SPRITE_WIDTH, SPRITE_SCALE * SPRITE_HEIGHT]
 
 BG_COLOR = "#FFF";
 
@@ -18,7 +18,8 @@ var IU;
 init = function() {
 	
 	var c = E.canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
-    document.body.appendChild(c);
+	var stage = document.getElementById("stage");
+	stage.appendChild(c);
     
     IU = new InvadersUnited(c);
 	
@@ -86,7 +87,7 @@ InvadersUnited = Klass(CanvasNode, {
 		});
 				
 		var randInv = Math.max( Math.round( Math.random() * (animations['invaders'].length-1)), 1);
-		this.neo = new Neo(this,WINDOW_HEIGHT/2,WINDOW_WIDTH/2, animations['invaders'][randInv]);
+		this.neo = new Neo(this,WINDOW_HEIGHT/2,WINDOW_WIDTH/2, animations['invaders']['dorky']);
 		/*
 		invader.addFrameListener(
 			function(t, dt) 
@@ -134,17 +135,17 @@ Neo = function(root, x, y, animation) {
     this.initialize = function(root, x, y) {
 
 		var animation = this.animation;
+		
 		this.sprite = new Path(animation[1],{
 				fill: NEO_COLOR,
 				fillOpacity:1
 			});
         //this.sprite = new Rectangle(SPRITE_WIDTH, SPRITE_HEIGHT);
-        this.sprite.w = SPRITE_WIDTH/2;
-        this.sprite.h = SPRITE_HEIGHT/2;
-        //this.sprite.x = 0;
-        this.sprite.x = x - (SPRITE_WIDTH/2);
-        this.sprite.y = 0;
-        //this.sprite.y = y - (SPRITE_HEIGHT/2);        
+        this.sprite.w = SPRITE_WIDTH;
+        this.sprite.h = SPRITE_HEIGHT;
+        
+		this.sprite.x = x - (SPRITE_WIDTH/2);
+        this.sprite.y = x - (SPRITE_HEIGHT/2);
         this.sprite.zIndex = 1;
 
         // Reset the x/y since the position is relative to the wrapper:
