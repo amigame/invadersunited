@@ -1,0 +1,6 @@
+git pull
+git pull origin master
+git add foldername -a
+git status
+git commit -a -m "insert comment here"
+git push
