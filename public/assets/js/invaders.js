@@ -21,12 +21,12 @@ init = function() {
     document.body.appendChild(c);
     
     IU = new InvadersUnited(c);
-	/*
+	
 	$.getJSON('/data/animations/invaders.json', function(data) {
 		IU.display(data);
 		interactions();
 	});
-	*/
+
 }
 
 
@@ -196,6 +196,23 @@ Neo = function(root, x, y, animation) {
 }
 
 
+/*
+	var start = new ElementNode(E('h2', 'START'), 
+		{
+			fontFamily: 'Arial, Sans-serif', 
+			noScaling: true, 
+			color: 'black',
+			x: CAKECanvas.width / 2, 
+			y: CAKECanvas.height / 2,
+			align: 'center',
+			valign: 'center'
+		}
+	);
+	
+					
+	CAKECanvas.append(start);
+	*/
+	
 
     Explosion = Klass(CanvasNode, {
       catchMouse : false,
