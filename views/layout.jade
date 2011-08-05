@@ -5,9 +5,9 @@ html
     script(type='text/javascript',src='/socket.io/socket.io.js')
     script(src="json.js")
     script()
-      var socket = new io.Socket(window.location.hostname); 
-      socket.connect();
-      socket.on('connect', function(){ 
+      var socket = io.connect(window.location.hostname); 
+      
+        socket.on('connect', function(){ 
         $("#chat").submit(function(e) {
           e.preventDefault();
           e.stopPropagation();
