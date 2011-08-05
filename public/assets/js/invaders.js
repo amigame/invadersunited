@@ -21,12 +21,12 @@ init = function() {
     document.body.appendChild(c);
     
     IU = new InvadersUnited(c);
-
-	$.getJSON('./data/animations/invaders.json', function(data) {
+	/*
+	$.getJSON('/data/animations/invaders.json', function(data) {
 		IU.display(data);
 		interactions();
 	});
-
+	*/
 }
 
 
