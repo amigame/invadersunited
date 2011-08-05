@@ -6,8 +6,7 @@ html
     script(src="json.js")
     script()
       var socket = io.connect(window.location.hostname); 
-      
-        socket.on('connect', function(){ 
+      socket.on('connect', function(){ 
         $("#chat").submit(function(e) {
           e.preventDefault();
           e.stopPropagation();

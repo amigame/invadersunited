@@ -3,7 +3,7 @@ require( __dirname +'/helpers.js');
 
 var express = require('express'), // Include express engine
 		app = express.createServer(), // create node server
-		io = require('socket.io');
+		io = require('socket.io').listen(app);
 
 // Default APP Configuration
 app.configure(function(){
@@ -37,19 +37,18 @@ app.get('/', function(req, res){
 app.listen(10007); 
   
 // Socket Connection
-var socket = io.listen(app),
- 		clients = []; // List of all connected Clients
+var clients = []; // List of all connected Clients
 
 // When user gets connected
-socket.on('connection', function(client){ 
+io.sockets.on('connection', function(client){ 
 	// new client is here! 
-	var index = clients.push(client) - 1; // get array index of new client
+	clients.push(client);
+	var index = clients.length - 1; // get array index of new client
 	
 	// On Message, send message to everyone
  	client.on('message', function(data){ 
-		console.log('got message ==> ' + data);
+		//console.log('got message ==> ' + data);
 		data = JSON.parse(data); // parse string data to json
-		
 		for(var i=0;i<clients.length;i++) {
 			try {
 				if(clients[i] != undefined)
