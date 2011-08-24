@@ -8,7 +8,7 @@ Player = function(root, x, y) {
 	
     this.initialize = function(root, x, y) {
 		
-		this.invader = new Invader(root,WINDOW_HEIGHT/2,WINDOW_WIDTH/2);
+		this.invader = new Invader(root,WINDOW_HEIGHT/2,WINDOW_WIDTH/2, PLAYER_COLOR);
 		this.input = new Input();
 		
 	};

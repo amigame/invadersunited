@@ -1,7 +1,8 @@
-Invader = function(root, x, y) {
+Invader = function(root, x, y, color) {
 
 	this.animatePosition = 1;
 	this.animation;
+	this.color = color;
 	
 	this.display = function(json){
 		//var CAKECanvas = new Canvas(document.body, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -28,7 +29,7 @@ Invader = function(root, x, y) {
 		var animation = this.animation = animations['invaders']['dorky'];
 		
 		this.sprite = new Path(animation[1],{
-				fill: PLAYER_COLOR,
+				fill: this.color,
 				fillOpacity:1
 			});
         //this.sprite = new Rectangle(SPRITE_WIDTH, SPRITE_HEIGHT);

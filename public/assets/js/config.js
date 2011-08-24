@@ -17,5 +17,6 @@ PLAYER_SPEED = 1;
 SOCKETS = false;
 
 INVADERS = {};
+INVADERS_COLOR = "#CCC";
 
 var ARENA; 
