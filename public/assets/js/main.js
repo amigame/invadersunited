@@ -1,25 +1,12 @@
 // Variables
-
-var socket = io.connect(window.location.hostname); 
-
-socket.on('connect', function(){ 
-	$("#chat").submit(function(e) {
-	  e.preventDefault();
-	  e.stopPropagation();
-	  socket.send(JSON.stringify({msg:$("#msg").val()}));
-	  $("#msg").val("");
-	  return false;
+require(["order!/assets/js/libs/json.js", "order!/assets/js/libs/cake.js", "order!/assets/js/sockets.js", "order!/assets/js/config.js", "order!/assets/js/lobby.js", "order!/assets/js/arena.js", "order!/assets/js/input.js", "order!/assets/js/invader.js", "order!/assets/js/defender.js", "order!/assets/js/player.js", "order!/assets/js/opponents.js", "order!/assets/js/init.js"], function () {
+    //This callback is called after the three scripts finish loading.
+	$(document).ready(function(){
+		init();
 	});
 });
 
-socket.on('message', function(data) {
-	$("#response").append("<li>" + data + "</li>");
-});
 
-$(document).ready(function(){
-	init();
-		
-});
 
 // Analytics
 var _gaq = _gaq || [];

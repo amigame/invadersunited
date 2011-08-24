@@ -1,201 +1,314 @@
-WINDOW_WIDTH 		= window.innerWidth;
-WINDOW_HEIGHT 		= window.innerHeight;
-
-SPRITE_SCALE = 4;
-SPRITE_WIDTH = 12;
-SPRITE_HEIGHT = 8;
-SPRITE_SIZE = [SPRITE_SCALE * 0, SPRITE_SCALE * 0, SPRITE_SCALE * SPRITE_WIDTH, SPRITE_SCALE * SPRITE_HEIGHT]
-
-BG_COLOR = "#FFF";
-
-ANIMATION_SPEED = 0.8;
-
-NEO_COLOR = "#0C0";
-NEO_SPEED = 1;
-
-var IU; 
-
-init = function() {
-	
-	var c = E.canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
-	var stage = document.getElementById("stage");
-	stage.appendChild(c);
-    
-    IU = new InvadersUnited(c);
-	
-	$.getJSON('/data/animations/invaders.json', function(data) {
-		IU.display(data);
-		interactions();
-	});
-
-}
 
 
-InvadersUnited = Klass(CanvasNode, {
-	paused: false,
 
-    initialize : function(canvasElem) {
-	
-        CanvasNode.initialize.call(this);
-        this.canvas = new Canvas(canvasElem);
-        this.canvas.frameDuration = 35;
-        this.canvas.append(this);
-        this.canvas.fixedTimestep = true;
-        this.canvas.clear = false;
 
-		// setup the background
-		this.setupBg();
-		//this.setupMessage();
-		
-		this.user = null; // Put fbUser here
-		//console.log("init!");
-		// Add the scoreboard
-		//this.scoreboard = new Scoreboard(this);
-		
-		// number of frogs + targets at the top for frogs to reach
-		//this.numFrogs = NUM_FROG_RECEIVERS;
-		
-		// setup the mapping for catching key presses
-        this.keys = { "Up" : 0, "Down" : 0, "Left" : 0, "Right" : 0, "Ctrl" : 0 };
 
-		// Initialize a new game
-        //this.startGame();
-		
-		// Start the animation
-    },
 
-	display : function(json){
-		//var CAKECanvas = new Canvas(document.body, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+function create_player(){
 			
-		var animations = new Array();
-
-		animations['invaders'] = new Array();
-
-		$.each(json, function(series, invader) { 
-			animations['invaders'][series] = new Array();
-
-			$.each(invader[0], function(num, sprite) { 
-
-				animations['invaders'][series][num] = new Array();
-				animations['invaders'][series][num].push(['fillRect', SPRITE_SIZE]);
-				
-				$.each(sprite, function(set, coords) { 
-					var array = [SPRITE_SCALE * coords.x, SPRITE_SCALE * coords.y, SPRITE_SCALE * coords.w, SPRITE_SCALE * coords.h];
-					animations['invaders'][series][num].push(['clearRect', array]);
-				});
-			});
-		});
-				
-		var randInv = Math.max( Math.round( Math.random() * (animations['invaders'].length-1)), 1);
-		this.neo = new Neo(this,WINDOW_HEIGHT/2,WINDOW_WIDTH/2, animations['invaders']['dorky']);
-		/*
-		invader.addFrameListener(
-			function(t, dt) 
-			{
-				this.scale = Math.sin(t / 1000);
-			}
-		);
-		*/
-		
-		
-        this.addFrameListener(this.animate);
-		
-	}, 
-	
-    key : function(state, name) {
-    	this.keys[name] = state;
-    },
-	
-    animate: function(t, dt){
-		if (this.paused){
-			return false;
-		}
-		// clear canvas
-		this.neo.animate(t, dt);
-    },
-	
-    setupBg : function() {
-        this.bg = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT);
-        this.bg.fill = BG_COLOR;
-        this.bg.zIndex = -1000;
-        this.append(this.bg);
-	}, 
-	
-});
-
-Neo = function(root, x, y, animation) {
-
-	this.isAlive = true;
-    this.speed = NEO_SPEED;
-    this.initial_points = 0;
-    this.points = 0;
-	this.animatePosition = 1;
-	this.animation = animation;
-	
-    this.initialize = function(root, x, y) {
-
-		var animation = this.animation;
-		
-		this.sprite = new Path(animation[1],{
-				fill: NEO_COLOR,
-				fillOpacity:1
-			});
-        //this.sprite = new Rectangle(SPRITE_WIDTH, SPRITE_HEIGHT);
-        this.sprite.w = SPRITE_WIDTH;
-        this.sprite.h = SPRITE_HEIGHT;
-        
-		this.sprite.x = x - (SPRITE_WIDTH/2);
-        this.sprite.y = x - (SPRITE_HEIGHT/2);
-        this.sprite.zIndex = 1;
-
-        // Reset the x/y since the position is relative to the wrapper:
-        x = 0;
-        y = SPRITE_HEIGHT;
-		
-		var current = 1;
-		this.sprite.every(1000*ANIMATION_SPEED, 
-			function( ) 
-			{
-				if( current == 1) { 
-					this.compiled = animation[2];
-					current = 2;
-				} else {
-					this.compiled = animation[1];
-					current = 1;
-				}
-			},
-			true
-		);
-		
-		root.append(this.sprite);
-		
-	};
-
-	this.animate = function(t, dt){
-        if (this.root.keys["Left"]==1){
-        	this.moveLeft();
-        } else if (this.root.keys["Right"]==1){
-        	this.moveRight();
-        }
-	}
-	
-	this.moveLeft = function() {
-		if (this.sprite.x!=0){
-			this.sprite.x -= this.sprite.w*this.speed;
-		}
-	};
-	
-	this.moveRight = function() {
-		if (this.sprite.x!=WINDOW_WIDTH){
-			this.sprite.x += this.sprite.w*this.speed;
-		}
-	};
-	
-    this.root = root;
-    this.initialize(root, x, y);
+	//var randInv = Math.max( Math.round( Math.random() * (animations['invaders'].length-1)), 1);
 	
 }
 
+
+    Arena = Klass(CanvasNode, {
+      bgColor : 'rgb(0,0,0)',
+      bgOpacity : 0.15,
+
+      playerTeam : '#aa2222',
+      enemyTeam : '#2266aa',
+
+      initialize : function() {
+        CanvasNode.initialize.call(this)
+        this.ships = {}
+        this.bg = new Rectangle(this.width, this.height)
+        this.bg.fill = this.bgColor
+        this.bg.fillOpacity = this.bgOpacity
+        var selectionStart, startX, startY
+        var th = this
+        var playerShipsInside = function(rect) {
+          return th.childNodes.filter(function(s) {
+            var x1 = Math.min(rect.cx, rect.x2)
+            var x2 = Math.max(rect.cx, rect.x2)
+            var y1 = Math.min(rect.cy, rect.y2)
+            var y2 = Math.max(rect.cy, rect.y2)
+            return s.isShip && s.strategicAI == Player &&
+                   (s.x >= x1 && s.x <= x2 && s.y >= y1 && s.y <= y2)
+          })
+        }
+        this.selectRect = new Rectangle(0,0, {
+          stroke : 1,
+          strokeOpacity : 0.4,
+          stroke : '#00ff00',
+          fillOpacity : 0.1,
+          fill : '#00ff00',
+          visible : false,
+          zIndex : 999
+        })
+        this.append(this.selectRect)
+        this.bg.addEventListener('mousedown', function(ev) {
+          ev.preventDefault()
+          var point = CanvasSupport.tMatrixMultiplyPoint(
+            CanvasSupport.tInvertMatrix(this.currentMatrix),
+            this.root.mouseX, this.root.mouseY
+          )
+          startX = this.root.mouseX
+          startY = this.root.mouseY
+          selectionStart = point
+          th.selectRect.x2 = th.selectRect.cx = point[0]
+          th.selectRect.y2 = th.selectRect.cy = point[1]
+        }, false)
+        this.bg.addEventListener('drag', function(ev) {
+          var point = CanvasSupport.tMatrixMultiplyPoint(
+            CanvasSupport.tInvertMatrix(this.currentMatrix),
+            this.root.mouseX, this.root.mouseY
+          )
+          if (selectionStart && !th.selectRect.visible) {
+            var dx = startX - this.root.mouseX
+            var dy = startY - this.root.mouseY
+            var sqd = dx * dx + dy * dy
+            th.selectRect.visible = sqd > 81
+          }
+          if (th.selectRect.visible) {
+            th.selectRect.x2 = point[0]
+            th.selectRect.y2 = point[1]
+          }
+        }, false)
+        this.mouseupHandler = function(ev) {
+          var point = CanvasSupport.tMatrixMultiplyPoint(
+            CanvasSupport.tInvertMatrix(th.currentMatrix),
+            th.root.mouseX, th.root.mouseY
+          )
+          if (selectionStart && th.selectRect.visible) {
+            th.selectRect.visible = false
+            selectionStart = null
+            var selection = playerShipsInside(th.selectRect)
+            if (ev.shiftKey) {
+              selection.forEach(Player.select.bind(Player))
+            } else if (ev.altKey) {
+              selection.forEach(Player.deselect.bind(Player))
+            } else {
+              Player.clearSelection()
+              selection.forEach(Player.select.bind(Player))
+            }
+          } else if (selectionStart && (ev.canvasTarget == th.selectRect || ev.canvasTarget == th.bg)) {
+            Player.setWaypoint(point)
+            th.selectRect.visible = false
+            selectionStart = null
+          }
+        }
+        this.addEventListener('rootChanged', function(ev) {
+          if (ev.canvasTarget == this) {
+            if (this.root)
+              this.root.removeEventListener('mouseup', this.mouseupHandler, false)
+            ev.relatedTarget.addEventListener('mouseup', this.mouseupHandler, false)
+          }
+        }, false)
+        this.bg.zIndex = -100
+        this.messageLayer = new CanvasNode({
+          zIndex : 1000,
+          scale : 1 / this.scale
+        })
+        this.append(this.bg, this.messageLayer)
+        this.addFrameListener(function() {
+          if (Player.selection.length > 0)
+            this.cursor = MOVE_TO_CURSOR
+          else
+            this.cursor = DEFAULT_CURSOR
+        })
+        this.destroyedHandler = this.destroyed.bind(this)
+        this.when('teamDestroyed', function(ev) {
+          if (ev.detail == this.enemyTeam) this.enemyTeamDestroyed(ev.detail)
+          else if (ev.detail == this.playerTeam) this.gameOver()
+        })
+        this.showDescription()
+      },
+
+      enemyTeamDestroyed : function(team) {
+        this.levelCompleted()
+      },
+
+      showDescription : function() {
+        var desc = E('div')
+        desc.appendChild(E('h1', this.name))
+        desc.appendChild(E('div', this.description))
+        this.query(desc,
+          'Start level', function(){
+            this.root.dispatchEvent({type: 'started', canvasTarget : this })
+          },
+          'Back to main menu', function() { this.parentNode.gameOver() }
+        )
+      },
+
+      query : function(header) {
+        var div = E('div', {className : 'message'})
+        var msg = new ElementNode(div,
+          { x : 320, y : 30, align : 'center' })
+        var msgDiv = E('div', header)
+        div.appendChild(msgDiv)
+        var options = E('div')
+        var th = this
+        for (var i=1; i<arguments.length; i+=2) {
+          var name = arguments[i]
+          var callback = arguments[i+1]
+          options.appendChild(E('h2', name, {
+            onclick : (function(callback){ return function() {
+              if (!this.clicked) {
+                callback.call(th)
+                this.clicked = true
+                msg.after(500, msg.removeSelf)
+                msg.animateTo('opacity', 0, 500, 'sine')
+              }
+            }})(callback),
+            style: { cursor : 'pointer' }
+          }))
+        }
+        div.appendChild(options)
+        msg.opacity = 0
+        msg.animateTo('opacity', 1, 500, 'sine')
+        this.messageLayer.append(msg)
+      },
+
+      notify : function(message, after, duration) {
+        if (!after) after = 0
+        this.after(after, function(){
+          var msg = new ElementNode(E('h3', message),
+            { x : 320, y : 30, align : 'center' })
+          if (!duration) duration = 3500 + msg.element.textContent.length * 10
+          msg.opacity = 0
+          msg.animateTo('opacity', 1, 500, 'sine')
+          msg.after(duration, function() {
+            this.animateTo('opacity', 0, 500, 'sine')
+          })
+          msg.after(duration+500, msg.removeSelf)
+          this.messageLayer.append(msg)
+        })
+      },
+
+
+      gameOver : function() {
+        if (this.completed) return
+        this.failed = true
+        this.after(1000, function() {
+          this.query(E('h1', "Your fleet was destroyed"),
+            "Try again", function() { this.parentNode.tryAgain() },
+            "Back to main menu", function() { this.parentNode.gameOver() }
+          )
+        })
+      },
+
+      levelCompleted : function() {
+        if (this.failed) return
+        this.after(1000, function() {
+          if (this.failed) return
+          this.completed = true
+          this.query(E('h1', "Level complete"),
+            "Next level", function() { this.parentNode.nextLevel() },
+            "Play again", function() { this.parentNode.tryAgain() },
+            "Back to main menu", function() { this.parentNode.gameOver() }
+          )
+        })
+      },
+
+      createShip : function(team, techLevel, wpn, x, y, noWarp, health) {
+        if (!this.ships[team]) this.ships[team] = 0
+        var pd
+        if (wpn.length) {
+          if (wpn[1]) pd = wpn[1]
+          wpn = wpn[0]
+        }
+        if (!pd) {
+          switch(wpn) {
+            case Missiles: pd = PointDefenseMissiles; break
+            case Beam: pd = Beam; break
+            case RapidFireRailgun: pd = RapidFireRailgun; break
+            default: pd = PointDefenseGun
+          }
+        }
+        var s = new Ship(team,
+          new wpn(techLevel), new pd(techLevel),
+          x, y, noWarp, health)
+        if (team == this.playerTeam) s.strategicAI = Player
+        s.when('destroyed', this.destroyedHandler)
+        this.ships[team]++
+        return s
+      },
+
+      createGroup : function(team, techLevel, x, y, weapons, noWarp, health) {
+        var i = 0
+        var th = this
+        var seg = Math.PI*2/(weapons.length-1)
+        return weapons.map(function(wpn) {
+          if (i == 0) {
+            var dx = 0, dy = 0
+          } else {
+            var angle = i * seg
+            var r = Math.max(80, 100 / seg)
+            var dx = Math.cos(angle) * r
+            var dy = Math.sin(angle) * r
+          }
+          i++
+          return th.createShip(team, techLevel, wpn, x+dx, y+dy, noWarp, health)
+        })
+      },
+
+      ship : function() {
+        this.append(this.createShip.apply(this, arguments))
+      },
+
+      invader : function(time, team, techLevel, weapon, x, y, noWarp, health) {
+        if (!this.ships[team]) this.ships[team] = 0
+        this.ships[team]++
+        this.after(time, function() {
+          this.ships[team]--
+          this.ship(team, techLevel, weapon, x, y, noWarp, health)
+        })
+      },
+
+      group : function(team, techLevel, x, y, weapons, noWarp, health) {
+        this.append.apply(this, this.createGroup.apply(this, arguments))
+      },
+
+      groupAfter : function(time, team, techLevel, x, y, weapons, noWarp, health) {
+        if (!this.ships[team]) this.ships[team] = 0
+        this.ships[team] += weapons.length
+        this.after(time, function() {
+          this.ships[team] -= weapons.length
+          this.group(team, techLevel, x, y, weapons, noWarp, health)
+        })
+      },
+
+      destroyed : function(ev) {
+        this.ships[ev.canvasTarget.team]--
+        if (this.ships[ev.canvasTarget.team] < 1) {
+          this.root.dispatchEvent({
+            type : 'teamDestroyed',
+            detail : ev.canvasTarget.team,
+            canvasTarget : this
+          })
+        }
+      }
+
+    })
+
+
+    Play = Klass(Arena, {
+      width : 640,
+      height : 480,
+      scale : 1,
+
+      name : "Last man standing",
+      description : "This is where you prove your worth",
+
+      initialize : function() {
+        Arena.initialize.call(this)
+        this.when('started', function() {
+          this.invader(0, this.playerTeam, 0, Missiles, 100, 100)
+        })
+      }
+
+    })
 
 /*
 	var start = new ElementNode(E('h2', 'START'), 
