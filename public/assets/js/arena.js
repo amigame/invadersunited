@@ -1,6 +1,7 @@
 Arena = Klass(CanvasNode, {
 	paused: false,
-
+	opponents: null,
+	
     initialize : function(canvasElem) {
 	
         CanvasNode.initialize.call(this);

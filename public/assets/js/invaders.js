@@ -1,15 +1,4 @@
-
-
-
-
-
-
-
-function create_player(){
-			
-	//var randInv = Math.max( Math.round( Math.random() * (animations['invaders'].length-1)), 1);
-	
-}
+//var randInv = Math.max( Math.round( Math.random() * (animations['invaders'].length-1)), 1);
 
 
     Arena = Klass(CanvasNode, {

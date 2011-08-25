@@ -4,10 +4,10 @@ var socket = io.connect(window.location.hostname);
 socket.on('connect', function(){ 
 	SOCKETS = true;
 	
-	
+	// put conditions for entering the arena
 	socket.emit('join arena', 'arena' );
 	
-//console.log( io.sockets.clients() );
+	//console.log( io.sockets.clients() );
 	$("#chat").submit(function(e) {
 	  e.preventDefault();
 	  e.stopPropagation();
@@ -28,8 +28,16 @@ socket.on('id', function(id) {
 });
 
 socket.on('entered arena', function(data) {
-	console.log("New user: " + data);
-	
+	console.log("New: " + data);	
+});
+
+socket.on('left arena', function(data) {
+	console.log("Died: " + data);	
+});
+
+socket.on('left game', function(id) {
+	console.log("Left: " + id);
+	ARENA.opponents.remove(id);	
 });
 
 socket.on('arena', function (invader) {

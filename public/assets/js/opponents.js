@@ -24,6 +24,14 @@ Opponents = function(root) {
 				this.invader[i].animate(coords.x, coords.y);
 			}
 		}
+	};
+	
+	this.remove = function(id){
+		console.log(id);
+		delete INVADERS[id];
+		this.invader[id].removeSelf;
+		//this.invader[id].destroy();
+		//delete this.invader[id];
 	}
 	
     this.root = root;

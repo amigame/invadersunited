@@ -44,7 +44,7 @@ var clients = []; // List of all connected Clients
 io.sockets.on('connection', function(client){ 
 	// new client is here! 
 	clients.push(client);
-	var index = clients.length - 1; // get array index of new client
+	//var index = clients.length - 1; // get array index of new client
 	
     // join to room and save the room name
 	client.on('join arena', function (room) {
@@ -70,9 +70,13 @@ io.sockets.on('connection', function(client){
 			  io.sockets.emit("arena", response);
 		})
 		
+		
+		//client.broadcast.to(room).emit("entered arena", index);
 		//io.sockets.emit( client.sessionId );
 		//console.log('got message ==> ' + data);
-		data = JSON.parse(data); // parse string data to json
+		
+		//data = JSON.parse(data); // parse string data to json
+		/*
 		for(var i=0;i<clients.length;i++) {
 			try {
 				//if(clients[i] != undefined)
@@ -82,8 +86,11 @@ io.sockets.on('connection', function(client){
 				continue; //if a client doesn`t exist, jus continue;
 			}
 		}
+		*/
 	});
   client.on('disconnect', function(){  
+  		client.broadcast.emit("left game", client.id);
+		var index = clients.indexOf(client); // Find the index
 		clients.splice(index,1); // remove client from array
 		console.log("after length ===> " +clients.length);
 	});
