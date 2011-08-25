@@ -33,6 +33,7 @@ Arena = Klass(CanvasNode, {
         //this.startGame();
 		
 		// Start the animation
+		this.display();
     },
 
 	display : function(json){
@@ -95,7 +96,8 @@ Arena = Klass(CanvasNode, {
         //var level = this.levels[this.levelIndex % this.levels.length]
         //this.changeLevel(level)
 		// create a new player
-		this.player = PLAYER = new Player(this,WINDOW_HEIGHT/2,WINDOW_WIDTH/2);
+		//this.player = PLAYER = new Player(this,WINDOW_WIDTH/2,WINDOW_HEIGHT/2);
+		this.player = PLAYER = new Player(this, 0, 0);
 		
       },
 

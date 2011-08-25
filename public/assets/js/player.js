@@ -7,8 +7,7 @@ Player = function(root, x, y) {
 	this.id = null;
 	
     this.initialize = function(root, x, y) {
-		
-		this.invader = new Invader(root,WINDOW_HEIGHT/2,WINDOW_WIDTH/2, PLAYER_COLOR);
+		this.invader = new Invader(root, x, y, PLAYER_COLOR);
 		this.input = new Input();
 		
 	};
@@ -24,16 +23,16 @@ Player = function(root, x, y) {
 	this.moveLeft = function() {
 		//this.invader.moveLeft();
 		this.sendPosition();
-		if (x!=0){
-			x -= this.invader.sprite.w*this.speed;
+		if (x>0){
+			x -= this.speed;
 			this.invader.animate(x, y);
 		}
 	};
 	
 	this.moveRight = function() {
 		this.sendPosition();
-		if (x!=WINDOW_WIDTH){
-			x += this.invader.sprite.w*this.speed;
+		if (x<WINDOW_WIDTH-this.invader.sprite.w){
+			x += this.speed;
 			this.invader.animate(x, y);
 		}
 	};

@@ -10,7 +10,7 @@ init = function() {
 	// get data
 	//require(['/data/animations/invaders.json'], function(data) {
 	//$.getJSON('/data/animations/invaders.json', function(data) {
-		ARENA.display();
+	//ARENA.display();
 		//interactions();
 	//});
 

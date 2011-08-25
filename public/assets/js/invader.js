@@ -33,16 +33,16 @@ Invader = function(root, x, y, color) {
 				fillOpacity:1
 			});
         //this.sprite = new Rectangle(SPRITE_WIDTH, SPRITE_HEIGHT);
-        this.sprite.w = SPRITE_WIDTH;
-        this.sprite.h = SPRITE_HEIGHT;
+        this.sprite.w = SPRITE_SCALE*SPRITE_WIDTH;
+        this.sprite.h = SPRITE_SCALE*SPRITE_HEIGHT;
         
-		this.sprite.x = x - (SPRITE_WIDTH/2);
-        this.sprite.y = x - (SPRITE_HEIGHT/2);
+		this.sprite.x = x;
+        this.sprite.y = x;
         this.sprite.zIndex = 1;
 
         // Reset the x/y since the position is relative to the wrapper:
-        x = 0;
-        y = SPRITE_HEIGHT;
+        //x = 0;
+        //y = SPRITE_HEIGHT;
 		
 		this.sprite.every(1000*ANIMATION_SPEED, 
 			function( ) 
