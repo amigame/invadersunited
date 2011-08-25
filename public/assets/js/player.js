@@ -2,8 +2,8 @@ Player = function(root, x, y) {
 
 	this.isAlive = true;
     this.speed = PLAYER_SPEED;
-    this.initial_points = 0;
-    this.points = 0;
+    this.wave = 0;
+    this.score = 0;
 	this.id = null;
 	
     this.initialize = function(root, x, y) {
@@ -25,6 +25,7 @@ Player = function(root, x, y) {
 		this.sendPosition();
 		if (x>0){
 			x -= this.speed;
+			y = SPRITE_SCALE*SPRITE_HEIGHT*(this.wave-1);
 			this.invader.animate(x, y);
 		}
 	};
@@ -33,6 +34,7 @@ Player = function(root, x, y) {
 		this.sendPosition();
 		if (x<WINDOW_WIDTH-this.invader.sprite.w){
 			x += this.speed;
+			y = SPRITE_SCALE*SPRITE_HEIGHT*(this.wave-1);
 			this.invader.animate(x, y);
 		}
 	};

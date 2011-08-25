@@ -45,14 +45,22 @@ io.sockets.on('connection', function(client){
 	// new client is here! 
 	clients.push(client);
 	//var index = clients.length - 1; // get array index of new client
+	// set these important variables on the server side
+	client.wave = 0;
+	client.score = 0;
 	
     // join to room and save the room name
 	client.on('join arena', function (room) {
+		client.wave = 1;
 		client.set('arena', room, function() { console.log('room ' + room + ' saved'); } );
 		client.join(room);
 		client.broadcast.to(room).emit("entered arena", client.id);
 	})
-
+	
+	client.on('leave arena', function (room) {
+		client.wave = 0;
+	});
+	
 	client.emit("id", client.id);
 	// On Message, send message to everyone
  	client.on('message', function(data){ 
@@ -65,7 +73,8 @@ io.sockets.on('connection', function(client){
 			  // neither method works for me
 			  response = {};
 			  response.id = client.id;
-			  response.data = data;
+			  response.wave = client.wave;
+			  response.coords = JSON.parse(data);
 			  //io.sockets.in(room).emit("arena", response);
 			  io.sockets.emit("arena", response);
 		})
@@ -95,3 +104,18 @@ io.sockets.on('connection', function(client){
 		console.log("after length ===> " +clients.length);
 	});
 });
+
+// set the wave timer
+setInterval(function(){
+        //console.log("WAVE");
+		for(var i=0;i<clients.length;i++) {
+			try {
+				if(clients[i].wave != undefined)
+					clients[i].wave +=1; // send to all connected clients
+			} catch(e) {
+				console.log("doesn`t exist");
+				continue; //if a client doesn`t exist, jus continue;
+			}
+		}
+    },10000);
+	

@@ -43,7 +43,9 @@ socket.on('left game', function(id) {
 socket.on('arena', function (invader) {
 	// exclude the player invader
 	if( invader.id != PLAYER.id){ 
-		INVADERS[invader.id] = invader.data;
+		INVADERS[invader.id] = invader;
+	} else {
+		PLAYER.wave = invader.wave;
 	}
 });
 
