@@ -18,7 +18,7 @@ Opponents = function(root) {
 			var coords = JSON.parse( INVADERS[i] );
 			if(typeof this.invader[i]==='undefined'){ 
 				// If it doesn't exist create the invader
-				this.invader[i] = new Invader(root, coords.x, coords.y, INVADERS_COLOR);
+				this.invader[i] = new Invader(root, coords.x, coords.y, INVADERS_COLOR, 1);
 			} else { 
 				// If it exists just move it
 				this.invader[i].animate(coords.x, coords.y);

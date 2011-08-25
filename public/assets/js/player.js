@@ -7,7 +7,7 @@ Player = function(root, x, y) {
 	this.id = null;
 	
     this.initialize = function(root, x, y) {
-		this.invader = new Invader(root, x, y, PLAYER_COLOR);
+		this.invader = new Invader(root, x, y, PLAYER_COLOR, 99);
 		this.input = new Input();
 		
 	};

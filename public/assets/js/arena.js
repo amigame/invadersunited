@@ -72,11 +72,11 @@ Arena = Klass(CanvasNode, {
 		
 		
 		// clear canvas
-		if(this.player != null){
-			this.player.animate(t, dt);
-		}
 		if(this.opponents != null){
 			this.opponents.animate(t, dt);
+		}
+		if(this.player != null){
+			this.player.animate(t, dt);
 		}
     },
 	

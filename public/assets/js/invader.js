@@ -1,8 +1,9 @@
-Invader = function(root, x, y, color) {
+Invader = function(root, x, y, color, zIndex) {
 
 	this.animatePosition = 1;
 	this.animation;
 	this.color = color;
+	this.zIndex = zIndex;
 	
 	this.display = function(json){
 		//var CAKECanvas = new Canvas(document.body, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -37,8 +38,8 @@ Invader = function(root, x, y, color) {
         this.sprite.h = SPRITE_SCALE*SPRITE_HEIGHT;
         
 		this.sprite.x = x;
-        this.sprite.y = x;
-        this.sprite.zIndex = 1;
+        this.sprite.y = y;
+        this.sprite.zIndex = this.zIndex;
 
         // Reset the x/y since the position is relative to the wrapper:
         //x = 0;
@@ -85,7 +86,7 @@ Invader = function(root, x, y, color) {
 	this.animate = function(x, y){
 		//console.log(y);
 		this.sprite.x = x;
-		//this.sprite.y = y;
+		this.sprite.y = y;
 	};
 
 	this.destroy = function(){
