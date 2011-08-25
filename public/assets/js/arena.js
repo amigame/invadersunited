@@ -6,7 +6,7 @@ Arena = Klass(CanvasNode, {
 	
         CanvasNode.initialize.call(this);
         this.canvas = new Canvas(canvasElem);
-        this.canvas.frameDuration = 35;
+        this.canvas.frameDuration = 30;
         this.canvas.append(this);
         this.canvas.fixedTimestep = true;
         this.canvas.clear = false;

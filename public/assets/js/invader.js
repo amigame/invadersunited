@@ -90,11 +90,12 @@ Invader = function(root, x, y, color) {
 
 	this.destroy = function(){
 		//console.log(y);
+		root.remove(this.sprite);
 		delete this;
 		//this.sprite.y = y;
-	}
+	};
 	
     this.root = root;
     this.initialize(root, x, y);
-	
+	return this;	
 }

@@ -27,11 +27,16 @@ Opponents = function(root) {
 	};
 	
 	this.remove = function(id){
-		console.log(id);
-		delete INVADERS[id];
-		this.invader[id].removeSelf;
-		//this.invader[id].destroy();
-		//delete this.invader[id];
+		console.log( this.invader );
+		if(typeof this.invader[id]==='undefined'){ 
+			// do nothing
+		} else {
+			delete INVADERS[id];
+			//this.invader[id].removeSelf;
+			this.invader[id].destroy();
+			delete this.invader[id];
+			//console.log( this.invader );
+		}
 	}
 	
     this.root = root;

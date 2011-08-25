@@ -4,6 +4,7 @@ init = function() {
 	var s = document.getElementById("stage");
 	s.appendChild(c);
     
+	//IU = new InvadersUnited(c);
     ARENA = new Arena(c);
 	
 	// get data
