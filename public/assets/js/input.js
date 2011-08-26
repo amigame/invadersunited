@@ -20,8 +20,8 @@ Input = function() {
 	}
 
 	function Ignore(e) {
-		if (e.preventDefault) e.preventDefault()
-		if (e.stopPropagation) e.stopPropagation()
+		//if (e.preventDefault) e.preventDefault()
+		//if (e.stopPropagation) e.stopPropagation()
 	}
 	function KeyUp(e) {
 		OnKey(0,e)
@@ -32,8 +32,8 @@ Input = function() {
 	
 	function OnKey(state, e)
 	{
-		if (e.preventDefault) e.preventDefault()
-		if (e.stopPropagation) e.stopPropagation()
+		//if (e.preventDefault) e.preventDefault()
+		//if (e.stopPropagation) e.stopPropagation()
 		var KeyID = (window.event) ? event.keyCode : e.keyCode;
 		switch(KeyID)
 		{

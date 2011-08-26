@@ -8,18 +8,18 @@ socket.on('connect', function(){
 	socket.emit('join arena', 'arena' );
 	
 	//console.log( io.sockets.clients() );
-	$("#chat").submit(function(e) {
+	$("#chat-form").submit(function(e) {
 	  e.preventDefault();
 	  e.stopPropagation();
-	  socket.send(JSON.stringify({msg:$("#msg").val()}));
-	  $("#msg").val("");
+	  socket.emit('chat-update', $("#chat-text").val() );
+	  //socket.send(JSON.stringify({text:$("#chat-text").val()}));
+	  $("#chat-text").val("");
 	  return false;
 	});
 });
 
-socket.on('message', function(data) {
-	$("#response").append("<li>" + data + "</li>");
-	
+socket.on('chat-message', function(data) {
+	$("#chat-stream").append("<li>" + data + "</li>");
 });
 
 socket.on('id', function(id) {

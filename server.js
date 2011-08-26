@@ -61,6 +61,10 @@ io.sockets.on('connection', function(client){
 		client.wave = 0;
 	});
 	
+	client.on('chat-update', function (data) {
+		io.sockets.emit("chat-message", data);
+	});
+	
 	client.emit("id", client.id);
 	// On Message, send message to everyone
  	client.on('message', function(data){ 
