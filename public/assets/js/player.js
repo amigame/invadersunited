@@ -41,7 +41,8 @@ Player = function(root, x, y) {
 	
 	this.sendPosition = function() {
 		if(SOCKETS){
-			socket.send(JSON.stringify({x: x, y: y}));
+			var position = x/WINDOW_WIDTH;
+			socket.send(JSON.stringify({x: position, y: y}));
 		}
 	}		
 

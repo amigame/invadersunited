@@ -16,13 +16,14 @@ Opponents = function(root) {
 		// for each of the entries in the Opponents Array
 		for(i in INVADERS){
 			var coords = INVADERS[i].coords;
+			var x = Math.floor(coords.x*WINDOW_WIDTH);
+			var y = SPRITE_SCALE*SPRITE_HEIGHT*(INVADERS[i].wave-1);
 			if(typeof this.invader[i]==='undefined'){ 
 				// If it doesn't exist create the invader
-				this.invader[i] = new Invader(root, coords.x, coords.y, INVADERS_COLOR, 1);
+				this.invader[i] = new Invader(root, x, y, INVADERS_COLOR, 1);
 			} else { 
 				// If it exists just move it
-				y = SPRITE_SCALE*SPRITE_HEIGHT*(INVADERS[i].wave-1);
-				this.invader[i].animate(coords.x, y);
+				this.invader[i].animate(x, y);
 			}
 		}
 	};
