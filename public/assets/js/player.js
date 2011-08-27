@@ -7,8 +7,8 @@ Player = {
 	id : null,
 	root : null,
 	x : 0,
-	y : 0,	
-
+	y : 0,
+	
     initialize : function() {
 		this.root = Processing.getInstanceById('arena');
 		//this.x = x;
@@ -18,7 +18,7 @@ Player = {
 		return this;
 	},
 	
-	update : function(){
+	update : function(sprite){
 		this.wave = PLAYER.wave;
 		PLAYER.x = this.x;
 
@@ -27,8 +27,12 @@ Player = {
         } else if (INPUT.keys["Right"]==1){
         	this.moveRight();
         }
-		this.root.fill(PLAYER.color);
-		this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
+		//animation.display(this.x, this.y);
+		//this.root.fill(24);
+		frame = Math.round((this.root.frameCount%12)/12);  // Use % to cycle through frames  
+		this.root.shape(sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
+		//this.root.fill(PLAYER.color);
+		//this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
 		this.sendPosition();
 	},
 

@@ -4,6 +4,8 @@ require(["order!/assets/js/libs/json.js", "order!/assets/js/libs/cake.js", "orde
 	$(document).ready(function(){
 		var canvas = document.getElementById("arena");
 		var iu = new Processing(canvas, init);
+		// preloads
+		iu.externals.sketch.options.preload = "/assets/svg/dorky_1.svg,/assets/svg/dorky_2.svg";
 
 	});
 });
