@@ -19,7 +19,8 @@ Opponents = {
 		for(i in INVADERS){
 			var coords = INVADERS[i].coords;
 			var x = Math.floor(coords.x*WINDOW_WIDTH);
-			var y = SPRITE_SCALE*SPRITE_HEIGHT*(INVADERS[i].wave-1);
+			var y = SPRITE_HEIGHT*(INVADERS[i].wave-1);
+			this.root.fill(OPPONENTS.color);
 			this.root.rect(x, y, SPRITE_WIDTH, SPRITE_HEIGHT); 
 			if(typeof this.invader[i]==='undefined'){ 
 				// If it doesn't exist create the invader

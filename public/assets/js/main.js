@@ -1,5 +1,5 @@
 // Variables
-require(["order!/assets/js/libs/json.js", "order!/assets/js/libs/cake.js", "order!/assets/js/sockets.js", "order!/assets/js/config.js", "order!/assets/js/lobby.js", "order!/assets/js/arena.js", "order!/assets/js/input.js", "order!/assets/js/invader.js", "order!/assets/js/defender.js", "order!/assets/js/player.js", "order!/assets/js/opponents.js", "order!/assets/js/init.js"], function () {
+require(["order!/assets/js/libs/json.js", "order!/assets/js/libs/cake.js", "order!/assets/js/sockets.js", "order!/assets/js/config.js", "order!/assets/js/lobby.js", "order!/assets/js/ai.js", "order!/assets/js/bullet.js", "order!/assets/js/input.js", "order!/assets/js/invader.js", "order!/assets/js/defender.js", "order!/assets/js/player.js", "order!/assets/js/opponents.js", "order!/assets/js/init.js"], function () {
     //This callback is called after the three scripts finish loading.
 	$(document).ready(function(){
 		var canvas = document.getElementById("arena");

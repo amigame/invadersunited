@@ -48,17 +48,20 @@ io.sockets.on('connection', function(client){
 	// set these important variables on the server side
 	client.wave = 0;
 	client.score = 0;
+	client.defender = 0;
 	
     // join to room and save the room name
 	client.on('join arena', function (room) {
 		client.wave = 1;
 		client.set('arena', room, function() { console.log('room ' + room + ' saved'); } );
 		client.join(room);
-		client.broadcast.to(room).emit("entered arena", client.id);
+		//client.broadcast.to(room).emit("new invader", client.id);
+		client.broadcast.emit("new invader", client.id);
 	})
 	
-	client.on('leave arena', function (room) {
+	client.on('kill', function () {
 		client.wave = 0;
+		client.broadcast.emit("dead invader", client.id);
 	});
 	
 	client.on('chat-update', function (data) {
@@ -114,8 +117,15 @@ setInterval(function(){
         //console.log("WAVE");
 		for(var i=0;i<clients.length;i++) {
 			try {
-				if(clients[i].wave != undefined)
+				if(clients[i].wave < 10){ 
 					clients[i].wave +=1; // send to all connected clients
+				} else{
+					// exclude the defender for the wave countdown
+					if(!clients[i].defender){ 
+						// notify the clients of the new defender
+						client.broadcast.emit("new defender", client.id);
+					}
+				}
 			} catch(e) {
 				console.log("doesn`t exist");
 				continue; //if a client doesn`t exist, jus continue;

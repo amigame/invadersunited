@@ -30,11 +30,11 @@ socket.on('id', function(id) {
 socket.on('enter arena', function(data) {
 	PLAYER.active = true;	
 });
-socket.on('new player', function(data) {
+socket.on('new invader', function(data) {
 	console.log("New: " + data);	
 });
 
-socket.on('left arena', function(data) {
+socket.on('dead invader', function(data) {
 	console.log("Died: " + data);	
 });
 

@@ -20,12 +20,14 @@ Player = {
 	
 	update : function(){
 		this.wave = PLAYER.wave;
-		
+		PLAYER.x = this.x;
+
 		if (INPUT.keys["Left"]==1){
         	this.moveLeft();
         } else if (INPUT.keys["Right"]==1){
         	this.moveRight();
         }
+		this.root.fill(PLAYER.color);
 		this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
 		this.sendPosition();
 	},

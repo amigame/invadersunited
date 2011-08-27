@@ -13,6 +13,7 @@ BG_COLOR = "#FFF";
 ANIMATION_SPEED = 0.8;
 
 PLAYER = {
+	x: 0,
 	active : false,
 	color : "#0C0",
 	speed : (SPRITE_WIDTH*SPRITE_SCALE)/2
