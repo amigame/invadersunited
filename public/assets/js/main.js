@@ -2,7 +2,9 @@
 require(["order!/assets/js/libs/json.js", "order!/assets/js/libs/cake.js", "order!/assets/js/sockets.js", "order!/assets/js/config.js", "order!/assets/js/lobby.js", "order!/assets/js/arena.js", "order!/assets/js/input.js", "order!/assets/js/invader.js", "order!/assets/js/defender.js", "order!/assets/js/player.js", "order!/assets/js/opponents.js", "order!/assets/js/init.js"], function () {
     //This callback is called after the three scripts finish loading.
 	$(document).ready(function(){
-		init();
+		var canvas = document.getElementById("arena");
+		var iu = new Processing(canvas, init);
+
 	});
 });
 

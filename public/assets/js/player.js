@@ -1,52 +1,61 @@
-Player = function(root, x, y) {
+Player = {
 
-	this.isAlive = true;
-    this.speed = PLAYER_SPEED;
-    this.wave = 0;
-    this.score = 0;
-	this.id = null;
+	isAlive : true,
+    speed : PLAYER.speed,
+    wave : 0,
+    score : 0,
+	id : null,
+	root : null,
+	x : 0,
+	y : 0,	
+
+    initialize : function() {
+		this.root = Processing.getInstanceById('arena');
+		//this.x = x;
+		//this.y = y;
+		//this.invader = new Invader(root, x, y, PLAYER.color, 99);
+		//this.input = new Input();
+		return this;
+	},
 	
-    this.initialize = function(root, x, y) {
-		this.invader = new Invader(root, x, y, PLAYER_COLOR, 99);
-		this.input = new Input();
+	update : function(){
+		this.wave = PLAYER.wave;
 		
-	};
-
-	this.animate = function(t, dt){
-		if (ARENA.keys["Left"]==1){
+		if (INPUT.keys["Left"]==1){
         	this.moveLeft();
-        } else if (ARENA.keys["Right"]==1){
+        } else if (INPUT.keys["Right"]==1){
         	this.moveRight();
         }
-	}
-	
-	this.moveLeft = function() {
-		//this.invader.moveLeft();
+		this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
 		this.sendPosition();
-		if (x>0){
-			x -= this.speed;
-			y = SPRITE_SCALE*SPRITE_HEIGHT*(this.wave-1);
-			this.invader.animate(x, y);
-		}
-	};
-	
-	this.moveRight = function() {
-		this.sendPosition();
-		if (x<WINDOW_WIDTH-this.invader.sprite.w){
-			x += this.speed;
-			y = SPRITE_SCALE*SPRITE_HEIGHT*(this.wave-1);
-			this.invader.animate(x, y);
-		}
-	};
-	
-	this.sendPosition = function() {
-		if(SOCKETS){
-			var position = x/WINDOW_WIDTH;
-			socket.send(JSON.stringify({x: position, y: y}));
-		}
-	}		
+	},
 
-    this.root = root;
-    this.initialize(root, x, y);
+	enterArena : function() {
+		// setup player
+	},
+	
+	moveLeft : function() {
+		//this.invader.moveLeft();
+		if (this.x>0){
+			this.x -= this.speed;
+			this.y = SPRITE_HEIGHT*(this.wave-1);
+			//this.invader.animate(this.x, this.y);
+		}
+	},
+	
+	moveRight : function() {
+		if (this.x<WINDOW_WIDTH-SPRITE_WIDTH){
+			this.x += this.speed;
+			this.y = SPRITE_HEIGHT*(this.wave-1);
+			//this.invader.animate(this.x, this.y);
+		}
+	},
+	
+	sendPosition : function() {
+		if(SOCKETS){
+			var position = this.x/WINDOW_WIDTH;
+			socket.send(JSON.stringify({x: position, y: this.y}));
+		}
+	}
 	
 }

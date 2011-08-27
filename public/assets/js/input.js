@@ -1,53 +1,67 @@
-Input = function() {
+Input = {
 
-	if (document.addEventListener)
-	{
-		document.addEventListener("keypress", Ignore,  false)
-		document.addEventListener("keydown",  KeyDown, false)
-		document.addEventListener("keyup",    KeyUp,   false)
-	}
-	else if (document.attachEvent)
-	{
-		document.attachEvent("onkeypress", Ignore)
-		document.attachEvent("onkeydown",  KeyDown)
-		document.attachEvent("onkeyup",    KeyUp)
-	}
-	else
-	{
-		document.onkeypress = Ignore
-		document.onkeydown  = KeyDown
-		document.onkeyup    = KeyUp;
-	}
+	// setup the mapping for catching key presses
+    keys : { "Up" : 0, "Down" : 0, "Left" : 0, "Right" : 0, "Ctrl" : 0 },
+	
+	initialize : function(){
+		if (document.addEventListener)
+		{
+			document.addEventListener("keypress", this.ignore,  false)
+			document.addEventListener("keydown",  this.keydown, false)
+			document.addEventListener("keyup",    this.keyup,   false)
+		}
+		else if (document.attachEvent)
+		{
+			document.attachEvent("onkeypress", this.ignore)
+			document.attachEvent("onkeydown",  this.keydown)
+			document.attachEvent("onkeyup",    this.keyup)
+		}
+		else
+		{
+			document.onkeypress = this.ignore
+			document.onkeydown  = this.keydown
+			document.onkeyup    = this.keyup;
+		}
+		
+		return this;
+	},
 
-	function Ignore(e) {
+	ignore : function(e) {
 		//if (e.preventDefault) e.preventDefault()
 		//if (e.stopPropagation) e.stopPropagation()
-	}
-	function KeyUp(e) {
-		OnKey(0,e)
-	}
-	function KeyDown(e) {
-		OnKey(1,e)
-	}
+	}, 
 	
-	function OnKey(state, e)
-	{
+	keyup : function(e) {
+		// nasty! defining the globar var from the object
+		INPUT.onkey(0,e)
+	}, 
+	
+	keydown : function(e) {
+		// nasty! defining the globar var from the object
+		INPUT.onkey(1,e)
+	},	
+	
+    key : function(state, name) {
+		this.keys[name] = state;
+    },
+	
+	onkey : function(state, e) {
 		//if (e.preventDefault) e.preventDefault()
 		//if (e.stopPropagation) e.stopPropagation()
 		var KeyID = (window.event) ? event.keyCode : e.keyCode;
 		switch(KeyID)
 		{
 			case 37:
-				ARENA.key(state,"Left")
+				this.key(state,"Left")
 				break;
 			case 38:
-				ARENA.key(state,"Up")
+				this.key(state,"Up")
 				break;
 			case 39:
-				ARENA.key(state,"Right")
+				this.key(state,"Right")
 				break;
 			case 40:
-				ARENA.key(state,"Down")
+				this.key(state,"Down")
 				break;
 		}
 	}

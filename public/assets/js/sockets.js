@@ -23,11 +23,14 @@ socket.on('chat-message', function(data) {
 });
 
 socket.on('id', function(id) {
-	//console.log("my id is " + data);	
+	//console.log("my id is " + data);
 	PLAYER.id = id;
 });
 
-socket.on('entered arena', function(data) {
+socket.on('enter arena', function(data) {
+	PLAYER.active = true;	
+});
+socket.on('new player', function(data) {
 	console.log("New: " + data);	
 });
 
@@ -37,7 +40,7 @@ socket.on('left arena', function(data) {
 
 socket.on('left game', function(id) {
 	console.log("Left: " + id);
-	ARENA.opponents.remove(id);	
+	delete INVADERS[id];	
 });
 
 socket.on('arena', function (invader) {
