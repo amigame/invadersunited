@@ -50,6 +50,9 @@ io.sockets.on('connection', function(client){
 	client.score = 0;
 	client.defender = 0;
 	
+	// join the lobby by default
+	client.join('lobby');
+	
     // join to room and save the room name
 	client.on('join arena', function (room) {
 		client.wave = 1;
@@ -120,10 +123,12 @@ setInterval(function(){
 				if(clients[i].wave < 10){ 
 					clients[i].wave +=1; // send to all connected clients
 				} else{
+					//newDefender();
 					// exclude the defender for the wave countdown
 					if(!clients[i].defender){ 
 						// notify the clients of the new defender
 						client.broadcast.emit("new defender", client.id);
+						clients[i].defender = true;
 					}
 				}
 			} catch(e) {

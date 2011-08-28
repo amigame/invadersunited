@@ -34,6 +34,10 @@ socket.on('new invader', function(data) {
 	console.log("New: " + data);	
 });
 
+socket.on('new defender', function(data) {
+	console.log("Defender: " + data);	
+});
+
 socket.on('dead invader', function(data) {
 	console.log("Died: " + data);	
 });

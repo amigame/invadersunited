@@ -10,13 +10,15 @@ SPRITE_SIZE = [SPRITE_SCALE * 0, SPRITE_SCALE * 0, SPRITE_SCALE * SPRITE_WIDTH, 
 
 BG_COLOR = "#FFF";
 
+SPRITES = {};
 ANIMATION_SPEED = 0.8;
 
 PLAYER = {
 	x: 0,
 	active : false,
 	color : "#0C0",
-	speed : (SPRITE_WIDTH*SPRITE_SCALE)/2
+	speed : (SPRITE_WIDTH*SPRITE_SCALE)/2, 
+	die : false,
 };
 
 SOCKETS = false;

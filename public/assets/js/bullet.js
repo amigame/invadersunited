@@ -5,10 +5,8 @@ Bullet = {
 	compAI : false, 
 	fire : false, 
 	
-	initialize : function(x) {
+	initialize : function() {
 		this.root = Processing.getInstanceById('arena');
-		this.x = x;
-		this.y = WINDOW_HEIGHT-2*SPRITE_HEIGHT;
 		return this;
 	},
 	
@@ -35,7 +33,7 @@ Bullet = {
 	}, 
 	
 	checkCollision : function( ) {
-		if( this.x >= PLAYER.x && this.x <= PLAYER.x+SPRITE_WIDTH && this.y <= (PLAYER.wave+1)*SPRITE_HEIGHT && this.y >= PLAYER.wave*SPRITE_HEIGHT){
+		if( this.x >= PLAYER.x && this.x <= PLAYER.x+SPRITE_WIDTH && this.y <= PLAYER.y+SPRITE_HEIGHT && this.y >= PLAYER.y){
 			this.destroy();		
 			PLAYER.die = true;	
 		}

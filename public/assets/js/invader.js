@@ -1,11 +1,11 @@
-Invader = function(root, x, y, color, zIndex) {
+Invader = {
 
-	this.animatePosition = 1;
-	this.animation;
-	this.color = color;
-	this.zIndex = zIndex;
+	frame : 1, 
+	animation : null, 
+	color : 0, 
+	zIndex : 0, 
 	
-	this.display = function(json){
+	initialize : function(json){
 		//var CAKECanvas = new Canvas(document.body, WINDOW_WIDTH, WINDOW_HEIGHT);
 		
 		var animations = new Array();
@@ -48,12 +48,12 @@ Invader = function(root, x, y, color, zIndex) {
 		this.sprite.every(1000*ANIMATION_SPEED, 
 			function( ) 
 			{
-				if( this.animatePosition == 1) { 
+				if( this.frame == 1) { 
 					this.compiled = animation[2];
-					this.animatePosition = 2;
+					this.frame = 2;
 				} else {
 					this.compiled = animation[1];
-					this.animatePosition = 1;
+					this.frame = 1;
 				}
 			},
 			true
@@ -72,31 +72,19 @@ Invader = function(root, x, y, color, zIndex) {
 		
 		//this.addFrameListener(this.animate);
 		
-	};
-	 
-    this.initialize = function(root, x, y) {
-		
-		var $this = this;
-		$.getJSON('/data/animations/invaders.json', function(data) {
-			$this.display(data);
-		});
-		
-	};
-
-	this.animate = function(x, y){
+	},
+	
+	update : function(x, y){
 		//console.log(y);
 		this.sprite.x = x;
 		this.sprite.y = y;
-	};
-
-	this.destroy = function(){
+	}, 
+	
+	destroy : function(){
 		//console.log(y);
 		root.remove(this.sprite);
 		delete this;
 		//this.sprite.y = y;
-	};
+	}
 	
-    this.root = root;
-    this.initialize(root, x, y);
-	return this;	
 }

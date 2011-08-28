@@ -8,9 +8,14 @@ Player = {
 	root : null,
 	x : 0,
 	y : 0,
+	explosion : Explosion,
+	sprite : null,
 	
-    initialize : function() {
-		this.root = Processing.getInstanceById('arena');
+    initialize : function(root) {
+		//this.root = Processing.getInstanceById('arena');
+		this.root = root;
+		this.sprite = SPRITES['evily'];
+		this.explosion = Explosion.initialize(root);
 		//this.x = x;
 		//this.y = y;
 		//this.invader = new Invader(root, x, y, PLAYER.color, 99);
@@ -18,22 +23,13 @@ Player = {
 		return this;
 	},
 	
-	update : function(sprite){
-		this.wave = PLAYER.wave;
-		PLAYER.x = this.x;
-
-		if (INPUT.keys["Left"]==1){
-        	this.moveLeft();
-        } else if (INPUT.keys["Right"]==1){
-        	this.moveRight();
-        }
-		//animation.display(this.x, this.y);
-		//this.root.fill(24);
-		frame = Math.round((this.root.frameCount%12)/12);  // Use % to cycle through frames  
-		this.root.shape(sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
-		//this.root.fill(PLAYER.color);
-		//this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
-		this.sendPosition();
+	update : function(){
+		if( PLAYER.die ){ 
+			this.explosion.update();
+		} else { 
+			this.updatePosition();
+			this.sendPosition();
+		}
 	},
 
 	enterArena : function() {
@@ -56,6 +52,25 @@ Player = {
 			//this.invader.animate(this.x, this.y);
 		}
 	},
+	
+	updatePosition : function(){
+		this.wave = PLAYER.wave;
+		PLAYER.x = this.x;
+		PLAYER.y = this.y;
+
+		if (INPUT.keys["Left"]==1){
+        	this.moveLeft();
+        } else if (INPUT.keys["Right"]==1){
+        	this.moveRight();
+        }
+		//animation.display(this.x, this.y);
+		//this.root.fill(24);
+		frame = Math.round((this.root.frameCount%12)/12);  // Use % to cycle through frames  
+		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
+		//this.root.fill(PLAYER.color);
+		//this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
+			
+	}, 
 	
 	sendPosition : function() {
 		if(SOCKETS){

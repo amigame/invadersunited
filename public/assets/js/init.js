@@ -4,16 +4,12 @@ init = function( processing ) {
 	
 	processing.setup = function() {
 		processing.frameRate(12);
-		processing.background(255);
 		
-		dorky = new Array(); 
-		dorky[0] = processing.loadShape("/assets/svg/dorky_1.svg");
-  		dorky[1] = processing.loadShape("/assets/svg/dorky_2.svg");
-  		//dorky.disableStyle();
+		sprites = Sprites.initialize(processing);
 		
-		player = Player.initialize();
-		opponents = Opponents.initialize();
-		defender = Defender.initialize();
+		player = Player.initialize(processing);
+		opponents = Opponents.initialize(processing);
+		defender = Defender.initialize(processing);
 		 
 	};  
 	
@@ -24,7 +20,7 @@ init = function( processing ) {
 		// erase background
 		processing.background(255, 15);
 		// draw main actors
-		player.update(dorky);
+		player.update();
 		opponents.update();
 		defender.update();
 		

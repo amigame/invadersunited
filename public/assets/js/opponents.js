@@ -1,10 +1,11 @@
 Opponents = {
-	
+	root : null,
 	invader : {},
 	
-    initialize : function() {
+    initialize : function(root) {
 		
-		this.root = Processing.getInstanceById('arena');
+		//this.root = Processing.getInstanceById('arena');
+		this.root = root;
 		for(i in INVADERS){
 			var coords = INVADERS[i].coords;
 			this.root.rect(coords.x, coords.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
