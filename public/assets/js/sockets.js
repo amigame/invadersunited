@@ -19,7 +19,7 @@ socket.on('connect', function(){
 });
 
 socket.on('chat-message', function(data) {
-	$("#chat-stream").append("<li>" + data + "</li>");
+	$("#chat-stream").prepend("<li>" + data + "</li>");
 });
 
 socket.on('id', function(id) {

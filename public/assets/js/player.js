@@ -14,7 +14,7 @@ Player = {
     initialize : function(root) {
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
-		this.sprite = SPRITES['evily'];
+		this.sprite = SPRITES['scully'];
 		this.explosion = Explosion.initialize(root);
 		//this.x = x;
 		//this.y = y;
