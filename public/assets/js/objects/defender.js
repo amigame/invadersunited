@@ -1,4 +1,4 @@
-Defender = $.extend(AI, {
+Defender = $.extend(Sprite, AI, {
 
 	x : 0,
 	y : WINDOW_HEIGHT-2*SPRITE_HEIGHT,

@@ -4,30 +4,13 @@ Invader = {
 	animation : null, 
 	color : 0, 
 	zIndex : 0, 
+	sprite : null,
 	
-	initialize : function(json){
-		//var CAKECanvas = new Canvas(document.body, WINDOW_WIDTH, WINDOW_HEIGHT);
+	initialize : function(root){
 		
-		var animations = new Array();
-
-		animations['invaders'] = new Array();
+		this.root = root;
 		
-		$.each(json, function(series, invader) { 
-			animations['invaders'][series] = new Array();
-
-			$.each(invader[0], function(num, sprite) { 
-
-				animations['invaders'][series][num] = new Array();
-				animations['invaders'][series][num].push(['fillRect', SPRITE_SIZE]);
-				
-				$.each(sprite, function(set, coords) { 
-					var array = [SPRITE_SCALE * coords.x, SPRITE_SCALE * coords.y, SPRITE_SCALE * coords.w, SPRITE_SCALE * coords.h];
-					animations['invaders'][series][num].push(['clearRect', array]);
-				});
-			});
-		});
-		
-		var animation = this.animation = animations['invaders']['dorky'];
+		this.animation = animations['invaders']['dorky'];
 		
 		this.sprite = new Path(animation[1],{
 				fill: this.color,

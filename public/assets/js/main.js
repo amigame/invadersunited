@@ -1,5 +1,5 @@
 // Variables
-require(["order!/assets/js/libs/json.js", "order!/assets/js/libs/cake.js", "order!/assets/js/sockets.js", "order!/assets/js/config.js", "order!/assets/js/lobby.js", "order!/assets/js/ai.js", "order!/assets/js/sprites.js", "order!/assets/js/bullet.js", "order!/assets/js/explosion.js", "order!/assets/js/input.js", "order!/assets/js/invader.js", "order!/assets/js/defender.js", "order!/assets/js/player.js", "order!/assets/js/opponents.js", "order!/assets/js/init.js"], function () {
+require(["order!http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "order!/socket.io/socket.io.js", "order!/assets/js/libs/processing-1.3.0.min.js", "order!/assets/js/libs/cake.js", "order!/assets/js/logic/sockets.js", "order!/assets/js/config.js", "order!/assets/js/rooms/lobby.js", "order!/assets/js/logic/ai.js", "order!/assets/js/objects/sprite.js", "order!/assets/js/objects/bullet.js", "order!/assets/js/objects/explosion.js", "order!/assets/js/logic/input.js", "order!/assets/js/objects/invader.js", "order!/assets/js/objects/defender.js", "order!/assets/js/logic/player.js", "order!/assets/js/logic/opponents.js", "order!/assets/js/logic/init.js", "order!/assets/js/sprites.js"], function () {
     //This callback is called after the three scripts finish loading.
 	$(document).ready(function(){
 		var canvas = document.getElementById("arena");
@@ -9,7 +9,6 @@ require(["order!/assets/js/libs/json.js", "order!/assets/js/libs/cake.js", "orde
 
 	});
 });
-
 
 
 // Analytics

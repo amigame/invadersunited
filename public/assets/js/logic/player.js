@@ -1,4 +1,4 @@
-Player = {
+Player = $.extend(Sprite, AI, {
 
 	isAlive : true,
     speed : PLAYER.speed,
@@ -79,4 +79,4 @@ Player = {
 		}
 	}
 	
-}
+});
