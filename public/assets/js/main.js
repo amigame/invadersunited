@@ -18,14 +18,14 @@ require({
 		"order!logic/input", 
 		"order!logic/player", 
 		"order!logic/opponents", 
-		"order!logic/init", 
+		"order!logic/game", 
 		"order!rooms/lobby", 
 		"order!rooms/arena"
 	], function () {
 		
 		$(document).ready(function(){
 			var canvas = document.getElementById("arena");
-			var iu = new Processing(canvas, init);
+			var iu = new Processing(canvas, Game.initialize);
 			// vector preloads
 			iu.externals.sketch.options.preload = PRELOAD.join(",");
 

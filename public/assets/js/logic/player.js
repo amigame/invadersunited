@@ -1,4 +1,4 @@
-Player = $.extend(Sprite, AI, {
+Player = $.extend(Sprite, {
 
 	isAlive : true,
     speed : PLAYER.speed,
@@ -65,7 +65,7 @@ Player = $.extend(Sprite, AI, {
         }
 		//animation.display(this.x, this.y);
 		//this.root.fill(24);
-		frame = Math.round((this.root.frameCount%12)/12);  // Use % to cycle through frames  
+		frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames  
 		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
 		//this.root.fill(PLAYER.color);
 		//this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
