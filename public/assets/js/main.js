@@ -1,11 +1,30 @@
 // Variables
-require(["order!http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "order!/socket.io/socket.io.js", "order!/assets/js/libs/processing-1.3.0.min.js", "order!/assets/js/libs/cake.js", "order!/assets/js/logic/sockets.js", "order!/assets/js/config.js", "order!/assets/js/rooms/lobby.js", "order!/assets/js/logic/ai.js", "order!/assets/js/objects/sprite.js", "order!/assets/js/objects/bullet.js", "order!/assets/js/objects/explosion.js", "order!/assets/js/logic/input.js", "order!/assets/js/objects/invader.js", "order!/assets/js/objects/defender.js", "order!/assets/js/logic/player.js", "order!/assets/js/logic/opponents.js", "order!/assets/js/logic/init.js", "order!/assets/js/sprites.js"], function () {
-    //This callback is called after the three scripts finish loading.
-	$(document).ready(function(){
-		var canvas = document.getElementById("arena");
-		var iu = new Processing(canvas, init);
-		// preloads
-		iu.externals.sketch.options.preload = "/assets/svg/Defender.svg,/assets/svg/Dorky1.svg,/assets/svg/Dorky2.svg/assets/svg/Evily1.svg,/assets/svg/Evily2.svg,/assets/svg/Scully1.svg,/assets/svg/Scully2.svg,";
+require({ 
+    baseUrl: "/assets/js/" 
+	}[	"order!libs/jquery-1.6.4.min", 
+		"order!libs/processing-1.3.0.min", 
+		"order!libs/cake", 
+		"order!objects/sprite", 
+		"order!objects/bullet", 
+		"order!objects/invader", 
+		"order!objects/defender", 
+		"order!objects/explosion", 
+		"order!logic/sockets", 
+		"order!logic/ai", 
+		"order!logic/input", 
+		"order!logic/player", 
+		"order!logic/opponents", 
+		"order!logic/init", 
+		"order!rooms/lobby", 
+		"order!rooms/arena", 
+		"order!config"
+	], function () {
+		
+		$(document).ready(function(){
+			var canvas = document.getElementById("arena");
+			var iu = new Processing(canvas, init);
+			// vector preloads
+			iu.externals.sketch.options.preload = PRELOAD.join(",");
 
 	});
 });
