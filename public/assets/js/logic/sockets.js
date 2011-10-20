@@ -1,21 +1,34 @@
 
 var socket = io.connect(window.location.hostname); 
+var chat; 
+
+//console.log( io.sockets.clients() );
+$("form#chat").submit(function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var input = $(this).find("input[type='text']");
+  chat.emit('message', input.val() );
+  //socket.send(JSON.stringify({text:$("#chat-text").val()}));
+  input.val("");
+});
+
+//console.log( io.sockets.clients() );
+$("form#login").submit(function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var input = $(this).find("input[type='text']");
+  socket.emit('login', input.val() );
+  //socket.send(JSON.stringify({text:$("#chat-text").val()}));
+  // move this to a socket response 
+  initLobby();
+});
 
 socket.on('connect', function(){ 
 	SOCKETS = true;
 	
 	// put conditions for entering the arena
-	socket.emit('join arena', 'arena' );
+	//socket.emit('join-room', 'arena' );
 	
-	//console.log( io.sockets.clients() );
-	$("#chat-form").submit(function(e) {
-	  e.preventDefault();
-	  e.stopPropagation();
-	  socket.emit('chat-update', $("#chat-text").val() );
-	  //socket.send(JSON.stringify({text:$("#chat-text").val()}));
-	  $("#chat-text").val("");
-	  return false;
-	});
 });
 
 socket.on('chat-message', function(data) {
@@ -27,27 +40,27 @@ socket.on('id', function(id) {
 	PLAYER.id = id;
 });
 
-socket.on('enter arena', function(data) {
+// user updates
+socket.on('in-lobby', function(data) {
+	// show lobby
+	console.log("now in lobby");
+	showLobby();
+});
+
+socket.on('in-arena', function(data) {
 	PLAYER.active = true;	
-});
-socket.on('new invader', function(data) {
-	console.log("New: " + data);	
+	hideLobby();
 });
 
-socket.on('new defender', function(data) {
-	console.log("Defender: " + data);	
+
+// opponents updates
+socket.on('enter-lobby', function(data) {
+	// add user in lobby
+	console.log("Entered:"+data);
 });
 
-socket.on('dead invader', function(data) {
-	console.log("Died: " + data);	
-});
-
-socket.on('left game', function(id) {
-	console.log("Left: " + id);
-	delete INVADERS[id];	
-});
-
-socket.on('arena', function (invader) {
+	
+socket.on('new-invader', function(data) {
 	// exclude the player invader
 	if( invader.id != PLAYER.id){ 
 		INVADERS[invader.id] = invader;
@@ -56,7 +69,24 @@ socket.on('arena', function (invader) {
 	}
 });
 
+socket.on('new-defender', function(data) {
+	console.log("Defender: " + data);	
+});
+
+socket.on('dead-invader', function(data) {
+	console.log("Died: " + data);	
+});
+
+socket.on('left-game', function(id) {
+	console.log("Left: " + id);
+	delete INVADERS[id];	
+});
+
+socket.on('countdown', function(data) {
+	$("#wave span").html(data);
+});
+
+
 socket.on('disconnect', function(){ 
 	SOCKETS = false;
-	
 });

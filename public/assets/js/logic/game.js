@@ -24,7 +24,7 @@ Game = {
 			//update window size
 			root.size(WINDOW_WIDTH, WINDOW_HEIGHT);  
 			// erase background
-			root.background(255, 15);
+			root.background( SCREEN.background );
 			// draw main actors
 			player.update();
 			opponents.update();

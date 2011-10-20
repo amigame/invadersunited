@@ -22,7 +22,7 @@ SCREEN = {
 	framerate 	: 12, 
 	width 		: window.innerWidth, 
 	height 		: window.innerHeight, 
-	background 	: "#FFF"
+	background 	: "#FFFFFF"
 }
 
 SPRITE = { 

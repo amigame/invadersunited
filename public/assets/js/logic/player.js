@@ -28,7 +28,7 @@ Player = $.extend(Sprite, {
 			this.explosion.update();
 		} else { 
 			this.updatePosition();
-			this.sendPosition();
+			//this.sendPosition();
 		}
 	},
 
