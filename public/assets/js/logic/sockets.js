@@ -1,6 +1,16 @@
 
 var socket = io.connect(window.location.hostname); 
-var chat; 
+var chat;  
+
+$("form#login").submit(function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var input = $(this).find("input[type='text']");
+  socket.emit('login', input.val() );
+  //socket.send(JSON.stringify({text:$("#chat-text").val()}));
+  // move this to a socket response 
+  initLobby();
+});
 
 //console.log( io.sockets.clients() );
 $("form#chat").submit(function(e) {
@@ -12,16 +22,6 @@ $("form#chat").submit(function(e) {
   input.val("");
 });
 
-//console.log( io.sockets.clients() );
-$("form#login").submit(function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  var input = $(this).find("input[type='text']");
-  socket.emit('login', input.val() );
-  //socket.send(JSON.stringify({text:$("#chat-text").val()}));
-  // move this to a socket response 
-  initLobby();
-});
 
 socket.on('connect', function(){ 
 	SOCKETS = true;
@@ -31,18 +31,15 @@ socket.on('connect', function(){
 	
 });
 
-socket.on('chat-message', function(data) {
-	$("#chat-stream").prepend("<li>" + data + "</li>");
-});
-
 socket.on('id', function(id) {
 	//console.log("my id is " + data);
 	PLAYER.id = id;
 });
 
 // user updates
-socket.on('in-lobby', function(data) {
+socket.on('in-lobby', function(user) {
 	// show lobby
+	$("#waiting").append("<li>" + user + "</li>");
 	console.log("now in lobby");
 	showLobby();
 });
@@ -85,7 +82,6 @@ socket.on('left-game', function(id) {
 socket.on('countdown', function(data) {
 	$("#wave span").html(data);
 });
-
 
 socket.on('disconnect', function(){ 
 	SOCKETS = false;
