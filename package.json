@@ -1,0 +1,19 @@
+{
+  "name": "invadersunited",
+  "subdomain": "invadesunited",
+  "domains": [
+    "invadersunited.com",
+    "www.invadersunited.com"
+  ],
+  "scripts": {
+    "start": "server.js"
+  },
+  "version": "0.0.1-1",
+  "engines": {
+    "node": "0.6.x"
+  },
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*"
+  }
+}
