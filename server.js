@@ -31,7 +31,7 @@ app.configure('production', function(){
 app.get('/', function(req, res){ 
 	res.render('index', {
 		locals: {
-			title: "Invaders United"
+			title: config.name
 		}
 	});
 });
