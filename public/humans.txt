@@ -7,7 +7,7 @@
   Developer: Lyndel Thomas
 
 /* THANKS */
-  Chris Matthieu (http://nodester.com)
+  HTML5DevConf (http://html5devconf.com)
 
 /* SITE */
   Standards: HTML5, JavaScript
