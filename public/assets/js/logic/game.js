@@ -3,7 +3,8 @@ Game = {
 	root: null, 
 	
 	initialize : function( root ) {
-	
+		var self = this;
+		
 		this.root = root;
 		
 		INPUT = Input.initialize();
@@ -31,7 +32,9 @@ Game = {
 			defender.update();
 			
 		};
-	
+		
+		// setup wave timer
+		Game.waveTimer.init();
 	},
 	
 	preload : function(root){
@@ -67,6 +70,37 @@ Game = {
 	
 	destroy : function(){
 		
+	}, 
+	
+	waveTimer: {
+		
+		vars: {
+			timeout: 20, 
+			count: 0
+		}, 
+		timer: false, 
+		init: function(){
+			var self = this;
+			
+			self.reset();
+			
+			this.timer = window.setInterval(function(){ self.update( self ) }, 1000);
+			
+		}, 
+		update: function( self ){
+			var count = self.vars.count;
+			if(count > 0) self.vars.count--;
+			// display the update
+			$("#wave span").html(self.vars.count);
+		}, 
+		reset: function(){
+			// reset count to the set timeout
+			this.vars.count = this.vars.timeout;
+			
+		},
+		destroy: function(){
+			clearInterval( this.timer );
+		}
 	}
 	
 }

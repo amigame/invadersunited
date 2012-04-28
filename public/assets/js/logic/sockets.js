@@ -79,8 +79,8 @@ socket.on('left-game', function(id) {
 	delete INVADERS[id];	
 });
 
-socket.on('countdown', function(data) {
-	$("#wave span").html(data);
+socket.on('wave', function(flag) {
+	if(flag) Game.waveTimer.reset();
 });
 
 socket.on('disconnect', function(){ 
