@@ -10,8 +10,9 @@ socket.on('id', function(id) {
 
 // user updates
 socket.on('in-lobby', function(user) {
+	// add user in lobby
+	enterLobby( user.name );
 	// show lobby
-	$("#waiting").append("<li>" + user.name + "</li>");
 	showLobby();
 	// save the data for later
 	PLAYER.id = user.id;
@@ -28,8 +29,7 @@ socket.on('in-arena', function() {
 // opponents updates
 socket.on('entered-lobby', function( user ) {
 	// add user in lobby
-	$("#waiting").append("<li>" + user + "</li>");
-	console.log("Entered:"+user);
+	enterLobby( user );
 });
 
 	

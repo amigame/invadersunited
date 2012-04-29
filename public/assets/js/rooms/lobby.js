@@ -18,17 +18,27 @@ function hideLobby(){
 	$("#wrapper aside").animate({ right: -1*$(this).width()}, 800);
 }
 
+function enterLobby( user ){
+	var img = '<img src="'+ getGravatar( user, 32 ) +'" width="32" height="32" alt="'+ user +'" />';
+	$("#waiting").append("<li>"+ img + user + "</li>");
+}
+
+function exitLobby( user ){
+	// remove user from the waiting list
+}
+
+
 // Chat functions
 
 function initChat(){
 	
-	chat.on('connect', function () {
+	chat
+	.on('connect', function () {
 		//chat.emit('hi!');
-	  });
-	
-	chat.on('update', function(user) {
-		console.log(user.name);
-		$("#chat-stream").prepend("<li>" + user.text + "</li>");
+	  })
+	.on('update', function(user) {
+		var img = '<img src="'+ getGravatar( user.name, 16 ) +'" width="16" height="16" alt="'+ user.name +'" />';
+		$("#chat-stream").prepend("<li>"+ img + user.text +"</li>");
 	});
 
 }
@@ -52,7 +62,7 @@ $("form#chat").submit(function(e) {
   e.preventDefault();
   e.stopPropagation();
   var input = $(this).find("input[type='text']");
-  chat.emit('message', input.val() );
+  if( !empty( input.val() ) ) chat.emit('message', input.val() );
   input.val("");
 });
 

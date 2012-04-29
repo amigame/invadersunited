@@ -4,6 +4,7 @@ require({
 	}, [	
 		"order!libs/jquery-1.6.4.min", 
 		"order!libs/processing-1.3.0.min", 
+		"order!libs/md5", 
 		"order!misc/helpers", 
 		"order!misc/tracking", 
 		"order!config", 
