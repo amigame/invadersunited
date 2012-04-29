@@ -42,6 +42,7 @@ USER = {
 	color : "#0C0",
 	speed : (SPRITE_WIDTH*SPRITE_SCALE)/2, 
 	die : false,
+	icon : encodeURIComponent("http://invadersunited.com/apple-touch-icon-114x114-precomposed.png")
 };
 
 
