@@ -1,31 +1,4 @@
 
-var socket = io.connect(window.location.hostname); 
-var chat;  
-
-$("form#login").submit(function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  var input = $(this).find("input[type='text']");
-  if( validateEmail(input.val() ) ){
-	  socket.emit('login', input.val() );
-  	//socket.send(JSON.stringify({text:$("#chat-text").val()}));
-  	// move this to a socket response 
- 	 initLobby();
-  } else {
-	 alert("Please enter a valid email");
-  }
-});
-
-//console.log( io.sockets.clients() );
-$("form#chat").submit(function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  var input = $(this).find("input[type='text']");
-  chat.emit('message', input.val() );
-  input.val("");
-});
-
-
 socket.on('connect', function(){ 
 	SOCKETS = true;
 });

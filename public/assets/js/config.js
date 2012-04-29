@@ -61,7 +61,12 @@ var ARENA = {};
 
 */
 
+// GLOBALS
 // setup data containers
 PLAYER = USER;
 INVADERS = [];
 var INPUT;
+
+var socket = io.connect(window.location.hostname); 
+var chat = io.connect(window.location.hostname+"/chat");
+
