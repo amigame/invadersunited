@@ -36,6 +36,16 @@ app.get('/', function(req, res){
 	});
 });
 
+// About page
+app.get('/about', function(req, res){ 
+	res.render('about', {
+		locals: {
+			title: config.name
+		}
+	});
+});
+
+
 // Listen on this port
 app.listen(config.port); 
 
