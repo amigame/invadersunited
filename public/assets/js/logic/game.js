@@ -19,7 +19,7 @@ Game = {
 			 
 		};  
 		
-		// Override draw function, by default it will be called 60 times per second
+		// Override draw function abd add updates of the game classes
 		root.draw = function() {
 			//update window size
 			root.size(WINDOW_WIDTH, WINDOW_HEIGHT);  

@@ -1,11 +1,14 @@
 Opponents = {
 	root : null,
 	invader : {},
+	sprite : null,
 	
     initialize : function(root) {
 		
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
+		this.sprite = SPRITES['scully'];
+		
 		/*
 		for(i in INVADERS){
 			console.log(INVADERS);
@@ -24,19 +27,12 @@ Opponents = {
 		if( !INVADERS.length ) return;
 		// for each of the entries in the Opponents Array
 		for(i in INVADERS){
-			var coords = INVADERS[i].coords;
-			var x = Math.floor(coords.x*WINDOW_WIDTH);
-			var y = SPRITE_HEIGHT*(INVADERS[i].wave-1);
-			//this.root.fill(OPPONENTS.color);
-			//this.root.rect(x, y, SPRITE_WIDTH, SPRITE_HEIGHT); 
-			this.root.shape(SPRITES['scully'], x, y, SPRITE_WIDTH, SPRITE_HEIGHT);
-			if( empty( this.invader[i] ) ){ 
-				// If it doesn't exist create the invader
-				//this.invader[i] = new Invader(root, x, y, INVADERS_COLOR, 1);
-			} else { 
-				// If it exists just move it
-				//this.invader[i].animate(x, y);
-			}
+			var pos = INVADERS[i].pos;
+			var x = Math.floor( pos.x * WINDOW_WIDTH );
+			var y = Math.floor( pos.y * SPRITE_HEIGHT );
+			// set sprite based on frame rate (so it's the same for all invaders)
+			frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames  
+			this.root.shape(this.sprite[frame], x, y, SPRITE_WIDTH, SPRITE_HEIGHT);
 		}
 		
 	},

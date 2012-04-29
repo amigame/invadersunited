@@ -1,4 +1,4 @@
-Defender = $.extend(Sprite, {
+Defender = {
 
 	x : 0,
 	y : WINDOW_HEIGHT-2*SPRITE_HEIGHT,
@@ -11,7 +11,7 @@ Defender = $.extend(Sprite, {
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
 		this.sprite = SPRITES['defender'];
-		this.enableAI();
+		//this.enableAI();
 		if(this.canShoot){
 			this.bullet = Bullet.initialize();
 		}
@@ -23,9 +23,9 @@ Defender = $.extend(Sprite, {
 		//this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
 		frame = Math.round((this.root.frameCount%12)/12);  // Use % to cycle through frames  
 		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
-		if(this.compAI){
-			this.updateAI();
-		}
+		//if(this.compAI){
+		//	this.updateAI();
+		//}
 		if(this.canShoot){ 
 			//if( typeof this.bullet === "undefined"){
 			if( this.bullet.fire == true ) {
@@ -36,4 +36,4 @@ Defender = $.extend(Sprite, {
 		}
 	}
 	
-});
+}

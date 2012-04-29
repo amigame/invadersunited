@@ -28,10 +28,6 @@ $("form#chat").submit(function(e) {
 
 socket.on('connect', function(){ 
 	SOCKETS = true;
-	
-	// put conditions for entering the arena
-	//socket.emit('join-room', 'arena' );
-	
 });
 
 socket.on('id', function(id) {
@@ -50,14 +46,14 @@ socket.on('in-lobby', function(user) {
 	//PLAYER.me(user);
 });
 
-socket.on('in-arena', function(data) {
+socket.on('in-arena', function() {
 	PLAYER.active = true;	
 	hideLobby();
 });
 
 
 // opponents updates
-socket.on('entered-lobby', function(user) {
+socket.on('entered-lobby', function( user ) {
 	// add user in lobby
 	$("#waiting").append("<li>" + user + "</li>");
 	console.log("Entered:"+user);
@@ -69,7 +65,7 @@ socket.on('new-invader', function( name ) {
 	//if( invader.name != PLAYER.name){
 		var invader = USER;
 		invader.name = name;
-		INVADERS[name] = invader;
+		INVADERS.push(invader);
 	//} else {
 	//	PLAYER.wave = invader.wave;
 	//}
@@ -85,11 +81,22 @@ socket.on('dead-invader', function(data) {
 
 socket.on('left-game', function(name) {
 	console.log("Left: " + name);
-	delete INVADERS[name];	
+	for(i in INVADERS){
+		var user = INVADERS[i];
+		if( user.name == name ) delete INVADERS[i];
+	}
+	//var index = INVADERS.indexOf(user); // Find the index
+	//INVADERS.splice(index,1);
+	//delete INVADERS[index];	
 });
 
 socket.on('wave', function(flag) {
-	if(flag) Game.waveTimer.reset();
+	if(flag){ 
+		Game.waveTimer.reset();
+		if( PLAYER.active ){ 
+			PLAYER.pos.y++;
+		}
+	}
 });
 
 socket.on('disconnect', function(){ 

@@ -1,4 +1,4 @@
-Player = $.extend(Sprite, {
+Player = {
 
 	id : null,
 	root : null,
@@ -15,7 +15,7 @@ Player = $.extend(Sprite, {
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
 		this.sprite = SPRITES['scully'];
-		this.explosion = Explosion.initialize(root);
+		//this.explosion = Explosion.initialize(root);
 		//this.x = x;
 		//this.y = y;
 		//this.invader = new Invader(root, x, y, PLAYER.color, 99);
@@ -51,20 +51,23 @@ Player = $.extend(Sprite, {
 		if (this.x>0){
 			this.pos.x--;
 			//this.invader.animate(this.x, this.y);
+			// expose player's position as a global var
+			PLAYER.pos.x = this.pos.x;
 		}
 	},
 	
 	moveRight : function() {
 		if (this.x<WINDOW_WIDTH-SPRITE_WIDTH){
 			this.pos.x++;
+			// expose player's position as a global var
+			PLAYER.pos.x = this.pos.x;
 			//this.invader.animate(this.x, this.y);
 		}
 	},
 	
 	updatePosition : function(){
-		//this.wave = PLAYER.wave;
-		//this.pos = PLAYER.pos;
-		//PLAYER.y = this.y;
+		// get the position from the global vars
+		this.pos = PLAYER.pos;
 		
 		if ( INPUT.keys["Left"] ){
         	this.moveLeft();
@@ -75,19 +78,18 @@ Player = $.extend(Sprite, {
 		if ( INPUT.keys["Left"] || INPUT.keys["Right"] ){
 			this.sendPosition();
 		}
-		this.x = SPRITE_WIDTH * this.pos.x;
-		this.y = SPRITE_HEIGHT * this.pos.y;
-		//animation.display(this.x, this.y);
-		//this.root.fill(24);
+		this.x = Math.floor( this.pos.x * SPRITE_WIDTH);
+		this.y = Math.floor( this.pos.y * SPRITE_HEIGHT);
+		// render the sprite
 		frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames  
 		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
-		//this.root.fill(PLAYER.color);
-		//this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
+		// geekovision...
+		//console.log( frame+", "+this.x+", "+this.y+", "+SPRITE_WIDTH+", "+SPRITE_HEIGHT );
 	}, 
 	
 	sendPosition : function() {
 		if(SOCKETS){
-			socket.emit(JSON.stringify(this.pos));
+			socket.emit('move', this.pos);
 		}
 	}, 
 	
@@ -95,4 +97,4 @@ Player = $.extend(Sprite, {
 		//
 	}
 	
-});
+}

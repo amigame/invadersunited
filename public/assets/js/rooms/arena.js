@@ -1,3 +1,4 @@
+/*
 Arena = Klass(CanvasNode, {
 	paused: false,
 	opponents: null,
@@ -43,14 +44,14 @@ Arena = Klass(CanvasNode, {
 		// putt vconditions to enter arena
 		this.enterArena();
 		
-		/*
+		
 		invader.addFrameListener(
 			function(t, dt) 
 			{
 				this.scale = Math.sin(t / 1000);
 			}
 		);
-		*/
+		
 		
 		this.addFrameListener(this.update);
 		
@@ -222,3 +223,4 @@ Arena = Klass(CanvasNode, {
         $('debug').appendChild(debug)
       }
 });
+*/
