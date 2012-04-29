@@ -5,21 +5,22 @@
 	aside 
 		
 		section#load
-			h1 Invaders United
-			p Enter your email
-			form#login
-				input(type="text")
-				input(type="submit", value="PLAY")
-		
-		section#lobby
-			div#wave
-				Next wave in ~<span>X</span> seconds
-			
+			div#enter
+				h1 Invaders United
+				p Enter your email
+				form#login
+					input(type="text")
+					input(type="submit", value="PLAY")
+				
 			div#banner
+				p Every time you click on this banner a little invader gets its wings ;)
 				script(type="text/javascript")
 					google_ad_client = "ca-pub-4881462406903539"; google_ad_slot = "2924317585"; google_ad_width = 336; google_ad_height = 280;
 				script(type="text/javascript", src="http://pagead2.googlesyndication.com/pagead/show_ads.js")
-		
+	
+		section#lobby
+			div#wave
+				Next wave in ~<span>X</span> seconds
 			
 			div#chat
 				ul(id="chat-stream")
@@ -27,6 +28,13 @@
 				form(id="chat", name="chat-form", action="javascript:void()", method="post")
 					input(type="text", name="chat-text", value="", placeholder="enter text...")
 					input(type="submit")
-				
+			
+			div#wave
 				ul#waiting
+			
+			div#info
+				p Invaders United is a simple fun game 
+					a(href="#") learn more...
+				p Tired of waiting for your turn? Download the code and setup your own game! 
+					a(href="#") Available on github
 					
