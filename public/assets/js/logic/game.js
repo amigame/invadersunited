@@ -3,7 +3,6 @@ Game = {
 	root: null, 
 	
 	initialize : function( root ) {
-		var self = this;
 		
 		this.root = root;
 		

@@ -1,4 +1,4 @@
-// Variables
+
 require({ 
     baseUrl: "/assets/js/" 
 	}, [	
@@ -28,7 +28,6 @@ require({
 			var iu = new Processing(canvas, Game.initialize);
 			// vector preloads
 			iu.externals.sketch.options.preload = PRELOAD.join(",");
-
+	
 		});
 });
-

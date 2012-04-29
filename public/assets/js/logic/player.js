@@ -1,14 +1,14 @@
 Player = $.extend(Sprite, {
 
-	isAlive : true,
-    speed : PLAYER.speed,
-    wave : 0,
-    score : 0,
 	id : null,
 	root : null,
-	x : 0,
-	y : 0,
-	explosion : Explosion,
+	isAlive : true,
+    speed : PLAYER.speed,
+    score : 0,
+	x: 0, 
+	y: 0,
+	pos : { x: 0, y: 0 },
+    explosion : Explosion,
 	sprite : null,
 	
     initialize : function(root) {
@@ -24,59 +24,75 @@ Player = $.extend(Sprite, {
 	},
 	
 	update : function(){
+		
 		if( PLAYER.die ){ 
-			this.explosion.update();
-		} else { 
+			this.destroy();
+		} 
+		if( PLAYER.active ){ 
 			this.updatePosition();
-			//this.sendPosition();
 		}
 	},
-
+	
+	destroy : function(){
+		// reset the active flag
+		PLAYER.active = false;
+		// show an explosion
+		this.explosion.update();
+		// reset pos
+		this.pos = { x: 0, y: 0 };
+	}, 
+	
 	enterArena : function() {
 		// setup player
+		PLAYER.active = true;
 	},
 	
 	moveLeft : function() {
-		//this.invader.moveLeft();
 		if (this.x>0){
-			this.x -= this.speed;
-			this.y = SPRITE_HEIGHT*(this.wave-1);
+			this.pos.x--;
 			//this.invader.animate(this.x, this.y);
 		}
 	},
 	
 	moveRight : function() {
 		if (this.x<WINDOW_WIDTH-SPRITE_WIDTH){
-			this.x += this.speed;
-			this.y = SPRITE_HEIGHT*(this.wave-1);
+			this.pos.x++;
 			//this.invader.animate(this.x, this.y);
 		}
 	},
 	
 	updatePosition : function(){
-		this.wave = PLAYER.wave;
-		PLAYER.x = this.x;
-		PLAYER.y = this.y;
-
-		if (INPUT.keys["Left"]==1){
+		//this.wave = PLAYER.wave;
+		//this.pos = PLAYER.pos;
+		//PLAYER.y = this.y;
+		
+		if ( INPUT.keys["Left"] ){
         	this.moveLeft();
-        } else if (INPUT.keys["Right"]==1){
+        } else if ( INPUT.keys["Right"] ){
         	this.moveRight();
-        }
+        } 
+		// send position only if moving
+		if ( INPUT.keys["Left"] || INPUT.keys["Right"] ){
+			this.sendPosition();
+		}
+		this.x = SPRITE_WIDTH * this.pos.x;
+		this.y = SPRITE_HEIGHT * this.pos.y;
 		//animation.display(this.x, this.y);
 		//this.root.fill(24);
 		frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames  
 		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
 		//this.root.fill(PLAYER.color);
 		//this.root.rect(this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
-			
 	}, 
 	
 	sendPosition : function() {
 		if(SOCKETS){
-			var position = this.x/WINDOW_WIDTH;
-			socket.send(JSON.stringify({x: position, y: this.y}));
+			socket.emit(JSON.stringify(this.pos));
 		}
+	}, 
+	
+	set: function( data ){
+		//
 	}
 	
 });

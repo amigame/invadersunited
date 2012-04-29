@@ -35,31 +35,33 @@ SPRITES = {};
 
 ANIMATION_SPEED = 0.8;
 
-PLAYER = {
-	x: 0,
-	y: 0,
+USER = {
+	name: false,
+	pos: { x: 0, y: 0},
 	active : false,
 	color : "#0C0",
 	speed : (SPRITE_WIDTH*SPRITE_SCALE)/2, 
 	die : false,
 };
 
-SOCKETS = false;
 
+SOCKETS = false;
+/*
 OPPONENTS  = {
 	color : "#CCC",	
 };
 
-
+*/
 DEFENDER  = {
 	color : "#000",	
 };
 
-INVADERS = {};
-
-
-var INPUT;
-
+/*
 var ARENA = {}; 
 
+*/
 
+// setup data containers
+PLAYER = USER;
+INVADERS = [];
+var INPUT;

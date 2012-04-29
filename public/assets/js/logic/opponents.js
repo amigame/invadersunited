@@ -6,17 +6,22 @@ Opponents = {
 		
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
+		/*
 		for(i in INVADERS){
+			console.log(INVADERS);
 			var coords = INVADERS[i].coords;
 			//this.root.rect(coords.x, coords.y, SPRITE_WIDTH, SPRITE_HEIGHT); 
 			//this.invader[i] = new Invader(root, coords.x, coords.y, OPPONENTS["color"]);
 			this.root.shape(SPRITES['scully'], coords.x, coords.y, SPRITE_WIDTH, SPRITE_HEIGHT);
 		}
+		*/
 		//this.invader = new Invader(root,WINDOW_HEIGHT/2,WINDOW_WIDTH/2);
 		return this;
 	},
 	
 	update : function(){
+		// FIX: don't update if there are no invaders
+		if( !INVADERS.length ) return;
 		// for each of the entries in the Opponents Array
 		for(i in INVADERS){
 			var coords = INVADERS[i].coords;

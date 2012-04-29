@@ -22,7 +22,6 @@ $("form#chat").submit(function(e) {
   e.stopPropagation();
   var input = $(this).find("input[type='text']");
   chat.emit('message', input.val() );
-  //socket.send(JSON.stringify({text:$("#chat-text").val()}));
   input.val("");
 });
 
@@ -43,9 +42,12 @@ socket.on('id', function(id) {
 // user updates
 socket.on('in-lobby', function(user) {
 	// show lobby
-	$("#waiting").append("<li>" + user + "</li>");
-	console.log("now in lobby");
+	$("#waiting").append("<li>" + user.name + "</li>");
 	showLobby();
+	// save the data for later
+	PLAYER.id = user.id;
+	PLAYER.name = user.name;
+	//PLAYER.me(user);
 });
 
 socket.on('in-arena', function(data) {
@@ -55,19 +57,22 @@ socket.on('in-arena', function(data) {
 
 
 // opponents updates
-socket.on('enter-lobby', function(data) {
+socket.on('entered-lobby', function(user) {
 	// add user in lobby
-	console.log("Entered:"+data);
+	$("#waiting").append("<li>" + user + "</li>");
+	console.log("Entered:"+user);
 });
 
 	
-socket.on('new-invader', function(data) {
+socket.on('new-invader', function( name ) {
 	// exclude the player invader
-	if( invader.id != PLAYER.id){ 
-		INVADERS[invader.id] = invader;
-	} else {
-		PLAYER.wave = invader.wave;
-	}
+	//if( invader.name != PLAYER.name){
+		var invader = USER;
+		invader.name = name;
+		INVADERS.push( invader );
+	//} else {
+	//	PLAYER.wave = invader.wave;
+	//}
 });
 
 socket.on('new-defender', function(data) {
