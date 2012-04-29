@@ -6,10 +6,14 @@ $("form#login").submit(function(e) {
   e.preventDefault();
   e.stopPropagation();
   var input = $(this).find("input[type='text']");
-  socket.emit('login', input.val() );
-  //socket.send(JSON.stringify({text:$("#chat-text").val()}));
-  // move this to a socket response 
-  initLobby();
+  if( validateEmail(input.val() ) ){
+	  socket.emit('login', input.val() );
+  	//socket.send(JSON.stringify({text:$("#chat-text").val()}));
+  	// move this to a socket response 
+ 	 initLobby();
+  } else {
+	 alert("Please enter a valid email");
+  }
 });
 
 //console.log( io.sockets.clients() );
