@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Invaders United</title>
-    <script type="text/javascript" src="assets/js/tween.js"></script>
+    <script type="text/javascript" src="assets/js/libs/tween.js"></script>
     <script type="text/javascript">
     
     //var i = 0;
@@ -17,7 +17,7 @@
         
       function drawStage(){
         
-        var canvas = document.getElementById('tutorial');
+        var canvas = document.getElementById('arena');
         if (canvas.getContext){
           var ctx = canvas.getContext('2d');
           canvasWidth = window.document.width;
@@ -108,8 +108,8 @@
       canvas { border: 0 solid black; overflow: hidden; }
     </style>
   </head>
-  <body onload="init();">
-    <canvas id="tutorial">Hey t-bag, get a decent browser</canvas>
+  <body onLoad="init();">
+    <canvas id="arena">Hey t-bag, get a decent browser</canvas>
 
   </body>
 </html>
