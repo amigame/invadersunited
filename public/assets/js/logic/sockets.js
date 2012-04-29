@@ -69,7 +69,7 @@ socket.on('new-invader', function( name ) {
 	//if( invader.name != PLAYER.name){
 		var invader = USER;
 		invader.name = name;
-		INVADERS.push( invader );
+		INVADERS[name] = invader;
 	//} else {
 	//	PLAYER.wave = invader.wave;
 	//}
@@ -83,9 +83,9 @@ socket.on('dead-invader', function(data) {
 	console.log("Died: " + data);	
 });
 
-socket.on('left-game', function(id) {
-	console.log("Left: " + id);
-	delete INVADERS[id];	
+socket.on('left-game', function(name) {
+	console.log("Left: " + name);
+	delete INVADERS[name];	
 });
 
 socket.on('wave', function(flag) {
