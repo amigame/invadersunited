@@ -35,15 +35,18 @@ SPRITES = {};
 
 ANIMATION_SPEED = 0.8;
 
-USER = {
-	name: false,
-	pos: { x: 0, y: 0},
-	active : false,
-	color : "#0C0",
-	speed : (SPRITE_WIDTH*SPRITE_SCALE)/2, 
-	die : false,
-	icon : encodeURIComponent("http://invadersunited.com/apple-touch-icon-114x114-precomposed.png")
-};
+USER = function() {
+	
+	return { 
+		name: false,
+		pos: { x: 0, y: 0},
+		active : false,
+		color : "#0C0",
+		speed : (SPRITE_WIDTH*SPRITE_SCALE)/2, 
+		die : false,
+		icon : encodeURIComponent("http://invadersunited.com/apple-touch-icon-114x114-precomposed.png")
+	};
+}
 
 
 SOCKETS = false;
@@ -64,7 +67,7 @@ var ARENA = {};
 
 // GLOBALS
 // setup data containers
-PLAYER = USER;
+PLAYER = new USER();
 INVADERS = [];
 var INPUT;
 

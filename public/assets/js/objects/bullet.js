@@ -5,7 +5,7 @@ Bullet = {
 	compAI : false, 
 	fire : false, 
 	
-	initialize : function() {
+	init : function() {
 		this.root = Processing.getInstanceById('arena');
 		return this;
 	},

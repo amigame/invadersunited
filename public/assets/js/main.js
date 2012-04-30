@@ -25,7 +25,7 @@ require({
 		
 		$(document).ready(function(){
 			var canvas = document.getElementById("arena");
-			var iu = new Processing(canvas, Game.initialize);
+			var iu = new Processing(canvas, Game.render);
 			// vector preloads
 			iu.externals.sketch.options.preload = PRELOAD.join(",");
 	

@@ -1,11 +1,29 @@
 
 arena.on('move', function(user) {
+	
+	var found = false;
 	for(i in INVADERS){ 
-		if(INVADERS[i].name ==  user.name) INVADERS[i].pos = user.pos;
+		if(INVADERS[i].name ==  user.name) {
+			INVADERS[i].pos = user.pos;
+			found = true;
+			break; 
+		}
+	}
+	// this is a new invader
+	if(!found) {
+		createInvader( user.name );
 	}
 });
 
-
+function createInvader( name ){
+	console.log("New Invader: " + name);
+	console.log( PLAYER );
+	var invader = new USER();
+		invader.name = name;
+		invader.state = "invader";
+		invader.color = "#CCC";
+		INVADERS.push(invader);
+}
 
 /*
 Arena = Klass(CanvasNode, {

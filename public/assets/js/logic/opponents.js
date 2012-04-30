@@ -3,7 +3,7 @@ Opponents = {
 	invader : {},
 	sprite : null,
 	
-    initialize : function(root) {
+    init : function(root) {
 		
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
@@ -27,6 +27,9 @@ Opponents = {
 		if( !INVADERS.length ) return;
 		// for each of the entries in the Opponents Array
 		for(i in INVADERS){
+			// skip if it's the player
+			if ( INVADERS[i].name == PLAYER.name ) continue;
+			console.log( INVADERS[i] );
 			var pos = INVADERS[i].pos;
 			var x = Math.floor( pos.x * SPRITE_WIDTH );
 			var y = Math.floor( pos.y * SPRITE_HEIGHT );

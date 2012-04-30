@@ -11,7 +11,7 @@ Player = {
     explosion : Explosion,
 	sprite : null,
 	
-    initialize : function(root) {
+    init : function(root) {
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
 		this.sprite = SPRITES['scully'];

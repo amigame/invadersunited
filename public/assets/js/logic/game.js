@@ -2,7 +2,7 @@ Game = {
 
 	root: null, 
 	
-	initialize : function( root ) {
+	render : function( root ) {
 		
 		this.root = root;
 		
@@ -13,9 +13,13 @@ Game = {
 			
 			sprites = Game.preload(root);
 			
-			player = Player.initialize(root);
-			opponents = Opponents.initialize(root);
-			defender = Defender.initialize(root);
+			player = Player;
+			opponents = Opponents;
+			defender = Defender;
+			
+			player.init(root);
+			opponents.init(root);
+			defender.init(root);
 			 
 		};  
 		
@@ -34,6 +38,7 @@ Game = {
 		
 		// setup wave timer
 		Game.waveTimer.init();
+		
 	},
 	
 	preload : function(root){

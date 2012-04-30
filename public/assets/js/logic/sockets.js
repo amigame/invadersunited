@@ -36,10 +36,7 @@ socket.on('entered-lobby', function( user ) {
 socket.on('new-invader', function( name ) {
 	// exclude the player invader
 	//if( invader.name != PLAYER.name){
-		var invader = USER;
-		invader.name = name;
-		invader.state = "invader";
-		INVADERS.push(invader);
+		createInvader( name );
 	//} else {
 	//	PLAYER.wave = invader.wave;
 	//}
@@ -72,7 +69,7 @@ socket.on('reset-players', function(players){
 	for( i in  players ){ 
 		var player = players[i];
 		if( player.state == "invader" ){ 
-			var invader = USER;
+			var invader = new USER();
 			invader.state = player.state;
 			invader.name = player.name;
 			INVADERS.push(invader);
