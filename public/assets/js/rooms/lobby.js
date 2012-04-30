@@ -1,4 +1,3 @@
-
 // Sidebar functions
 
 function initLobby(){

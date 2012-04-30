@@ -7,7 +7,7 @@ Opponents = {
 		
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
-		this.sprite = SPRITES['scully'];
+		this.sprite = SPRITES['dorky'];
 		
 		/*
 		for(i in INVADERS){
@@ -28,7 +28,7 @@ Opponents = {
 		// for each of the entries in the Opponents Array
 		for(i in INVADERS){
 			var pos = INVADERS[i].pos;
-			var x = Math.floor( pos.x * WINDOW_WIDTH );
+			var x = Math.floor( pos.x * SPRITE_WIDTH );
 			var y = Math.floor( pos.y * SPRITE_HEIGHT );
 			// set sprite based on frame rate (so it's the same for all invaders)
 			frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames  

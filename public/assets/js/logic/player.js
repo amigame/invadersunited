@@ -89,7 +89,7 @@ Player = {
 	
 	sendPosition : function() {
 		if(SOCKETS){
-			socket.emit('move', this.pos);
+			arena.emit('move', this.pos);
 		}
 	}, 
 	

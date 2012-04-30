@@ -38,6 +38,7 @@ socket.on('new-invader', function( name ) {
 	//if( invader.name != PLAYER.name){
 		var invader = USER;
 		invader.name = name;
+		invader.state = "invader";
 		INVADERS.push(invader);
 	//} else {
 	//	PLAYER.wave = invader.wave;
@@ -61,6 +62,22 @@ socket.on('left-game', function(name) {
 	//var index = INVADERS.indexOf(user); // Find the index
 	//INVADERS.splice(index,1);
 	//delete INVADERS[index];	
+});
+
+// this calls is used to nomralize the local data with the server data
+socket.on('reset-players', function(players){
+	// delete old data
+	INVADERS = [];
+	// save the invaders and defenders
+	for( i in  players ){ 
+		var player = players[i];
+		if( player.state == "invader" ){ 
+			var invader = USER;
+			invader.state = player.state;
+			invader.name = player.name;
+			INVADERS.push(invader);
+		}
+	}
 });
 
 socket.on('wave', function(flag) {

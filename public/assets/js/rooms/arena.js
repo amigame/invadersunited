@@ -1,3 +1,12 @@
+
+arena.on('move', function(user) {
+	for(i in INVADERS){ 
+		if(INVADERS[i].name ==  user.name) INVADERS[i].pos = user.pos;
+	}
+});
+
+
+
 /*
 Arena = Klass(CanvasNode, {
 	paused: false,
