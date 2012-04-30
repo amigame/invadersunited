@@ -1,4 +1,7 @@
-Opponents = {
+Invaders = function(){ 
+
+return {
+	
 	root : null,
 	invader : {},
 	sprite : null,
@@ -29,11 +32,12 @@ Opponents = {
 		for(i in INVADERS){
 			// skip if it's the player
 			if ( INVADERS[i].name == PLAYER.name ) continue;
-			console.log( INVADERS[i] );
 			var pos = INVADERS[i].pos;
 			var x = Math.floor( pos.x * SPRITE_WIDTH );
 			var y = Math.floor( pos.y * SPRITE_HEIGHT );
 			// set sprite based on frame rate (so it's the same for all invaders)
+			//this.root.fill(204, 102, 0);
+			//this.root.tint(0, 153, 204); 
 			frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames  
 			this.root.shape(this.sprite[frame], x, y, SPRITE_WIDTH, SPRITE_HEIGHT);
 		}
@@ -52,4 +56,6 @@ Opponents = {
 		}
 	}
 	
+}
+
 }

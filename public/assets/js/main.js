@@ -24,8 +24,14 @@ require({
 	], function () {
 		
 		$(document).ready(function(){
+			
+			player = new Player();
+			invaders = new Invaders();
+			neo = new Defender();
+
 			var canvas = document.getElementById("arena");
 			var iu = new Processing(canvas, Game.render);
+			
 			// vector preloads
 			iu.externals.sketch.options.preload = PRELOAD.join(",");
 	

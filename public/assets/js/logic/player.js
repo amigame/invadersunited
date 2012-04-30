@@ -1,4 +1,6 @@
-Player = {
+Player = function(){ 
+
+return {
 
 	id : null,
 	root : null,
@@ -7,7 +9,7 @@ Player = {
     score : 0,
 	x: 0, 
 	y: 0,
-	pos : { x: 0, y: 0 },
+	pos : { x: -1, y: -1 },
     explosion : Explosion,
 	sprite : null,
 	
@@ -24,27 +26,32 @@ Player = {
 	},
 	
 	update : function(){
-		
+		/*
 		if( PLAYER.die ){ 
 			this.destroy();
-		} 
+		}*/ 
 		if( PLAYER.active ){ 
 			this.updatePosition();
 		}
 	},
 	
 	destroy : function(){
-		// reset the active flag
-		PLAYER.active = false;
-		// show an explosion
-		this.explosion.update();
-		// reset pos
-		this.pos = { x: 0, y: 0 };
+		if( PLAYER.active ) {
+			console.log("I'm dying now");
+			// reset the active flag
+			PLAYER.active = false;
+			arena.emit("kill", { id: PLAYER.id, name: PLAYER.name});
+			// show an explosion
+			//this.explosion.update();
+			// reset pos
+			this.pos = PLAYER.pos = { x: -1, y: -1 };
+		}
 	}, 
 	
 	enterArena : function() {
 		// setup player
 		PLAYER.active = true;
+		PLAYER.pos = { x: 0, y: 0 }
 	},
 	
 	moveLeft : function() {
@@ -97,4 +104,6 @@ Player = {
 		//
 	}
 	
+}
+
 }

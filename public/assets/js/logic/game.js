@@ -13,13 +13,9 @@ Game = {
 			
 			sprites = Game.preload(root);
 			
-			player = Player;
-			opponents = Opponents;
-			defender = Defender;
-			
 			player.init(root);
-			opponents.init(root);
-			defender.init(root);
+			invaders.init(root);
+			neo.init(root);
 			 
 		};  
 		
@@ -31,8 +27,8 @@ Game = {
 			root.background( SCREEN.background );
 			// draw main actors
 			player.update();
-			opponents.update();
-			defender.update();
+			invaders.update();
+			neo.update();
 			
 		};
 		

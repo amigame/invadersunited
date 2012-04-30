@@ -16,8 +16,6 @@ arena.on('move', function(user) {
 });
 
 function createInvader( name ){
-	console.log("New Invader: " + name);
-	console.log( PLAYER );
 	var invader = new USER();
 		invader.name = name;
 		invader.state = "invader";

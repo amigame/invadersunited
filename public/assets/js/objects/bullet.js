@@ -33,9 +33,10 @@ Bullet = {
 	}, 
 	
 	checkCollision : function( ) {
-		if( this.x >= PLAYER.x && this.x <= PLAYER.x+SPRITE_WIDTH && this.y <= PLAYER.y+SPRITE_HEIGHT && this.y >= PLAYER.y){
-			this.destroy();		
-			PLAYER.die = true;	
+		var pos = player.pos;
+		if( this.x >= player.x && this.x <= (player.x+SPRITE_WIDTH) && this.y <= player.y+SPRITE_HEIGHT && this.y >= player.y){
+			this.destroy();	
+			player.destroy();
 		}
 	}
 	

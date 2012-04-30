@@ -21,7 +21,7 @@ socket.on('in-lobby', function(user) {
 });
 
 socket.on('in-arena', function() {
-	PLAYER.active = true;	
+	player.enterArena();
 	hideLobby();
 });
 

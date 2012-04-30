@@ -1,4 +1,6 @@
-Defender = {
+Defender = function(){ 
+
+return {
 
 	x : 0,
 	y : WINDOW_HEIGHT-2*SPRITE_HEIGHT,
@@ -15,7 +17,7 @@ Defender = {
 		if(this.canShoot){
 			this.bullet = Bullet.init();
 		}
-		return this;
+		//return this;
 	},
 	
 	update : function() {
@@ -36,4 +38,6 @@ Defender = {
 		}
 	}
 	
+}
+
 }
