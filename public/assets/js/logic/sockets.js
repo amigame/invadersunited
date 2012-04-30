@@ -21,6 +21,7 @@ socket.on('in-lobby', function(user) {
 });
 
 socket.on('in-arena', function() {
+	exitLobby( PLAYER.name );
 	player.enterArena();
 	hideLobby();
 });
@@ -34,6 +35,7 @@ socket.on('entered-lobby', function( user ) {
 
 	
 socket.on('new-invader', function( name ) {
+		exitLobby( name );
 	// exclude the player invader
 	//if( invader.name != PLAYER.name){
 		createInvader( name );

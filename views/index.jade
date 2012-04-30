@@ -19,6 +19,9 @@
 				script(type="text/javascript", src="http://pagead2.googlesyndication.com/pagead/show_ads.js")
 	
 		section#lobby
+			div.pull 
+				a &lt;
+			
 			div#wave
 				Next wave in ~<span>X</span> seconds
 			
@@ -26,10 +29,12 @@
 				ul(id="chat-stream")
 				
 				form(id="chat", name="chat-form", action="javascript:void()", method="post")
-					input(type="text", name="chat-text", value="", placeholder="enter text...")
+					input(type="text", name="chat-text", value="", placeholder="talk to others while waiting...")
 					input(type="submit")
 			
 			div#wave
+				h3 Runner-ups: 
+				
 				ul#waiting
 			
 			div#info

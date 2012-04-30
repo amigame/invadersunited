@@ -1,11 +1,29 @@
 // Sidebar functions
+/*
+Lobby = function() {
+	return {
+		init: function(){
+			
+		}, 
+		add: function( user ){
+			
+		}, 
+		remove: function( user ){
+			
+		}
+	}
+	
+}
+*/
 
 function initLobby(){
 	
-	$("#load").fadeOut(1000);
+	$("#load").fadeOut(1000, function(){ $(this).remove() });
 	$("#wrapper aside").animate({ width: "30%"}, 1000, function(){
 		$("#lobby").fadeIn();
 	});
+	
+	$("#wrapper aside .pull").toggle(showLobby, hideLobby);
 
 	initChat();	
 }
@@ -14,7 +32,7 @@ function showLobby(){
 	$("#wrapper aside").animate({ right: 0}, 800);
 }
 function hideLobby(){
-	$("#wrapper aside").animate({ right: -1*$(this).width()}, 800);
+	$("#wrapper aside").animate({ right: "-29%"}, 800);
 }
 
 function enterLobby( user ){
@@ -24,6 +42,10 @@ function enterLobby( user ){
 
 function exitLobby( user ){
 	// remove user from the waiting list
+	$("#waiting").find("li").each(function( ){
+		if ( ( $(this).html() ).indexOf( user ) ) $(this).remove();
+	});
+	
 }
 
 
