@@ -7,10 +7,10 @@
 		section#load
 			div#enter
 				h1 Invaders United
-				p Enter your email
+				p Enter your email to join the game: 
 				form#login
 					input(type="text")
-					input(type="submit", value="PLAY")
+					button(type="submit") PLAY
 				
 			div#banner
 				p Every time you click on this banner a little invader gets its wings ;)
@@ -23,22 +23,22 @@
 				a &lt;
 			
 			div#wave
-				Next wave in ~<span>X</span> seconds
+				p next wave in ~<span>X</span> seconds
 			
-			div#chat
+			div#chat-component
 				ul(id="chat-stream")
 				
 				form(id="chat", name="chat-form", action="javascript:void()", method="post")
 					input(type="text", name="chat-text", value="", placeholder="talk to others while waiting...")
-					input(type="submit")
+					button(type="submit") Chat
 			
-			div#wave
+			div#draft
 				h3 Runner-ups: 
 				
 				ul#waiting
 			
 			div#info
-				p Invaders United is a simple fun game 
+				p Invaders United is a simple game clone of an old classic
 					a(href="/about", title="this link will refresh the current window") learn more...
 				p Tired of waiting for your turn? Download the code and setup your own game! 
 					a(href="https://github.com/amigame/invadersunited", title="this link will open a new window", target="_blank") Available on github

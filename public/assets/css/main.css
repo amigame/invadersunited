@@ -2,12 +2,25 @@
 html, body { position: relative; width: 100%; height: 100%; overflow: hidden; font-family:Arial, Helvetica, sans-serif; font-size: 100%; }
 #stage {  }
 canvas { position: absolute; left: 0; top: 0; border: 0; overflow: hidden; width: 100%; height: 100%; margin: 0 auto; z-index: -1;}
-aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgba(100,100,100,0.7); padding: 20px; text-align: center; z-index: 100; }
-#lobby { display: none; }
-/*#banner {  display: none; }*/
-#chat-stream { height: 200px; padding: 0 10px; background: rgba(255,255,255,0.9); overflow: hidden; text-align: left; }
-#chat-text { position: relative; z-index: 999; }
-#lobby #info { text-align: left; }
+aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgba(100,100,100,0.7); text-align: center; z-index: 100; }
+#load p { margin: 8px; }
+#load #enter{ background: rgba(255, 255, 255, 0.7); padding: 20px; }
+#load #enter h1{ position: absolute; }
+#load #enter input[type="text"]{ width: 35%; min-height: 50%; padding: 4px; font-size: 2em; }
+#load #enter button{ width: 15%; min-height: 50%; margin: 8px; padding: 4px; font-size: 2em; font-weight: bold; }
+#load #banner{ padding: 20px; }
+#lobby { position: absolute; display: none; padding: 20px; height: 100%; }
+#lobby #wave { height: 10%; }
+#lobby #draft { margin: 20px 0; height: 40%; }
+#lobby #waiting{ list-style-type: none; text-align: left; }
+#lobby #waiting img { margin-right: 12px; margin-bottom: -8px; }
+#chat-component { height: 30%; padding: 0 10px; }
+#chat-stream { height: 90%; background: rgba(255,255,255,0.9); overflow: scroll; text-align: left; }
+#chat-stream li { padding: 2px 8px; }
+#chat-stream img { margin-right: 4px; margin-bottom: -2px; }
+#chat input[type="text"]{ width: 75%; font-size: 1em; padding: 4px }
+#chat button{ width: 25%; font-size: 1em; padding: 4px}
+#lobby #info { text-align: left; height: 20%; overflow: hidden; }
 #lobby .pull { position: absolute; left: 0; top: 0; }
 #lobby .pull a { display: block; width: 20px; height: 30px; background: #eee; color: #999; text-align: center;
 

@@ -23,5 +23,5 @@ function validateEmail(email) {
 
 function getGravatar(email, size){
 	if( typeof(size) == "undefined") size=32;
-	return "http://www.gravatar.com/avatar/" + MD5( email ) + "?s="+ size +"&d="+ USER.icon;
+	return "http://www.gravatar.com/avatar/" + MD5( email ) + "?s="+ size +"&d="+ (new USER).icon;
 }
