@@ -46,6 +46,9 @@ require({
 			
 			INVADERS = [];
 			
+			// initialise game
+			game.init();
+			
 			// initiate canvas rendering
 			var canvas = document.getElementById("arena");
 			var iu = new Processing(canvas, game.render);
@@ -53,8 +56,6 @@ require({
 			// vector preloads
 			iu.externals.sketch.options.preload = PRELOAD.join(",");
 			
-			// initiate login
-			login.init();
 	
 		});
 });

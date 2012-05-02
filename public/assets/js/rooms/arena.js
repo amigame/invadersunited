@@ -1,10 +1,33 @@
 // Sidebar functions
-/*
 Arena = function() {
 	return {
-		socket: , 
+		socket: io.connect(window.location.hostname+"/arena"), 
 		init: function(){
+			var self = this;
+			//events
+			socket.on('update-score', function( scores ) {
+				self.hud.update( scores );
+			});
 			
+			socket.on('move', function(user) {
+				
+				var found = false;
+				for(i in INVADERS){ 
+					if(INVADERS[i].name ==  user.name) {
+						INVADERS[i].pos = user.pos;
+						found = true;
+						break; 
+					}
+				}
+				// this is a new invader
+				if(!found) {
+					self.create( user.name );
+				}
+			});
+
+			// create hud
+			this.hud.init();
+
 		}, 
 		add: function( user ){
 			
@@ -17,58 +40,28 @@ Arena = function() {
 		}, 
 		set: function(){
 			
+		}, 
+		create: function( name ){
+			var invader = new User();
+				invader.name = name;
+				invader.state = "invader";
+				invader.color = "#CCC";
+				INVADERS.push(invader);
+		}, 
+		hud: {
+			init: function(){
+				// create containers
+				$('<div/>', { id: 'hud' }).appendTo('body');
+				$('<p/>', { id: 'current-score', html: 0 }).appendTo('#hud');
+				$('<p/>', { id: 'top-score', html: 0  }).appendTo('#hud');
+			}, 
+			update: function( scores ){
+				$("#hud #current-score").html( scores.current );
+				$("#hud #top-score").html( scores.top );
+			}
 		}
 	}
 	
-}
-*/
-
-
-//Events
-
-// initialize
-createHud();
-
-
-socket.on('update-score', function( data ) {
-	updateScore( data );
-});
-
-
-arena.on('move', function(user) {
-	
-	var found = false;
-	for(i in INVADERS){ 
-		if(INVADERS[i].name ==  user.name) {
-			INVADERS[i].pos = user.pos;
-			found = true;
-			break; 
-		}
-	}
-	// this is a new invader
-	if(!found) {
-		createInvader( user.name );
-	}
-});
-
-function createInvader( name ){
-	var invader = new User();
-		invader.name = name;
-		invader.state = "invader";
-		invader.color = "#CCC";
-		INVADERS.push(invader);
-}
-
-function createHud(){
-	// create containers
-	$('<div/>', { id: 'hud' }).appendTo('body');
-	$('<p/>', { id: 'current-score', html: 0 }).appendTo('#hud');
-	$('<p/>', { id: 'top-score', html: 0  }).appendTo('#hud');
-}
-
-function updateScore( scores ){
-	$("#hud #current-score").html( scores.current );
-	$("#hud #top-score").html( scores.top );
 }
 
 

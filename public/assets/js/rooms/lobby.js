@@ -1,6 +1,7 @@
 // Sidebar functions
 Lobby = function() {
 	return {
+		socket: io.connect(window.location.hostname+"/lobby"), 
 		init: function(){
 			
 			var self = this;

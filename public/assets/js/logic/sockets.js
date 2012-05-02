@@ -1,7 +1,7 @@
 // Setup sockets
 var socket = io.connect(window.location.hostname); 
-var arena = io.connect(window.location.hostname+"/arena");
-var lobby = io.connect(window.location.hostname+"/lobby");
+//var arena.socket = ;
+//var lobby.socket = ;
 var chat = io.connect(window.location.hostname+"/chat");
 
 

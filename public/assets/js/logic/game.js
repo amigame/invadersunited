@@ -4,11 +4,21 @@ return {
 
 	root: null, 
 	
+	init : function() {
+		
+		INPUT = Input.initialize();
+		
+		// setup wave timer
+		this.waveTimer.init();
+		
+		// initialise login (global var)
+		login.init();
+			
+	}, 
+	
 	render : function( root ) {
 		
 		this.root = root;
-		
-		INPUT = Input.initialize();
 		
 		root.setup = function() {
 			root.frameRate( SCREEN.framerate );
@@ -31,11 +41,7 @@ return {
 			player.update();
 			invaders.update();
 			neo.update();
-			
 		};
-		
-		// setup wave timer
-		game.waveTimer.init();
 		
 	},
 	
