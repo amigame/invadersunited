@@ -2,7 +2,25 @@
 Lobby = function() {
 	return {
 		init: function(){
-					
+			
+			var self = this;
+			// events
+			
+			// user updates
+			socket.on('in-lobby', function(user) {
+				// add user in lobby
+				self.add( user.name );
+				// show lobby
+				self.show();
+				//PLAYER.me(user);
+			});
+			// opponents updates
+			socket.on('entered-lobby', function( user ) {
+				// add user in lobby
+				self.add( user );
+			});
+
+
 			$("#load").fadeOut(1000, function(){ $(this).remove() });
 			$("#wrapper aside").animate({ width: "30%"}, 1000, function(){
 				$("#lobby").fadeIn();
@@ -35,7 +53,8 @@ Lobby = function() {
 			
 		}, 
 		chat: function(){
-				
+			
+			// events
 			chat
 			.on('connect', function () {
 				//chat.emit('hi!');
@@ -58,19 +77,3 @@ Lobby = function() {
 	}
 	
 }
-
-
-$("form#login").submit(function(e) {
-	e.preventDefault();
-	e.stopPropagation();
-	var input = $(this).find("input[type='text']");
-	if( validateEmail(input.val() ) ){
-		socket.emit('login', input.val() );
-		//socket.send(JSON.stringify({text:$("#chat-text").val()}));
-		// move this to a socket response 
-	 	lobby.init();
-	} else {
-		alert("Please enter a valid email");
-	}
-});
-			

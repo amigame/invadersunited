@@ -9,9 +9,26 @@ return $.extend({}, (new User()), {
 	sprite : null,
 	
     init : function(root) {
+		var self = this;
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
 		this.sprite = SPRITES['scully'];
+		
+		// events
+		socket.on('id', function( user ) {
+			self.set( user );
+		});
+		
+		socket.on('new-defender', function( name ) {
+			if( name == self.name ){ 
+				noty({text: 'YOU are the next defender!', layout: 'topCenter', type: 'information'});
+			} else {
+				noty({text: name +' is the next defender', layout: 'topCenter', type: 'success'});
+			}
+			//console.log("Defender: " + data);	
+		});
+
+
 		//this.explosion = Explosion.initialize(root);
 		//this.x = x;
 		//this.y = y;
@@ -97,8 +114,10 @@ return $.extend({}, (new User()), {
 		}
 	}, 
 	
-	set: function( data ){
-		//
+	set: function( user ){
+		// save the data for later
+		this.id = user.id;
+		this.name = user.name;
 	}
 	
 });

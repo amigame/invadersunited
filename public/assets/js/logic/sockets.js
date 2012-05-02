@@ -1,4 +1,11 @@
+// Setup sockets
+var socket = io.connect(window.location.hostname); 
+var arena = io.connect(window.location.hostname+"/arena");
+var lobby = io.connect(window.location.hostname+"/lobby");
+var chat = io.connect(window.location.hostname+"/chat");
 
+
+// main sockets switch
 socket.on('connect', function(){ 
 	SOCKETS = true;
 });
@@ -8,21 +15,6 @@ socket.on('disconnect', function(){
 });
 
 
-socket.on('id', function( user ) {
-	console.log("got ID!");
-	// save the data for later
-	player.id = user.id;
-	player.name = user.name;
-});
-
-// user updates
-socket.on('in-lobby', function(user) {
-	// add user in lobby
-	lobby.add( user.name );
-	// show lobby
-	lobby.show();
-	//PLAYER.me(user);
-});
 
 socket.on('in-arena', function() {
 	lobby.remove( player.name );
@@ -38,12 +30,6 @@ socket.on('died', function( score ) {
 	}
 });
 
-// opponents updates
-socket.on('entered-lobby', function( user ) {
-	// add user in lobby
-	lobby.add( user );
-});
-
 	
 socket.on('new-invader', function( name ) {
 		noty({text: 'New Invader: '+ name, layout: 'topCenter', type: 'information'});
@@ -54,15 +40,6 @@ socket.on('new-invader', function( name ) {
 	//} else {
 	//	PLAYER.wave = invader.wave;
 	//}
-});
-
-socket.on('new-defender', function( name ) {
-	if( name == player.name ){ 
-		noty({text: 'YOU are the next defender!', layout: 'topCenter', type: 'information'});
-	} else {
-		noty({text: name +' is the next defender', layout: 'topCenter', type: 'success'});
-	}
-	//console.log("Defender: " + data);	
 });
 
 socket.on('dead-invader', function(data) {
@@ -94,6 +71,7 @@ socket.on('reset-players', function(players){
 });
 
 socket.on('wave', function(flag) {
+	
 	if(flag){ 
 		game.waveTimer.reset();
 		if( player.active ){ 

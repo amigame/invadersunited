@@ -50,12 +50,3 @@ DEFENDER  = {
 var ARENA = {}; 
 
 */
-
-// GLOBALS
-// Namespacing 
-// setup data containers
-
-var socket = io.connect(window.location.hostname); 
-var arena = io.connect(window.location.hostname+"/arena");
-var lobby = io.connect(window.location.hostname+"/lobby");
-var chat = io.connect(window.location.hostname+"/chat");
