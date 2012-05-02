@@ -15,6 +15,8 @@ Bullet = {
 			this.destroy();
 		} else {
 			this.y -= SPRITE_HEIGHT;
+			this.root.fill(50, 50, 50);    // Set the SVG fill to blue
+  			this.root.stroke(255);
 			this.root.ellipse(this.x, this.y, SPRITE_WIDTH/10, SPRITE_HEIGHT);	
 		}
 		this.checkCollision();

@@ -82,7 +82,10 @@ return $.extend({}, (new User()), {
 		this.x = Math.floor( this.pos.x * SPRITE_WIDTH);
 		this.y = Math.floor( this.pos.y * SPRITE_HEIGHT);
 		// render the sprite
-		frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames  
+		frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames 
+		this.sprite[frame].disableStyle();  // Ignore the colors in the SVG
+  		this.root.fill(0, 102, 153);    // Set the SVG fill to blue
+  		this.root.stroke(255);   
 		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
 		// geekovision...
 		//console.log( frame+", "+this.x+", "+this.y+", "+SPRITE_WIDTH+", "+SPRITE_HEIGHT );

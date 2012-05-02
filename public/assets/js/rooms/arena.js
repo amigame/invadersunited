@@ -2,6 +2,7 @@
 /*
 Arena = function() {
 	return {
+		socket: , 
 		init: function(){
 			
 		}, 
