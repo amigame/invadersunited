@@ -22,5 +22,10 @@ aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgb
 #chat button{ width: 25%; font-size: 1em; padding: 4px}
 #lobby #info { text-align: left; height: 20%; overflow: hidden; }
 #lobby .pull { position: absolute; left: 0; top: 0; }
-#lobby .pull a { display: block; width: 20px; height: 30px; background: #eee; color: #999; text-align: center;
+#lobby .pull a { display: block; width: 20px; height: 30px; background: #eee; color: #999; text-align: center; }
+#hud { position: absolute; width: 100%; }
+#hud #current-score, #hud #top-score { padding: 10px; font-size: 1.5em; font-weight: bold; color: #444; opacity: 0.8 }
+#hud #current-score { float:left; }
+#hud #top-score { float: right; }
+
 

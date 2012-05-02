@@ -1,3 +1,13 @@
+//Events
+
+// initialize
+createHud();
+
+
+socket.on('update-score', function( data ) {
+	updateScore( data );
+});
+
 
 arena.on('move', function(user) {
 	
@@ -22,6 +32,19 @@ function createInvader( name ){
 		invader.color = "#CCC";
 		INVADERS.push(invader);
 }
+
+function createHud(){
+	// create containers
+	$('<div/>', { id: 'hud' }).appendTo('body');
+	$('<p/>', { id: 'current-score', html: 0 }).appendTo('#hud');
+	$('<p/>', { id: 'top-score', html: 0  }).appendTo('#hud');
+}
+
+function updateScore( scores ){
+	$("#hud #current-score").html( scores.current );
+	$("#hud #top-score").html( scores.top );
+}
+
 
 /*
 Arena = Klass(CanvasNode, {

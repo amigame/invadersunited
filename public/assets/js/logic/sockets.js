@@ -3,9 +3,16 @@ socket.on('connect', function(){
 	SOCKETS = true;
 });
 
-socket.on('id', function(id) {
-	//console.log("my id is " + data);
-	PLAYER.id = id;
+socket.on('disconnect', function(){ 
+	SOCKETS = false;
+});
+
+
+socket.on('id', function( user ) {
+	console.log("got ID!");
+	// save the data for later
+	PLAYER.id = user.id;
+	PLAYER.name = user.name;
 });
 
 // user updates
@@ -14,9 +21,6 @@ socket.on('in-lobby', function(user) {
 	enterLobby( user.name );
 	// show lobby
 	showLobby();
-	// save the data for later
-	PLAYER.id = user.id;
-	PLAYER.name = user.name;
 	//PLAYER.me(user);
 });
 
@@ -86,8 +90,4 @@ socket.on('wave', function(flag) {
 			PLAYER.pos.y++;
 		}
 	}
-});
-
-socket.on('disconnect', function(){ 
-	SOCKETS = false;
 });
