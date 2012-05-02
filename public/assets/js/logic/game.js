@@ -1,4 +1,6 @@
-Game = {
+Game = function(){ 
+
+return {
 
 	root: null, 
 	
@@ -11,7 +13,7 @@ Game = {
 		root.setup = function() {
 			root.frameRate( SCREEN.framerate );
 			
-			sprites = Game.preload(root);
+			sprites = game.preload(root);
 			
 			player.init(root);
 			invaders.init(root);
@@ -33,7 +35,7 @@ Game = {
 		};
 		
 		// setup wave timer
-		Game.waveTimer.init();
+		game.waveTimer.init();
 		
 	},
 	
@@ -105,3 +107,4 @@ Game = {
 	
 }
 
+}

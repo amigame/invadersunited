@@ -1,16 +1,11 @@
 Player = function(){ 
 
-return {
+return $.extend({}, (new User()), {
 
-	id : null,
 	root : null,
 	isAlive : true,
-    speed : PLAYER.speed,
     score : 0,
-	x: 0, 
-	y: 0,
-	pos : { x: -1, y: -1 },
-    explosion : Explosion,
+	explosion : Explosion,
 	sprite : null,
 	
     init : function(root) {
@@ -30,28 +25,27 @@ return {
 		if( PLAYER.die ){ 
 			this.destroy();
 		}*/ 
-		if( PLAYER.active ){ 
+		if( this.active ){ 
 			this.updatePosition();
 		}
 	},
 	
 	destroy : function(){
-		if( PLAYER.active ) {
-			console.log("I'm dying now");
+		if( this.active ) {
 			// reset the active flag
-			PLAYER.active = false;
-			arena.emit("kill", { id: PLAYER.id, name: PLAYER.name});
+			this.active = false;
+			arena.emit("kill", { id: player.id, name: player.name});
 			// show an explosion
 			//this.explosion.update();
 			// reset pos
-			this.pos = PLAYER.pos = { x: -1, y: -1 };
+			this.pos = { x: -1, y: -1 };
 		}
 	}, 
 	
 	enterArena : function() {
 		// setup player
-		PLAYER.active = true;
-		PLAYER.pos = { x: 0, y: 0 }
+		this.active = true;
+		this.pos = { x: 0, y: 0 }
 	},
 	
 	moveLeft : function() {
@@ -59,7 +53,7 @@ return {
 			this.pos.x--;
 			//this.invader.animate(this.x, this.y);
 			// expose player's position as a global var
-			PLAYER.pos.x = this.pos.x;
+			//PLAYER.pos.x = this.pos.x;
 		}
 	},
 	
@@ -67,14 +61,14 @@ return {
 		if (this.x<WINDOW_WIDTH-SPRITE_WIDTH){
 			this.pos.x++;
 			// expose player's position as a global var
-			PLAYER.pos.x = this.pos.x;
+			//PLAYER.pos.x = this.pos.x;
 			//this.invader.animate(this.x, this.y);
 		}
 	},
 	
 	updatePosition : function(){
 		// get the position from the global vars
-		this.pos = PLAYER.pos;
+		//this.pos = PLAYER.pos;
 		
 		if ( INPUT.keys["Left"] ){
         	this.moveLeft();
@@ -104,6 +98,6 @@ return {
 		//
 	}
 	
-}
+});
 
 }

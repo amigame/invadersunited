@@ -35,20 +35,6 @@ SPRITES = {};
 
 ANIMATION_SPEED = 0.8;
 
-USER = function() {
-	
-	return { 
-		name: false,
-		pos: { x: -1, y: -1},
-		active : false,
-		color : "#0C0",
-		speed : (SPRITE_WIDTH*SPRITE_SCALE)/2, 
-		die : false,
-		icon : encodeURIComponent("http://invadersunited.com/apple-touch-icon-114x114-precomposed.png")
-	};
-}
-
-
 SOCKETS = false;
 /*
 OPPONENTS  = {
@@ -68,13 +54,8 @@ var ARENA = {};
 // GLOBALS
 // Namespacing 
 // setup data containers
-PLAYER = new USER();
-INVADERS = [];
-var INPUT;
 
 var socket = io.connect(window.location.hostname); 
 var arena = io.connect(window.location.hostname+"/arena");
 var lobby = io.connect(window.location.hostname+"/lobby");
 var chat = io.connect(window.location.hostname+"/chat");
-
-var player, invaders, neo;

@@ -1,4 +1,8 @@
+// Globals
+var game, player, invaders, neo;
+var INPUT, PLAYER, INVADERS;
 
+// Dependencies
 require({ 
     baseUrl: "/assets/js/" 
 	}, [	
@@ -10,6 +14,7 @@ require({
 		"order!config", 
 		"order!objects/sprite", 
 		"order!objects/bullet", 
+		"order!objects/user", 
 		"order!objects/invader", 
 		"order!objects/defender", 
 		"order!objects/explosion", 
@@ -25,12 +30,17 @@ require({
 		
 		$(document).ready(function(){
 			
+			// setup globals
+			game = new Game();
 			player = new Player();
 			invaders = new Invaders();
 			neo = new Defender();
-
+			//PLAYER = new User();
+			INVADERS = [];
+			
+			// initiate canvas rendering
 			var canvas = document.getElementById("arena");
-			var iu = new Processing(canvas, Game.render);
+			var iu = new Processing(canvas, game.render);
 			
 			// vector preloads
 			iu.externals.sketch.options.preload = PRELOAD.join(",");

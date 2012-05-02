@@ -1,3 +1,28 @@
+// Sidebar functions
+/*
+Arena = function() {
+	return {
+		init: function(){
+			
+		}, 
+		add: function( user ){
+			
+		}, 
+		remove: function( user ){
+			
+		}, 
+		getAll: function(){
+			
+		}, 
+		set: function(){
+			
+		}
+	}
+	
+}
+*/
+
+
 //Events
 
 // initialize
@@ -26,7 +51,7 @@ arena.on('move', function(user) {
 });
 
 function createInvader( name ){
-	var invader = new USER();
+	var invader = new User();
 		invader.name = name;
 		invader.state = "invader";
 		invader.color = "#CCC";

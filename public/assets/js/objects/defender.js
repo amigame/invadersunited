@@ -1,14 +1,11 @@
 Defender = function(){ 
 
-return {
+return $.extend({}, (new User()), {
 
-	x : 0,
 	y : WINDOW_HEIGHT-2*SPRITE_HEIGHT,
-	pos : { x: -1, y: -1 },
 	canShoot: true, 
 	compAI : false, 
 	bullet : null, 
-	sprite : null,
 	
 	init : function(root) {
 		
@@ -46,7 +43,7 @@ return {
 	},
 	
 	updateAI : function() {
-		if( typeof( PLAYER.pos.x ) != "undefined" ) this.pos.x = PLAYER.pos.x;
+		if( typeof( player.pos.x ) != "undefined" ) this.pos.x = player.pos.x;
 	},
 	
 	disableAI : function() {
@@ -56,6 +53,7 @@ return {
 		this.x = ( this.pos.x > 0 ) ? Math.floor( this.pos.x * SPRITE_WIDTH): 0;
 		//this.y = Math.floor( this.pos.y * SPRITE_HEIGHT);
 	}
-}
+	
+});
 
 }

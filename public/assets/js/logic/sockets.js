@@ -11,8 +11,8 @@ socket.on('disconnect', function(){
 socket.on('id', function( user ) {
 	console.log("got ID!");
 	// save the data for later
-	PLAYER.id = user.id;
-	PLAYER.name = user.name;
+	player.id = user.id;
+	player.name = user.name;
 });
 
 // user updates
@@ -25,7 +25,7 @@ socket.on('in-lobby', function(user) {
 });
 
 socket.on('in-arena', function() {
-	exitLobby( PLAYER.name );
+	exitLobby( player.name );
 	player.enterArena();
 	hideLobby();
 });
@@ -75,19 +75,16 @@ socket.on('reset-players', function(players){
 	for( i in  players ){ 
 		var player = players[i];
 		if( player.state == "invader" ){ 
-			var invader = new USER();
-			invader.state = player.state;
-			invader.name = player.name;
-			INVADERS.push(invader);
+			createInvader( name );
 		}
 	}
 });
 
 socket.on('wave', function(flag) {
 	if(flag){ 
-		Game.waveTimer.reset();
-		if( PLAYER.active ){ 
-			PLAYER.pos.y++;
+		game.waveTimer.reset();
+		if( player.active ){ 
+			player.pos.y++;
 		}
 	}
 });
