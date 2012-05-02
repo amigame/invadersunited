@@ -1,5 +1,9 @@
 // Globals
+// - objects
 var game, player, invaders, neo;
+// - rooms
+var login, lobby, arena;
+// - data
 var INPUT, PLAYER, INVADERS;
 
 // Dependencies
@@ -36,12 +40,16 @@ require({
 			player = new Player();
 			invaders = new Invaders();
 			neo = new Defender();
+			//login = new Login();
+			lobby = new Lobby();
+			
 			//PLAYER = new User();
 			INVADERS = [];
 			
 			// initiate canvas rendering
 			var canvas = document.getElementById("arena");
 			var iu = new Processing(canvas, game.render);
+			
 			
 			// vector preloads
 			iu.externals.sketch.options.preload = PRELOAD.join(",");

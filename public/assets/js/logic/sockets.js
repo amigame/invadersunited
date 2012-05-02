@@ -18,28 +18,36 @@ socket.on('id', function( user ) {
 // user updates
 socket.on('in-lobby', function(user) {
 	// add user in lobby
-	enterLobby( user.name );
+	lobby.add( user.name );
 	// show lobby
-	showLobby();
+	lobby.show();
 	//PLAYER.me(user);
 });
 
 socket.on('in-arena', function() {
-	exitLobby( player.name );
+	lobby.remove( player.name );
 	player.enterArena();
-	hideLobby();
+	lobby.hide();
 });
 
+socket.on('died', function( score ) {
+	if( score ){ 
+		noty({text: 'You lost but you got a score of '+ score, layout: 'topCenter', type: 'error'});
+	} else {
+		noty({text: 'You died with no score', layout: 'topCenter', type: 'error'});
+	}
+});
 
 // opponents updates
 socket.on('entered-lobby', function( user ) {
 	// add user in lobby
-	enterLobby( user );
+	lobby.add( user );
 });
 
 	
 socket.on('new-invader', function( name ) {
-		exitLobby( name );
+		noty({text: 'New Invader: '+ name, layout: 'topCenter', type: 'information'});
+		lobby.remove( name );
 	// exclude the player invader
 	//if( invader.name != PLAYER.name){
 		createInvader( name );
@@ -48,8 +56,13 @@ socket.on('new-invader', function( name ) {
 	//}
 });
 
-socket.on('new-defender', function(data) {
-	console.log("Defender: " + data);	
+socket.on('new-defender', function( name ) {
+	if( name == player.name ){ 
+		noty({text: 'YOU are the next defender!', layout: 'topCenter', type: 'information'});
+	} else {
+		noty({text: name +' is the next defender', layout: 'topCenter', type: 'success'});
+	}
+	//console.log("Defender: " + data);	
 });
 
 socket.on('dead-invader', function(data) {
