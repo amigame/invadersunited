@@ -6,7 +6,6 @@ User = function() {
 		name: false,
 		pos: { x: -1, y: -1},
 		active : false,
-		color : "#0C0",
 		speed : (SPRITE_WIDTH*SPRITE_SCALE)/2, 
 		die : false,
 		x: 0, 
@@ -23,7 +22,7 @@ User = function() {
 			// properties
 			this.sprite[frame].disableStyle();  // Ignore the colors in the SVG
 			this.root.fill( this.style.color );
-  			this.root.stroke( this.style.stroke );   
+  			this.root.stroke( this.style.stroke );
 			// render the sprite
 			this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
 			

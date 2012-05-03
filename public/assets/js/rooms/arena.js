@@ -58,14 +58,15 @@ Arena = function() {
 		update: function( user ){
 		
 			var found = false;
-				for(i in players){ 
-					var player = players[i];
+				for(i in invaders.list){ 
+					var player = invaders.list[i];
 					if(player.name ==  user.name) {
 						player.pos = user.pos;
 						found = true;
 						break; 
 					}
 				}
+			
 			// this is a new invader
 			if(!found) {
 				invaders.add( user.name );

@@ -14,7 +14,7 @@ return $.extend({}, (new User()), {
 		
 	},
 	
-	update : function(x, y){
+	update : function(){
 		
 		this.render();
 		//console.log(y);
