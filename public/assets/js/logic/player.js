@@ -1,20 +1,19 @@
 Player = function(){ 
 
 return $.extend({}, (new User()), {
-
+	
 	root : null,
 	isAlive : true,
 	style: SPRITE["styles"].player, 
     score : 0,
 	explosion : Explosion,
-	sprite : null,
-	
+		
     init : function(root) {
 		var self = this;
-		//this.root = Processing.getInstanceById('arena');
-		this.root = root;
-		this.sprite = SPRITES['scully'];
 		
+		this.root = root;
+		this.sprite = SPRITES['scully']; 
+	
 		// events
 		socket.on('id', function( user ) {
 			self.set( user );
@@ -52,6 +51,9 @@ return $.extend({}, (new User()), {
 		if( this.active ){ 
 			this.updatePosition();
 		}
+		
+		this.render();
+		
 	},
 	
 	destroy : function(){
@@ -97,18 +99,7 @@ return $.extend({}, (new User()), {
 		if ( INPUT.keys["Left"] || INPUT.keys["Right"] ){
 			this.sendPosition();
 		}
-		this.x = Math.floor( this.pos.x * SPRITE_WIDTH);
-		this.y = Math.floor( this.pos.y * SPRITE_HEIGHT);
-		// set sprite based on frame rate (so it's the same for all invaders)
-		frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames 
-		// properties
-		this.sprite[frame].disableStyle();  // Ignore the colors in the SVG
-		this.root.fill( this.style.color );
-  		this.root.stroke( this.style.stroke );   
-		// render the sprite
-		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
-		// geekovision...
-		//console.log( frame+", "+this.x+", "+this.y+", "+SPRITE_WIDTH+", "+SPRITE_HEIGHT );
+		
 	}, 
 	
 	sendPosition : function() {

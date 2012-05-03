@@ -7,11 +7,12 @@ return $.extend({}, (new User()), {
 	compAI : false, 
 	bullet : null, 
 	style: SPRITE["styles"].defender, 
-    
+    	
 	init : function(root) {
 		
 		this.root = root;
-		this.sprite = SPRITES['defender'];
+		this.sprite = SPRITES['defender']; 
+	
 		this.enableAI();
 		if(this.canShoot){
 			this.bullet = Bullet.init();

@@ -2,6 +2,11 @@
 Arena = function() {
 	return {
 		socket: io.connect(window.location.hostname+"/arena"), 
+		// variables
+		wave : 0, 
+		//players : [], 
+		//invaders : [], 
+		//defender : false,
 		init: function(){
 			var self = this;
 			//events
@@ -9,20 +14,8 @@ Arena = function() {
 				self.hud.update( scores );
 			});
 			
-			socket.on('move', function(user) {
-				
-				var found = false;
-				for(i in INVADERS){ 
-					if(INVADERS[i].name ==  user.name) {
-						INVADERS[i].pos = user.pos;
-						found = true;
-						break; 
-					}
-				}
-				// this is a new invader
-				if(!found) {
-					self.create( user.name );
-				}
+			socket.on('move', function( user ) {
+				self.update( user );
 			});
 
 			// create hud
@@ -35,18 +28,27 @@ Arena = function() {
 		remove: function( user ){
 			
 		}, 
+		update: function( user ){
+		
+			var found = false;
+				for(i in players){ 
+					var player = players[i];
+					if(player.name ==  user.name) {
+						player.pos = user.pos;
+						found = true;
+						break; 
+					}
+				}
+			// this is a new invader
+			if(!found) {
+				invaders.add( user.name );
+			}
+		}, 
 		getAll: function(){
 			
 		}, 
 		set: function(){
 			
-		}, 
-		create: function( name ){
-			var invader = new User();
-				invader.name = name;
-				invader.state = "invader";
-				invader.color = "#CCC";
-				INVADERS.push(invader);
 		}, 
 		hud: {
 			init: function(){

@@ -55,17 +55,3 @@ SPRITES = {};
 ANIMATION_SPEED = 0.8;
 
 SOCKETS = false;
-/*
-OPPONENTS  = {
-	color : "#CCC",	
-};
-
-*/
-DEFENDER  = {
-	color : "#000",	
-};
-
-/*
-var ARENA = {}; 
-
-*/
