@@ -5,7 +5,8 @@ return {
 	root : null,
 	invader : {},
 	sprite : null,
-	
+	style: SPRITE["styles"].invader, 
+    
     init : function(root) {
 		
 		//this.root = Processing.getInstanceById('arena');
@@ -36,9 +37,12 @@ return {
 			var x = Math.floor( pos.x * SPRITE_WIDTH );
 			var y = Math.floor( pos.y * SPRITE_HEIGHT );
 			// set sprite based on frame rate (so it's the same for all invaders)
-			//this.root.fill(204, 102, 0);
-			//this.root.tint(0, 153, 204); 
 			frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames  
+			// properties
+			this.sprite[frame].disableStyle();  // Ignore the colors in the SVG
+			this.root.fill( this.style.color );
+  			this.root.stroke( this.style.stroke );   
+			// render the sprite
 			this.root.shape(this.sprite[frame], x, y, SPRITE_WIDTH, SPRITE_HEIGHT);
 		}
 		

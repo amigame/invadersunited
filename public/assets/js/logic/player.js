@@ -4,6 +4,7 @@ return $.extend({}, (new User()), {
 
 	root : null,
 	isAlive : true,
+	style: SPRITE["styles"].player, 
     score : 0,
 	explosion : Explosion,
 	sprite : null,
@@ -37,6 +38,12 @@ return $.extend({}, (new User()), {
 		return this;
 	},
 	
+	set: function( user ){
+		// save the data for later
+		this.id = user.id;
+		this.name = user.name;
+	},
+	
 	update : function(){
 		/*
 		if( PLAYER.die ){ 
@@ -51,14 +58,14 @@ return $.extend({}, (new User()), {
 		if( this.active ) {
 			// reset the active flag
 			this.active = false;
-			arena.emit("kill", { id: player.id, name: player.name});
+			socket.emit("kill", { id: player.id, name: player.name});
 			// show an explosion
 			//this.explosion.update();
 			// reset pos
 			this.pos = { x: -1, y: -1 };
 		}
 	}, 
-	
+	// Player Updates
 	enterArena : function() {
 		// setup player
 		this.active = true;
@@ -68,18 +75,12 @@ return $.extend({}, (new User()), {
 	moveLeft : function() {
 		if (this.x>0){
 			this.pos.x--;
-			//this.invader.animate(this.x, this.y);
-			// expose player's position as a global var
-			//PLAYER.pos.x = this.pos.x;
 		}
 	},
 	
 	moveRight : function() {
 		if (this.x<WINDOW_WIDTH-SPRITE_WIDTH){
 			this.pos.x++;
-			// expose player's position as a global var
-			//PLAYER.pos.x = this.pos.x;
-			//this.invader.animate(this.x, this.y);
 		}
 	},
 	
@@ -98,11 +99,13 @@ return $.extend({}, (new User()), {
 		}
 		this.x = Math.floor( this.pos.x * SPRITE_WIDTH);
 		this.y = Math.floor( this.pos.y * SPRITE_HEIGHT);
-		// render the sprite
+		// set sprite based on frame rate (so it's the same for all invaders)
 		frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames 
+		// properties
 		this.sprite[frame].disableStyle();  // Ignore the colors in the SVG
-  		this.root.fill(0, 102, 153);    // Set the SVG fill to blue
-  		this.root.stroke(255);   
+		this.root.fill( this.style.color );
+  		this.root.stroke( this.style.stroke );   
+		// render the sprite
 		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
 		// geekovision...
 		//console.log( frame+", "+this.x+", "+this.y+", "+SPRITE_WIDTH+", "+SPRITE_HEIGHT );
@@ -110,14 +113,8 @@ return $.extend({}, (new User()), {
 	
 	sendPosition : function() {
 		if(SOCKETS){
-			arena.emit('move', this.pos);
+			socket.emit('move', this.pos);
 		}
-	}, 
-	
-	set: function( user ){
-		// save the data for later
-		this.id = user.id;
-		this.name = user.name;
 	}
 	
 });

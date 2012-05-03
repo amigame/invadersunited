@@ -11,7 +11,7 @@ require({
     baseUrl: "/assets/js/" 
 	}, [	
 		"order!libs/jquery-1.6.4.min", 
-		"order!libs/processing-1.3.0.min", 
+		"order!libs/processing-1.3.6.min", 
 		"order!libs/md5", 
 		"order!libs/jquery.noty", 
 		"order!misc/helpers", 
@@ -27,7 +27,7 @@ require({
 		"order!logic/ai", 
 		"order!logic/input", 
 		"order!logic/player", 
-		"order!logic/opponents", 
+		"order!logic/invaders", 
 		"order!logic/game", 
 		"order!rooms/login", 
 		"order!rooms/lobby", 

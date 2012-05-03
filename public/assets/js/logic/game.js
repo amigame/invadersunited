@@ -28,7 +28,7 @@ return {
 			player.init(root);
 			invaders.init(root);
 			neo.init(root);
-			 
+			
 		};  
 		
 		// Override draw function abd add updates of the game classes

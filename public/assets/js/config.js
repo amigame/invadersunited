@@ -28,7 +28,26 @@ SCREEN = {
 SPRITE = { 
 	scale 		: 1,
 	width 		: 48, 
-	height  	: 32
+	height  	: 32,
+	styles		: {
+		player: {
+			color:  0xFF00CC00, 
+			stroke: 255
+		}, 
+		opponent: {
+			color:  0x00FFFFFF, 
+			stroke: 100
+		}, 
+		defender: {
+			color:  0xFF0000CC, 
+			stroke: 0
+		}, 
+		invader: {
+			color:  0xFFCC0000, 
+			stroke: 255
+		}, 
+		
+	}
 }
 
 SPRITES = {};
