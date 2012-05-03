@@ -9,11 +9,37 @@ return {
 		INPUT = Input.initialize();
 		
 		// setup wave timer
-		this.waveTimer.init();
+		this.wave.init();
 		
 		// initialise login (global var)
 		login.init();
+		
+		// events
+		
+		socket.on('wave', function(flag) {
 			
+			if(flag){ 
+				game.wave.reset();
+				if( player.active ){ 
+					player.pos.y++;
+				}
+			}
+		});
+		
+		socket.on('new-invader', function( name ) {
+				noty({text: 'New Invader: '+ name, layout: 'topCenter', type: 'information'});
+				lobby.remove( name );
+				invaders.add( name );
+				// players.add( name );
+		});
+		
+		socket.on('in-arena', function() {
+			lobby.remove( player.name );
+			player.enterArena();
+			lobby.hide();
+		});
+
+
 	}, 
 	
 	render : function( root ) {
@@ -28,7 +54,6 @@ return {
 			player.init(root);
 			invaders.init(root);
 			neo.init(root);
-			
 		};  
 		
 		// Override draw function abd add updates of the game classes
@@ -80,8 +105,8 @@ return {
 		
 	}, 
 	
-	waveTimer: {
-		
+	wave: {
+		current: 0, 
 		vars: {
 			timeout: 20, 
 			count: 0
@@ -102,6 +127,8 @@ return {
 			$("#wave span").html(self.vars.count);
 		}, 
 		reset: function(){
+			// increment the wave num
+			this.current++;
 			// reset count to the set timeout
 			this.vars.count = this.vars.timeout;
 			

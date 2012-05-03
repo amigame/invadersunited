@@ -27,7 +27,15 @@ return $.extend({}, (new User()), {
 			}
 			//console.log("Defender: " + data);	
 		});
-
+		
+		socket.on('died', function( score ) {
+			if( score ){ 
+				noty({text: 'You lost but you got a score of '+ score, layout: 'topCenter', type: 'error'});
+			} else {
+				noty({text: 'You died with no score', layout: 'topCenter', type: 'error'});
+			}
+		});
+		
 
 		//this.explosion = Explosion.initialize(root);
 		//this.x = x;
@@ -72,6 +80,10 @@ return $.extend({}, (new User()), {
 		// setup player
 		this.active = true;
 		this.pos = { x: 0, y: 0 }
+		// set sprite based on the wave
+		var sprite = Math.round( (game.wave.current % invaders.sprites.length) / invaders.sprites.length );
+		console.log( sprite );
+		this.sprite = invaders.sprites[sprite]; 
 	},
 	
 	moveLeft : function() {

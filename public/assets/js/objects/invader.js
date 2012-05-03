@@ -9,8 +9,8 @@ return $.extend({}, (new User()), {
 		
 		this.root = root;
 		// set the sprite based on the wave
-		console.log( arena.wave );
-		this.sprite = SPRITES['dorky'];
+		var sprite = Math.round( (game.wave.current % invaders.sprites.length) / invaders.sprites.length );
+		this.sprite = invaders.sprites[sprite];
 		
 	},
 	

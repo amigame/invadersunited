@@ -4,11 +4,15 @@ return {
 	
 	root : null,
 	list : [],
-	
+	sprites : null, 
+		
     init : function(root) {
 		
 		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
+		
+		// set the sprites for the invaders
+		this.sprites = new Array( SPRITES['dorky'], SPRITES['evily'], SPRITES['scully'] );
 		
 		//this.invader = new Invader(root,WINDOW_HEIGHT/2,WINDOW_WIDTH/2);
 		return this;

@@ -2,13 +2,12 @@
 Arena = function() {
 	return {
 		socket: io.connect(window.location.hostname+"/arena"), 
-		// variables
-		wave : 0, 
 		//players : [], 
 		//invaders : [], 
 		//defender : false,
 		init: function(){
 			var self = this;
+			
 			//events
 			socket.on('update-score', function( scores ) {
 				self.hud.update( scores );
@@ -17,7 +16,35 @@ Arena = function() {
 			socket.on('move', function( user ) {
 				self.update( user );
 			});
-
+			
+			socket.on('left-game', function(name) {
+				console.log("Left: " + name);
+				for(i in players){
+					var player = players[i];
+					if( player.name == name ) delete players[i];
+				}
+				//var index = INVADERS.indexOf(user); // Find the index
+				//INVADERS.splice(index,1);
+				//delete INVADERS[index];	
+			});
+			
+			// this calls is used to nomralize the local data with the server data
+			socket.on('reset-players', function(players){
+				// delete old data
+				invaders.reset();
+				// save the invaders and defenders
+				for( i in  players ){ 
+					var player = players[i];
+					if( player.state == "invader" ){ 
+						invaders.add( name );
+					}
+				}
+			});
+			
+			socket.on('dead-invader', function(data) {
+				console.log("Died: " + data);	
+			});
+			
 			// create hud
 			this.hud.init();
 
