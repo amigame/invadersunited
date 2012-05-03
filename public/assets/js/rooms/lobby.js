@@ -49,10 +49,12 @@ Lobby = function() {
 			$("#waiting").find("li").each(function( ){
 				if ( ( $(this).html() ).indexOf( user ) ) $(this).remove();
 			});
+			// check the position of the player after every remove
+			this.checkPosition();
 		}, 
 		checkPosition: function(){
-			var index = $("#waiting li:contains("+player.user+")").index();
-			if(index < DRAFT) 
+			var index = $("#waiting li:contains("+player.name+")").index();
+			if( index != -1 && index < DRAFT) 
 				noty({text: 'You are drafted to be in the next wave! Get ready... '});
 		}, 
 		chat: function(){

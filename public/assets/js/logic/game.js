@@ -13,7 +13,7 @@ return {
 		
 		// initialise login (global var)
 		login.init();
-		
+		arena.init();
 		// events
 		
 		socket.on('wave', function(flag) {

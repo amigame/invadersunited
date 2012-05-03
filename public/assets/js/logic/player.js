@@ -79,7 +79,8 @@ return $.extend({}, (new User()), {
 	enterArena : function() {
 		// setup player
 		this.active = true;
-		this.pos = { x: 0, y: 0 }
+		// start one row down
+		this.pos = { x: 0, y: 1 }
 		// set sprite based on the wave
 		var sprite = Math.round( (game.wave.current % invaders.sprites.length) / invaders.sprites.length );
 		this.sprite = invaders.sprites[sprite]; 

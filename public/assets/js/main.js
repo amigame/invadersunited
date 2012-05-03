@@ -43,6 +43,7 @@ require({
 			neo = new Defender();
 			login = new Login();
 			lobby = new Lobby();
+			arena = new Arena();
 			
 			INVADERS = [];
 			
