@@ -13,7 +13,6 @@ Lobby = function() {
 				self.add( user.name );
 				// show lobby
 				self.show();
-				//PLAYER.me(user);
 			});
 			// opponents updates
 			socket.on('entered-lobby', function( user ) {
@@ -22,7 +21,6 @@ Lobby = function() {
 			});
 
 
-			$("#load").fadeOut(1000, function(){ $(this).remove() });
 			$("#wrapper aside").animate({ width: "30%"}, 1000, function(){
 				$("#lobby").fadeIn();
 			});
@@ -43,6 +41,8 @@ Lobby = function() {
 		add: function( user ){
 			var img = '<img src="'+ getGravatar( user, 32 ) +'" width="32" height="32" alt="'+ user +'" />';
 			$("#waiting").append("<li>"+ img + user + "</li>");
+			// check if it's the user
+			if( player.name == user ) this.checkPosition();
 		}, 
 		remove: function( user ){
 			// remove user from the waiting list
@@ -50,8 +50,10 @@ Lobby = function() {
 				if ( ( $(this).html() ).indexOf( user ) ) $(this).remove();
 			});
 		}, 
-		getPosition: function(){
-			
+		checkPosition: function(){
+			var index = $("#waiting li:contains("+player.user+")").index();
+			if(index < DRAFT) 
+				noty({text: 'You are drafted to be in the next wave! Get ready... '});
 		}, 
 		chat: function(){
 			
