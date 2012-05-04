@@ -21,13 +21,14 @@ return $.extend({}, (new User()), {
 		
 		socket.on('new-defender', function( name ) {
 			if( name == self.name ){ 
-				noty({text: 'YOU are the next defender!', layout: 'topCenter', type: 'information'});
+				noty({text: 'YOU are the next defender!', layout: 'topCenter', type: 'success'});
 			} else {
-				noty({text: name +' is the next defender', layout: 'topCenter', type: 'success'});
+				noty({text: name +' is the next defender', layout: 'topCenter', type: 'information'});
 			}
 			//console.log("Defender: " + data);	
+			neo.name = name;
 		});
-		
+			
 		socket.on('died', function( score ) {
 			if( score ){ 
 				noty({text: 'You lost but you got a score of '+ score, layout: 'topCenter', type: 'error'});

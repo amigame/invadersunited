@@ -19,6 +19,7 @@ return {
 	},
 	
 	add : function( name ) {
+		
 		// FIX: skip if it's the player
 		if ( name == player.name ) return;
 		
@@ -38,6 +39,7 @@ return {
 		// FIX: don't update if there are no invaders
 		//if( !INVADERS.length ) return;
 		// for each of the entries in the Opponents Array
+		//
 		for(i in this.list){
 			var invader = this.list[i];
 			// update invader
@@ -59,9 +61,21 @@ return {
 		}
 	}, 
 	
-	reset : function(){
+	reset : function( players ){
 		// remove everyone from the lists
 		this.list = [];
+		
+		// save the invaders and defenders
+		for( i in  players ){ 
+			var player = players[i];
+			if( player.state == "defender")
+				neo.name = player.name;
+			
+			if( player.state == "invader" ){ 
+				invaders.add(  player.name );
+			}
+		}
+				
 	}
 	
 }

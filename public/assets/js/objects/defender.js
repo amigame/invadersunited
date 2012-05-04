@@ -32,9 +32,9 @@ return $.extend({}, (new User()), {
 		// render the sprite
 		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
 		
-		if(this.compAI){
-			this.updateAI();
-		}
+		//if(this.compAI){
+		//	this.updateAI();
+		//}
 		if(this.canShoot){ 
 			//if( typeof this.bullet === "undefined"){
 			if( this.bullet.fire == true ) {

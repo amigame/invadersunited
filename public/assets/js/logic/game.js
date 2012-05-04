@@ -17,7 +17,6 @@ return {
 		// events
 		
 		socket.on('wave', function(flag) {
-			
 			if(flag){ 
 				game.wave.reset();
 				if( player.active ){ 
@@ -27,7 +26,6 @@ return {
 		});
 		
 		socket.on('new-invader', function( name ) {
-				noty({text: 'New Invader: '+ name, layout: 'topCenter', type: 'information'});
 				lobby.remove( name );
 				invaders.add( name );
 				// players.add( name );

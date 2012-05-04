@@ -28,21 +28,14 @@ Arena = function() {
 				//delete INVADERS[index];	
 			});
 			
-			// this calls is used to nomralize the local data with the server data
+			// this calls is used to normalize the local data with the server data
 			socket.on('reset-players', function(players){
 				// delete old data
-				invaders.reset();
-				// save the invaders and defenders
-				for( i in  players ){ 
-					var player = players[i];
-					if( player.state == "invader" ){ 
-						invaders.add( name );
-					}
-				}
+				invaders.reset( players );
 			});
 			
-			socket.on('dead-invader', function(data) {
-				console.log("Died: " + data);	
+			socket.on('dead-invader', function( user ) {
+				invaders.remove( name );
 			});
 			
 			// create hud
@@ -56,12 +49,20 @@ Arena = function() {
 			
 		}, 
 		update: function( user ){
-		
+			
+			// exit if it's the player
+			if (user.name == player.name) return;
+			// see if its the 
+			if (user.name == neo.name){
+				neo.pos = user.pos;
+				return;
+			}
+			// see if its one of the invaders
 			var found = false;
 				for(i in invaders.list){ 
-					var player = invaders.list[i];
-					if(player.name ==  user.name) {
-						player.pos = user.pos;
+					var invader = invaders.list[i];
+					if(invader.name ==  user.name) {
+						invader.pos = user.pos;
 						found = true;
 						break; 
 					}
