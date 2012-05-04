@@ -26,6 +26,10 @@ return {
 		// tranfer the root canvas element
 		invader.init( this.root );
 		invader.name = name;
+		if( !player.defender ) { 
+			// set the style as the opponent style
+			invader.style = SPRITE["styles"].opponent;
+		}
 		this.list.push(invader);
 				
 	}, 
