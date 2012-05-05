@@ -50,6 +50,8 @@ Arena = function() {
 		}, 
 		update: function( user ){
 			
+			console.log( user );
+			
 			// exit if it's the player
 			if (user.name == player.name) return;
 			// see if its the 
