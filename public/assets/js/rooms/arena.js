@@ -14,6 +14,7 @@ Arena = function() {
 			});
 			
 			socket.on('move', function( user ) {
+				//console.log( user );
 				self.update( user );
 			});
 			
@@ -35,7 +36,8 @@ Arena = function() {
 			});
 			
 			socket.on('dead-invader', function( user ) {
-				invaders.remove( name );
+				console.log( user );
+				invaders.remove( user );
 			});
 			
 			// create hud
@@ -49,31 +51,12 @@ Arena = function() {
 			
 		}, 
 		update: function( user ){
-			
-			console.log( user );
-			
-			// exit if it's the player
+			console.log(user);
+			// don't update if it's the player
 			if (user.name == player.name) return;
-			// see if its the 
-			if (user.name == neo.name){
-				neo.pos = user.pos;
-				return;
-			}
-			// see if its one of the invaders
-			var found = false;
-				for(i in invaders.list){ 
-					var invader = invaders.list[i];
-					if(invader.name ==  user.name) {
-						invader.pos = user.pos;
-						found = true;
-						break; 
-					}
-				}
 			
-			// this is a new invader
-			if(!found) {
-				invaders.add( user.name );
-			}
+			invaders.move( user );
+			
 		}, 
 		getAll: function(){
 			

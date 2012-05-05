@@ -31,17 +31,20 @@ return {
 			// set the style as the opponent style
 			invader.style = SPRITE["styles"].opponent;
 		}
-		this.list.push(invader);
-				
+		this.list[invader.name] = invader;
+		//this.list.push(invader);
+		
 	}, 
-	
-	update : function(){
+	get : function ( name ){
+		return this.list[name];
+	}, 
+	update : function( user ){
 		// FIX: don't update if there are no invaders
 		//if( !INVADERS.length ) return;
 		// for each of the entries in the Opponents Array
 		//
-		for(i in this.list){
-			var invader = this.list[i];
+		for(name in this.list){
+			var invader = this.list[name];
 			// update invader
 			invader.update();
 			
@@ -49,7 +52,31 @@ return {
 		
 	}, 
 	
+	move : function( user ) {
+		
+		// see if its the 
+		var exists = (typeof( this.list[user.name]) != undefined);
+		
+		// this is a new invader
+		if(!exists) {
+			this.add( user.name );
+		} else {
+			
+			var invader = this.get(user.name);
+			/*
+			if (user.name == neo.name){
+				neo.pos = user.pos;
+				return;
+			}
+			*/
+			invader.pos = user.pos;
+		}	
+			
+	}, 
 	remove : function( name ){
+		
+		if( typeof(this.list[name]) != "undefined") delete this.list[name];
+		/*
 		if( name ){
 			for(i in this.list){
 				var invader = this.list[i];
@@ -59,21 +86,21 @@ return {
 				}
 			}
 		}
+		*/
 	}, 
 	
 	reset : function( players ){
-		// remove everyone from the lists
+		// remove everyone from the current list
 		this.list = [];
 		
 		// save the invaders and defenders
 		for( i in  players ){ 
-			var player = players[i];
-			if( player.state == "defender")
-				neo.name = player.name;
+				
+			var invader = players[i];
 			
-			if( player.state == "invader" ){ 
-				invaders.add(  player.name );
-			}
+			this.add(  invader.name );
+			if( invader.state == "defender")
+				this.list[invader.name].state = invader.state;
 		}
 				
 	}
