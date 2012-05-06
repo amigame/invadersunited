@@ -10,7 +10,7 @@ aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgb
 #load #enter button{ width: 15%; min-height: 50%; margin: 8px; padding: 4px; font-size: 2em; font-weight: bold; }
 #load #banner{ padding: 20px; }
 #lobby { position: absolute; display: none; padding: 20px; height: 100%; }
-#lobby #wave { height: 10%; }
+#lobby #wave { height: 5%; }
 #lobby #draft { margin: 20px 0; height: 40%; }
 #lobby #waiting{ list-style-type: none; text-align: left; }
 #lobby #waiting img { margin-right: 12px; margin-bottom: -8px; }
@@ -20,9 +20,11 @@ aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgb
 #chat-stream img { margin-right: 4px; margin-bottom: -2px; }
 #chat input[type="text"]{ width: 75%; font-size: 1em; padding: 4px }
 #chat button{ width: 25%; font-size: 1em; padding: 4px}
-#lobby #info { text-align: left; height: 20%; overflow: hidden; }
+#lobby #info { text-align: left; height: 25%; overflow: hidden; }
 #lobby .pull { position: absolute; left: 0; top: 0; }
 #lobby .pull a { display: block; width: 20px; height: 30px; background: #eee; color: #999; text-align: center; }
+#lobby #social { text-align: center; }
+#lobby #social > div { display: inline-block; margin: 4px 8px; }
 #hud { position: absolute; width: 100%; }
 #hud #current-score, #hud #top-score { padding: 4px 8px; font-size: 1.5em; font-weight: bold; color: #444; opacity: 0.8 }
 #hud #current-score { float:left; }
