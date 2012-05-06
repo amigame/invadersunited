@@ -6,7 +6,8 @@ return {
 	
 	init : function() {
 		
-		INPUT = Input.initialize();
+		INPUT = new Input();
+		INPUT.init();
 		
 		// setup wave timer
 		this.wave.init();
