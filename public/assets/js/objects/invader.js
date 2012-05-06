@@ -1,6 +1,6 @@
 Invader = function(){ 
 
-return $.extend({}, (new User()), {
+return $.extend((new User(false)), {
 
 	root : null,
 	style: SPRITE["styles"].invader, 
@@ -21,13 +21,7 @@ return $.extend({}, (new User()), {
 		//this.sprite.x = x;
 		//this.sprite.y = y;
 	}, 
-	
-	destroy : function(){
-		console.log("show explosion");
-		//root.remove(this.sprite);
-		//delete this;
-		//this.sprite.y = y;
-	}
+
 	
 });
 

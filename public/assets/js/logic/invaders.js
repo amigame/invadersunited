@@ -14,7 +14,6 @@ return {
 		// set the sprites for the invaders
 		this.sprites = new Array( SPRITES['dorky'], SPRITES['evily'], SPRITES['scully'] );
 		
-		//this.invader = new Invader(root,WINDOW_HEIGHT/2,WINDOW_WIDTH/2);
 		return this;
 	},
 	
@@ -31,18 +30,14 @@ return {
 			// set the style as the opponent style
 			invader.style = SPRITE["styles"].opponent;
 		}
-		this.list[invader.name] = invader;
-		//this.list.push(invader);
+		this.list[name] = invader;
 		
 	}, 
 	get : function ( name ){
-		return this.list[name];
+		return (typeof( this.list[name] ) != undefined) ? this.list[name] : false;
 	}, 
 	update : function( user ){
-		// FIX: don't update if there are no invaders
-		//if( !INVADERS.length ) return;
-		// for each of the entries in the Opponents Array
-		//
+		
 		for(name in this.list){
 			var invader = this.list[name];
 			// update invader
@@ -55,27 +50,29 @@ return {
 	move : function( user ) {
 		
 		// see if its the 
-		var exists = (typeof( this.list[user.name]) != undefined);
+		var invader = this.get(user.name);
 		
 		// this is a new invader
-		if(!exists) {
+		if(!invader) {
 			this.add( user.name );
 		} else {
-			
-			var invader = this.get(user.name);
-			/*
-			if (user.name == neo.name){
-				neo.pos = user.pos;
-				return;
-			}
-			*/
-			invader.pos = user.pos;
+			// create set method instead...
+			this.list[user.name].pos = user.pos;
 		}	
 			
 	}, 
 	remove : function( name ){
 		
-		if( typeof(this.list[name]) != "undefined") delete this.list[name];
+		var invader = this.get( name );
+		
+		if( !invader ){
+			// do nothing
+		} else {
+			console.log( invader );
+			invader.kill();
+			delete this.list[name];
+		}
+		
 		/*
 		if( name ){
 			for(i in this.list){
@@ -97,10 +94,9 @@ return {
 		for( i in  players ){ 
 				
 			var invader = players[i];
-			
-			this.add(  invader.name );
-			if( invader.state == "defender")
-				this.list[invader.name].state = invader.state;
+			// FIX: Don't include the defender in the invaders list
+			if( invader.state != "defender")
+				this.add(  invader.name );
 		}
 				
 	}

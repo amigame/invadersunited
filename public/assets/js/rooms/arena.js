@@ -36,7 +36,7 @@ Arena = function() {
 			});
 			
 			socket.on('dead-invader', function( user ) {
-				console.log( user );
+				//console.log( user );
 				invaders.remove( user );
 			});
 			
@@ -51,10 +51,13 @@ Arena = function() {
 			
 		}, 
 		update: function( user ){
-			console.log(user);
+			//console.log(user);
 			// don't update if it's the player
 			if (user.name == player.name) return;
-			
+			// if defender update
+			if (user.name == neo.name){
+				neo.pos = user.pos;
+			}
 			invaders.move( user );
 			
 		}, 
