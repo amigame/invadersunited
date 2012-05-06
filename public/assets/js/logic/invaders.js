@@ -68,8 +68,7 @@ return {
 		if( !invader ){
 			// do nothing
 		} else {
-			console.log( invader );
-			invader.kill();
+			invader.destroy();
 			delete this.list[name];
 		}
 		

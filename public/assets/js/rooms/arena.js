@@ -30,13 +30,12 @@ Arena = function() {
 			});
 			
 			// this calls is used to normalize the local data with the server data
-			socket.on('reset-players', function(players){
+			socket.on('reset-invaders', function( users ){
 				// delete old data
-				invaders.reset( players );
+				invaders.reset( users );
 			});
 			
 			socket.on('dead-invader', function( user ) {
-				//console.log( user );
 				invaders.remove( user );
 			});
 			
