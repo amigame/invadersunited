@@ -8,28 +8,30 @@ return {
 		
     init : function(root) {
 		
-		//this.root = Processing.getInstanceById('arena');
 		this.root = root;
-		
-		// set the sprites for the invaders
-		this.sprites = new Array( SPRITES['dorky'], SPRITES['evily'], SPRITES['scully'] );
 		
 		return this;
 	},
 	
-	add : function( name ) {
+	add : function( name, state ) {
 		
 		// FIX: skip if it's the player
 		if ( name == player.name ) return;
 		
-		var invader = new Invader();
+		if(state == "invader"){ 
+			var invader = new Invader();
+			// FIX: colorize invaders based on user's positino
+			if( player.state != "defender" ) { 
+				// set the style as the opponent style
+				invader.style = SPRITE["styles"].opponent;
+			}
+		} else if(state == "defender" ) {
+			var invader = new Defender();
+		}
+		// either way...
 		// tranfer the root canvas element
 		invader.init( this.root );
 		invader.name = name;
-		if( !player.defender ) { 
-			// set the style as the opponent style
-			invader.style = SPRITE["styles"].opponent;
-		}
 		this.list[name] = invader;
 		
 	}, 
@@ -54,7 +56,9 @@ return {
 		
 		// this is a new invader
 		if(!invader) {
-			this.add( user.name );
+			// if y=0 it must be the defender
+			var state = ( !user.pos.y ) ? "defender" : "invader";
+			this.add( user.name , state );
 		} else {
 			// create set method instead...
 			this.list[user.name].pos = user.pos;
@@ -91,11 +95,8 @@ return {
 		
 		// save the invaders and defenders
 		for( i in  players ){ 
-				
 			var invader = players[i];
-			// FIX: Don't include the defender in the invaders list
-			if( invader.state != "defender")
-				this.add(  invader.name );
+			this.add(  invader.name, invader.state );
 		}
 				
 	}

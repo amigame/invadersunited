@@ -27,13 +27,24 @@ return {
 		
 		socket.on('new-invader', function( name ) {
 				lobby.remove( name );
-				invaders.add( name );
-				// players.add( name );
+				invaders.add( name, "invader" );
+		});
+		
+		socket.on('new-defender', function( name ) {
+			if( name == self.name ){ 
+				noty({text: 'YOU are the next defender!', layout: 'topCenter', type: 'success'});
+				player.enterArena("defender");
+			} else {
+				noty({text: name +' is the next defender', layout: 'topCenter', type: 'information'});
+				invaders.add(name, "defender");
+			}
+			//console.log("Defender: " + data);	
+			neo = name;
 		});
 		
 		socket.on('in-arena', function() {
 			lobby.remove( player.name );
-			player.enterArena();
+			player.enterArena("invader");
 			lobby.hide();
 		});
 
@@ -51,7 +62,6 @@ return {
 			
 			player.init(root);
 			invaders.init(root);
-			neo.init(root);
 		};  
 		
 		// Override draw function abd add updates of the game classes
@@ -62,7 +72,6 @@ return {
 			root.background( SCREEN.background );
 			// draw main actors
 			invaders.update();
-			neo.update();
 			player.update();
 		};
 		
@@ -88,10 +97,8 @@ return {
 		
 		// save as global variables for later use
 		SPRITES['defender'] = defender;
-  		SPRITES['dorky'] = dorky;
-  		SPRITES['evily'] = evily;
-  		SPRITES['scully'] = scully;
-  		//dorky.disableStyle();
+  		// set the sprites for the invaders
+		SPRITES['invaders'] = new Array( dorky, evily, scully );
 		
 	},
 	

@@ -6,17 +6,14 @@ User = function() {
 		name: false,
 		pos: { x: -1, y: -1},
 		active : false,
-		speed : (SPRITE_WIDTH*SPRITE_SCALE)/2, 
-		die : false,
 		x: 0, 
 		y: 0,
 		icon : encodeURIComponent("http://invadersunited.com/apple-touch-icon-114x114-precomposed.png"), 
 		sprite : null, 
 		
 		render: function(){
-			
-			this.x = Math.floor( this.pos.x * SPRITE_WIDTH );
-			this.y = Math.floor( this.pos.y * SPRITE_HEIGHT );
+			// update coordinates
+			this.coords();
 			// set sprite based on frame rate (so it's the same for all invaders)
 			frame = Math.round((this.root.frameCount% SCREEN["framerate"])/ SCREEN["framerate"] );  // Use % to cycle through frames  
 			// properties
@@ -28,7 +25,11 @@ User = function() {
 			
 			// geekovision...
 			//console.log( frame+", "+this.x+", "+this.y+", "+SPRITE_WIDTH+", "+SPRITE_HEIGHT );
-		}
+		},
+		coords : function() {
+			this.x = Math.floor( this.pos.x * SPRITE_WIDTH );
+			this.y = Math.floor( this.pos.y * SPRITE_HEIGHT );
+		}	
 	};
 }
 

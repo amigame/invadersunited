@@ -7,27 +7,18 @@ return $.extend({}, (new User()), {
 	style: SPRITE["styles"].player, 
     score : 0,
 	explosion : Explosion,
-		
+	control: null, 
+			
     init : function(root) {
 		var self = this;
 		
 		this.root = root;
-		this.sprite = SPRITES['scully']; 
-	
+		
 		// events
 		socket.on('id', function( user ) {
 			self.set( user );
 		});
 		
-		socket.on('new-defender', function( name ) {
-			if( name == self.name ){ 
-				noty({text: 'YOU are the next defender!', layout: 'topCenter', type: 'success'});
-			} else {
-				noty({text: name +' is the next defender', layout: 'topCenter', type: 'information'});
-			}
-			//console.log("Defender: " + data);	
-			neo.name = name;
-		});
 			
 		socket.on('died', function( score ) {
 			if( score ){ 
@@ -53,15 +44,13 @@ return $.extend({}, (new User()), {
 	},
 	
 	update : function(){
-		/*
-		if( PLAYER.die ){ 
-			this.destroy();
-		}*/ 
+		
 		if( this.active ){ 
 			this.updatePosition();
+			this.control.pos = this.pos;
+			this.control.update();
 		}
-		
-		this.render();
+		//this.render();
 		
 	},
 	
@@ -77,24 +66,32 @@ return $.extend({}, (new User()), {
 		}
 	}, 
 	// Player Updates
-	enterArena : function() {
+	enterArena : function( state ) {
 		// setup player
 		this.active = true;
-		// start one row down
-		this.pos = { x: 0, y: 1 }
-		// set sprite based on the wave
-		var sprite = Math.floor( game.wave.current % invaders.sprites.length );
-		this.sprite = invaders.sprites[sprite]; 
+		this.state = state;
+		if( state == "invader"){ 
+			this.control = new Invader();
+			// start one row down
+			this.pos = { x: 0, y: 1 };
+			// set sprite based on the wave
+		} else if( state == "defender" ) {
+			this.control = new Defender();
+		}
+		this.control.init( this.root );
+		this.control.style = SPRITE["styles"].player;
+		this.control.active = true;
+		this.control.name = this.name;
 	},
 	
 	moveLeft : function() {
-		if (this.x>0){
+		if (this.pos.x>0){
 			this.pos.x--;
 		}
 	},
 	
 	moveRight : function() {
-		if (this.x<WINDOW_WIDTH-SPRITE_WIDTH){
+		if ( (this.pos.x*SPRITE_WIDTH) < (WINDOW_WIDTH-SPRITE_WIDTH) ){
 			this.pos.x++;
 		}
 	},

@@ -39,7 +39,7 @@ require({
 			game = new Game();
 			player = new Player();
 			invaders = new Invaders();
-			neo = new Defender();
+			//neo = new Defender();
 			login = new Login();
 			lobby = new Lobby();
 			arena = new Arena();

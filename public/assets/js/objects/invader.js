@@ -1,6 +1,6 @@
 Invader = function(){ 
 
-return $.extend((new User()), {
+return $.extend({}, (new User()), {
 
 	root : null,
 	style: SPRITE["styles"].invader, 
@@ -8,9 +8,10 @@ return $.extend((new User()), {
 	init : function(root){
 		
 		this.root = root;
+		this.active = true;
 		// set the sprite based on the wave
-		var sprite = Math.floor( game.wave.current % invaders.sprites.length );
-		this.sprite = invaders.sprites[sprite];
+		var sprite = Math.floor( game.wave.current % SPRITES['invaders'].length );
+		this.sprite = SPRITES['invaders'][sprite];
 		
 	},
 	
