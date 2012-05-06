@@ -61,9 +61,9 @@ return {
 			// erase background
 			root.background( SCREEN.background );
 			// draw main actors
-			player.update();
 			invaders.update();
 			neo.update();
+			player.update();
 		};
 		
 	},

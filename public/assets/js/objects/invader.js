@@ -9,7 +9,7 @@ return $.extend((new User()), {
 		
 		this.root = root;
 		// set the sprite based on the wave
-		var sprite = Math.round( (game.wave.current % invaders.sprites.length) / invaders.sprites.length );
+		var sprite = Math.floor( game.wave.current % invaders.sprites.length );
 		this.sprite = invaders.sprites[sprite];
 		
 	},

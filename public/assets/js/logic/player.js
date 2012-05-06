@@ -83,7 +83,7 @@ return $.extend({}, (new User()), {
 		// start one row down
 		this.pos = { x: 0, y: 1 }
 		// set sprite based on the wave
-		var sprite = Math.round( (game.wave.current % invaders.sprites.length) / invaders.sprites.length );
+		var sprite = Math.floor( game.wave.current % invaders.sprites.length );
 		this.sprite = invaders.sprites[sprite]; 
 	},
 	

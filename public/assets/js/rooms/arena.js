@@ -51,13 +51,17 @@ Arena = function() {
 		}, 
 		update: function( user ){
 			//console.log(user);
+			//console.log(neo.name);
 			// don't update if it's the player
 			if (user.name == player.name) return;
 			// if defender update
 			if (user.name == neo.name){
 				neo.pos = user.pos;
+			} else {
+				// lookup invaders
+				invaders.move( user );
 			}
-			invaders.move( user );
+			
 			
 		}, 
 		getAll: function(){
