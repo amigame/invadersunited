@@ -31,7 +31,7 @@ return {
 		});
 		
 		socket.on('new-defender', function( name ) {
-			if( name == self.name ){ 
+			if( name == player.name ){ 
 				noty({text: 'YOU are the next defender!', layout: 'topCenter', type: 'success'});
 				player.enterArena("defender");
 			} else {
