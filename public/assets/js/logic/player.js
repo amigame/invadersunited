@@ -46,7 +46,7 @@ return $.extend({}, (new User()), {
 	update : function(){
 		
 		if( this.active ){ 
-			this.updatePosition();
+			this.updateInput();
 			this.control.pos = this.pos;
 			this.control.update();
 		}
@@ -96,10 +96,9 @@ return $.extend({}, (new User()), {
 		}
 	},
 	
-	updatePosition : function(){
+	updateInput : function(){
 		// get the position from the global vars
 		//this.pos = PLAYER.pos;
-		
 		if ( INPUT.keys["Left"] ){
         	this.moveLeft();
         } else if ( INPUT.keys["Right"] ){
@@ -109,6 +108,13 @@ return $.extend({}, (new User()), {
 		if ( INPUT.keys["Left"] || INPUT.keys["Right"] ){
 			this.sendPosition();
 		}
+		// shoot if available
+		//if ( INPUT.keys["Space"] && this.control.canShoot ){
+		if ( INPUT.keys["Space"] && typeof(this.control.shoot()) != "undefined" ){
+			this.control.shoot();
+			socket.emit('player-shoot');
+		}
+		
 		
 	}, 
 	

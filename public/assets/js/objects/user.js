@@ -10,6 +10,7 @@ User = function() {
 		y: 0,
 		icon : encodeURIComponent("http://invadersunited.com/apple-touch-icon-114x114-precomposed.png"), 
 		sprite : null, 
+		canShoot: false, 
 		
 		render: function(){
 			// update coordinates

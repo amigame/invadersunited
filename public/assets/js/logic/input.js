@@ -51,6 +51,9 @@ Input = {
 		var KeyID = (window.event) ? event.keyCode : e.keyCode;
 		switch(KeyID)
 		{
+			case 32:
+				this.key(state,"Space")
+				break;
 			case 37:
 				this.key(state,"Left")
 				break;

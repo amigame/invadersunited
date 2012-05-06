@@ -21,7 +21,7 @@ Bullet = {
 			this.root.ellipse(this.x, this.y, SPRITE_WIDTH/10, SPRITE_HEIGHT);
 			
 			// check collision with invaders
-			this.checkCollision();	
+			this.checkCollision();
 		}
 		
 	}, 

@@ -30,11 +30,14 @@ return $.extend({}, (new User()), {
 		// render the sprite
 		this.render();
 		// update the shoot flag
-		this.canShoot = this.bullet.update();
+		this.bullet.update();
+		this.canShoot = !this.bullet.active;
 	}, 
 	shoot : function(){
-		this.bullet.create( this.x+(SPRITE_WIDTH/2) );
-		this.canShoot = false;
+		if( this.canShoot ){
+			this.bullet.create( this.x+(SPRITE_WIDTH/2) );
+			this.canShoot = false;
+		}
 	}, 
 	coords : function() {
 		this.x = ( this.pos.x > 0 ) ? Math.floor( this.pos.x * SPRITE_WIDTH): 0;
