@@ -11,7 +11,7 @@ Input = function()  {
 		self = this;
 		
 		this.setupKeys();
-		//this.setupAccelerometer();
+		this.setupAccelerometer();
 		
 	}, 
 	
@@ -53,13 +53,13 @@ Input = function()  {
 				self.key(0,"Right");
 				self.key(0,"Left");
 			}
-			if(ax > 14 && status != 2){ //move right on device
+			if(ax > 14){ //move right on device
 				self.key(1,"Right");
 			}
-			if(ax < -14 && status != 1){ //move left on device
+			if(ax < -14){ //move left on device
 				self.key(1,"Left");
 			}
-			if(ax > -14 && ax < 14 && status != 3){ //device held steady
+			if(ax > -14 && ax < 14){ //device held steady
 				self.key(0,"Right");
 				self.key(0,"Left");
 			}
