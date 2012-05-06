@@ -18,7 +18,7 @@ User = function() {
 			this.x = Math.floor( this.pos.x * SPRITE_WIDTH );
 			this.y = Math.floor( this.pos.y * SPRITE_HEIGHT );
 			// set sprite based on frame rate (so it's the same for all invaders)
-			frame = Math.round((this.root.frameCount% SCREEN.framerate )/ SCREEN.framerate );  // Use % to cycle through frames  
+			frame = Math.round((this.root.frameCount% SCREEN["framerate"])/ SCREEN["framerate"] );  // Use % to cycle through frames  
 			// properties
 			this.sprite[frame].disableStyle();  // Ignore the colors in the SVG
 			this.root.fill( this.style.color );

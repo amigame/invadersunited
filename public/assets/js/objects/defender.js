@@ -9,54 +9,39 @@ return $.extend({}, (new User()), {
 	style: SPRITE["styles"].defender, 
     	
 	init : function(root) {
+		var self = this;
 		
 		this.root = root;
 		this.sprite = SPRITES['defender']; 
-	
-		this.enableAI();
-		if(this.canShoot){
-			this.bullet = Bullet.init();
-		}
-		//return this;
+		this.bullet = Bullet.init();
+		
+		// events
+		
+		socket.on('shoot', function(pos) {
+			self.shoot();
+		});
+		
 	},
 	
 	update : function() {
 		// update coordinates
 		this.coords();
 		// set sprite based on frame rate (so it's the same for all invaders)
-		frame = Math.round((this.root.frameCount%12)/12);  // Use % to cycle through frames  
+		frame = Math.round((this.root.frameCount % SCREEN["framerate"])/ SCREEN["framerate"] );  // Use % to cycle through frames  
 		// properties
 		this.sprite[frame].disableStyle();  // Ignore the colors in the SVG
 		this.root.fill( this.style.color );
   		this.root.stroke( this.style.stroke );   
 		// render the sprite
 		this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
-		
-		//if(this.compAI){
-		//	this.updateAI();
-		//}
-		if(this.canShoot){ 
-			//if( typeof this.bullet === "undefined"){
-			if( this.bullet.fire == true ) {
-				this.bullet.shoot( this.x+(SPRITE_WIDTH/2) );
-			} else {
-				this.bullet.update();
-			}
-		}
+		// update the shoot flag
+		this.canShoot = this.bullet.update();
 	}, 
-	
-	enableAI : function() {
-		this.compAI = true;
-	},
-	
-	updateAI : function() {
-		if( typeof( player.pos.x ) != "undefined" ) this.pos.x = player.pos.x;
-	},
-	
-	disableAI : function() {
+	shoot : function(){
+		this.bullet.create( this.x+(SPRITE_WIDTH/2) );
+		this.canShoot = false;
 	}, 
-	
-	coords: function() {
+	coords : function() {
 		this.x = ( this.pos.x > 0 ) ? Math.floor( this.pos.x * SPRITE_WIDTH): 0;
 		//this.y = Math.floor( this.pos.y * SPRITE_HEIGHT);
 	}

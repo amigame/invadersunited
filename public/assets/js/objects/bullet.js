@@ -1,9 +1,8 @@
 Bullet = {
 	root : null,
 	x : 0,
-	y : WINDOW_HEIGHT-2*SPRITE_HEIGHT,
-	compAI : false, 
-	fire : false, 
+	y : -1,
+	active : false, 
 	
 	init : function() {
 		this.root = Processing.getInstanceById('arena');
@@ -11,27 +10,31 @@ Bullet = {
 	},
 	
 	update : function() {
-		if( this.y < 50 ) {
+		
+		if( this.active && this.y < 0 ) {
 			this.destroy();
 		} else {
+			
 			this.y -= SPRITE_HEIGHT;
-			this.root.fill(50, 50, 50);    // Set the SVG fill to blue
+			this.root.fill(50, 50, 50);
   			this.root.stroke(255);
-			this.root.ellipse(this.x, this.y, SPRITE_WIDTH/10, SPRITE_HEIGHT);	
+			this.root.ellipse(this.x, this.y, SPRITE_WIDTH/10, SPRITE_HEIGHT);
+			
+			// check collision with invaders
+			this.checkCollision();	
 		}
-		this.checkCollision();
+		
 	}, 
 	
 	destroy : function() {
-		//$(this).remove();
-		this.fire = true;
+		this.y = -1;
+		this.active = false;
 	}, 
 	
-	shoot : function( x ) {
-		//$(this).remove();
+	create : function( x ) {
 		this.x = x;
 		this.y = WINDOW_HEIGHT-2*SPRITE_HEIGHT;
-		this.fire = false;
+		this.active = true;
 	}, 
 	
 	checkCollision : function( ) {

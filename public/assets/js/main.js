@@ -24,7 +24,6 @@ require({
 		"order!objects/defender", 
 		"order!objects/explosion", 
 		"order!logic/sockets", 
-		"order!logic/ai", 
 		"order!logic/input", 
 		"order!logic/player", 
 		"order!logic/invaders", 
