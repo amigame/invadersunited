@@ -99,18 +99,18 @@ return $.extend({}, (new User()), {
 		// get the input from the local vars
 		var input = this.input;
 		
-		if ( input.keys["Left"] ){
+		if ( input.trigger["Left"] ){
         	this.moveLeft();
-        } else if ( input.keys["Right"] ){
+        } else if ( input.trigger["Right"] ){
         	this.moveRight();
         } 
 		// send position only if moving
-		if ( input.keys["Left"] || input.keys["Right"] ){
+		if ( input.trigger["Left"] || input.trigger["Right"] ){
 			this.sendPosition();
 		}
 		// shoot if available
 		//if ( INPUT.keys["Space"] && this.control.canShoot ){
-		if ( input.keys["Space"] && typeof(this.control.shoot()) != "undefined" ){
+		if ( input.trigger["Fire"] && typeof(this.control.shoot()) != "undefined" ){
 			this.control.shoot();
 			socket.emit('player-shoot');
 		}

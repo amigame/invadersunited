@@ -4,8 +4,8 @@ Input = function()  {
 
 	self: null, 
 	
-	// setup the mapping for catching key presses
-    keys : { "Up" : 0, "Down" : 0, "Left" : 0, "Right" : 0, "Space" : 0 },
+	// setup the mapping for available actions
+    trigger : { "Up" : 0, "Down" : 0, "Left" : 0, "Right" : 0, "Fire" : 0 },
 	
 	init : function(){
 		self = this;
@@ -49,14 +49,14 @@ Input = function()  {
 			ay = event.accelerationIncludingGravity.y * 5;
 			 
 			if(ax > 14){ //move right on device
-				self.key(1,"Right");
+				self.set(1,"Right");
 			}
 			if(ax < -14){ //move left on device
-				self.key(1,"Left");
+				self.set(1,"Left");
 			}
 			if(ax > -14 && ax < 14){ //device held steady
-				self.key(0,"Right");
-				self.key(0,"Left");
+				self.set(0,"Right");
+				self.set(0,"Left");
 			}
 		}
 		}
@@ -71,38 +71,38 @@ Input = function()  {
 	
 	keyup : function(e) {
 		// nasty! defining the globar var from the object
-		self.onkey(0,e);
+		self.onKey(0,e);
 	}, 
 	
 	keydown : function(e) {
 		// nasty! defining the globar var from the object
-		self.onkey(1,e);
+		self.onKey(1,e);
 	},	
 	
-    key : function(state, name) {
-		this.keys[name] = state;
+    set : function(state, name) {
+		this.trigger[name] = state;
     },
 	
-	onkey : function(state, e) {
+	onKey : function(state, e) {
 		//if (e.preventDefault) e.preventDefault()
 		//if (e.stopPropagation) e.stopPropagation()
 		var KeyID = (window.event) ? event.keyCode : e.keyCode;
 		switch(KeyID)
 		{
 			case 32:
-				this.key(state,"Space")
+				this.set(state,"Fire")
 				break;
 			case 37:
-				this.key(state,"Left")
+				this.set(state,"Left")
 				break;
 			case 38:
-				this.key(state,"Up")
+				this.set(state,"Up")
 				break;
 			case 39:
-				this.key(state,"Right")
+				this.set(state,"Right")
 				break;
 			case 40:
-				this.key(state,"Down")
+				this.set(state,"Down")
 				break;
 		}
 	}
