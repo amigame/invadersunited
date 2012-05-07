@@ -40,6 +40,7 @@ return $.extend({}, (new User()), {
 			this.render();
 			//calculate the collision
 			if( neo == player.name && this.type == "ai" && this.checkCollision( player.control.bullet )  ){
+				player.control.bullet.destroy();
 				this.destroy();
 				socket.emit("kill-ai", { name: this.name });
 			}

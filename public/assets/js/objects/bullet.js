@@ -17,7 +17,7 @@ Bullet = {
 			
 			this.y -= SPRITE_HEIGHT;
 			this.root.fill(50, 50, 50);
-  			this.root.stroke(255);
+  			this.root.stroke(50);
 			this.root.ellipse(this.x, this.y, SPRITE_WIDTH/10, SPRITE_HEIGHT);
 			
 			// check collision with invaders
@@ -39,7 +39,7 @@ Bullet = {
 	
 	checkCollision : function( ) {
 		var pos = player.pos;
-		if( this.x >= player.x && this.x <= (player.x+SPRITE_WIDTH) && this.y <= player.y+SPRITE_HEIGHT && this.y >= player.y){
+		if( player.state == "invader" && this.x >= player.x && this.x <= (player.x+SPRITE_WIDTH) && this.y <= player.y+SPRITE_HEIGHT && this.y >= player.y){
 			this.destroy();	
 			player.destroy();
 		}

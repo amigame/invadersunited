@@ -36,8 +36,7 @@ User = function() {
 			return  (this.name).substring(0,3) == "AI-";
 		}, 
 		checkCollision : function( obj ) {
-			var pos = player.pos;
-			if( this.x >= obj.x && this.x <= (obj.x+SPRITE_WIDTH) && this.y <= obj.y+SPRITE_HEIGHT && this.y >= obj.y){
+			if( obj.x >= this.x && obj.x <= (this.x+SPRITE_WIDTH)  && obj.y >= this.y && obj.y <= (this.y+SPRITE_HEIGHT)){
 				return true;
 			} else {
 				return false;

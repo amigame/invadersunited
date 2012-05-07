@@ -62,6 +62,7 @@ return $.extend({}, (new User()), {
 			this.active = false;
 			socket.emit("kill", { id: player.id, name: player.name});
 			// show an explosion
+			//console.log("Destroy");
 			this.control.destroy();
 			/*
 			var self = this;
@@ -87,6 +88,7 @@ return $.extend({}, (new User()), {
 		} else if( state == "defender" ) {
 			this.control = new Defender();
 		}
+		//console.log("In ARENA as "+ state);
 		this.control.style = SPRITE["styles"].player;
 		this.control.name = this.name;
 		this.control.init( this.root );
