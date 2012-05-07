@@ -9,9 +9,11 @@ return $.extend({}, (new User()), {
 		
 		this.root = root;
 		this.active = true;
+		this.type = (this.isAI()) ? "ai" : "player";
 		// set the sprite based on the wave
 		var sprite = Math.floor( game.wave.current % SPRITES['invaders'].length );
 		this.sprite = SPRITES['invaders'][sprite];
+		
 		
 	},
 	
@@ -29,9 +31,11 @@ return $.extend({}, (new User()), {
 	update : function(){
 		
 		this.render();
-		//console.log(y);
-		//this.sprite.x = x;
-		//this.sprite.y = y;
+		//calculate the 
+		if( neo == player.name && this.type == "ai" && this.isColliding( player.control.bullet ) ){
+			console.log( player.control.bullet );
+			socket.emit("kill-ai", { name: this.name });
+		}
 	}, 
 
 	
