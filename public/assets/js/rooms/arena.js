@@ -68,7 +68,7 @@ Arena = function() {
 				$('<p/>', { id: 'top-score', html: 0  }).appendTo('#hud');
 			}, 
 			update: function( scores ){
-				$("#hud #current-score").html( scores.current );
+				$("#hud #current-score").html( scores.user );
 				$("#hud #top-score").html( scores.top );
 			}
 		}
