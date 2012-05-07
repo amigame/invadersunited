@@ -33,7 +33,7 @@ Bullet = {
 	
 	create : function( x ) {
 		this.x = x;
-		this.y = WINDOW_HEIGHT-2*SPRITE_HEIGHT;
+		this.y = WINDOW_HEIGHT-1.5*SPRITE_HEIGHT;
 		this.active = true;
 	}, 
 	

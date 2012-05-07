@@ -70,6 +70,7 @@ return {
 			root.background( SCREEN.background );
 			// draw main actors
 			invaders.update();
+			// render player last so it's over all other objects
 			player.update();
 		};
 		
