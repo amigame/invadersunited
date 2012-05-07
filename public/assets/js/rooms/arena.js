@@ -28,7 +28,8 @@ Arena = function() {
 			});
 			
 			socket.on('dead-invader', function( user ) {
-				invaders.remove( user );
+				// can't delete the player with a socket call
+				if( user != player.name) invaders.remove( user );
 			});
 			
 			// create hud
@@ -44,8 +45,11 @@ Arena = function() {
 		update: function( user ){
 			//console.log(user);
 			//console.log(neo.name);
+			// don't update if there is no defender set
+			if (typeof(neo) == "undefined") return;
 			// don't update if it's the player
 			if (user.name == player.name) return;
+			
 			// lookup invaders
 			invaders.move( user );
 			

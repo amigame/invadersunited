@@ -33,7 +33,6 @@ return {
 		invader.init( this.root );
 		invader.name = name;
 		this.list[name] = invader;
-		
 	}, 
 	get : function ( name ){
 		return (typeof( this.list[name] ) != undefined) ? this.list[name] : false;
@@ -57,12 +56,12 @@ return {
 		// this is a new invader
 		if(!invader) {
 			// if y=0 it must be the defender
-			var state = ( !user.pos.y ) ? "defender" : "invader";
+			var state = ( user.name == neo ) ? "defender" : "invader";
 			this.add( user.name , state );
-		} else {
-			// create set method instead...
-			this.list[user.name].pos = user.pos;
-		}	
+		} 
+		
+		// set the given position to the object
+		this.list[user.name].pos = user.pos;
 			
 	}, 
 	remove : function( name ){
