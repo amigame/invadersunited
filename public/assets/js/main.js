@@ -4,7 +4,7 @@ var game, player, invaders, neo;
 // - rooms
 var login, lobby, arena;
 // - data
-var INPUT, PLAYER, INVADERS;
+//var INPUT, PLAYER, INVADERS;
 
 // Dependencies
 require({ 

@@ -48,11 +48,6 @@ Input = function()  {
 			ax = event.accelerationIncludingGravity.x * 5;
 			ay = event.accelerationIncludingGravity.y * 5;
 			 
-			//Status 0 is start, 1 is left, 2 is right, 3 is stay
-			if(status == 0){ //initial condition
-				self.key(0,"Right");
-				self.key(0,"Left");
-			}
 			if(ax > 14){ //move right on device
 				self.key(1,"Right");
 			}

@@ -8,11 +8,14 @@ return $.extend({}, (new User()), {
     score : 0,
 	explosion : Explosion,
 	control: null, 
-			
+	input: new Input(),
+	
     init : function(root) {
 		var self = this;
 		
 		this.root = root;
+		// initialize input
+		this.input.init();
 		
 		// events
 		socket.on('id', function( user ) {
@@ -28,12 +31,8 @@ return $.extend({}, (new User()), {
 			}
 		});
 		
-
 		//this.explosion = Explosion.initialize(root);
-		//this.x = x;
-		//this.y = y;
-		//this.invader = new Invader(root, x, y, PLAYER.color, 99);
-		//this.input = new Input();
+		
 		return this;
 	},
 	
@@ -97,20 +96,21 @@ return $.extend({}, (new User()), {
 	},
 	
 	updateInput : function(){
-		// get the position from the global vars
-		//this.pos = PLAYER.pos;
-		if ( INPUT.keys["Left"] ){
+		// get the input from the local vars
+		var input = this.input;
+		
+		if ( input.keys["Left"] ){
         	this.moveLeft();
-        } else if ( INPUT.keys["Right"] ){
+        } else if ( input.keys["Right"] ){
         	this.moveRight();
         } 
 		// send position only if moving
-		if ( INPUT.keys["Left"] || INPUT.keys["Right"] ){
+		if ( input.keys["Left"] || input.keys["Right"] ){
 			this.sendPosition();
 		}
 		// shoot if available
 		//if ( INPUT.keys["Space"] && this.control.canShoot ){
-		if ( INPUT.keys["Space"] && typeof(this.control.shoot()) != "undefined" ){
+		if ( input.keys["Space"] && typeof(this.control.shoot()) != "undefined" ){
 			this.control.shoot();
 			socket.emit('player-shoot');
 		}
