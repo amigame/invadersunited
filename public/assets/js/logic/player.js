@@ -45,8 +45,13 @@ return $.extend({}, (new User()), {
 	update : function(){
 		
 		if( this.active ){ 
+			// update position based on user input
 			this.updateInput();
+			// update player coordinates
+			this.coords();
+			// pass position to the controlled object
 			this.control.pos = this.pos;
+			// update sprite
 			this.control.update();
 		}
 		//this.render();
