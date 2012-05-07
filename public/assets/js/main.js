@@ -14,6 +14,7 @@ require({
 		"order!libs/processing-1.3.6.min", 
 		"order!libs/md5", 
 		"order!libs/jquery.noty", 
+		"order!libs/add2home", 
 		"order!misc/helpers", 
 		"order!misc/tracking", 
 		"order!config", 
