@@ -64,7 +64,8 @@ return {
 		this.list[user.name].pos = user.pos;
 			
 	}, 
-	remove : function( name ){
+	
+	destroy : function( name ){
 		
 		var invader = this.get( name );
 		
@@ -75,17 +76,18 @@ return {
 			delete this.list[name];
 		}
 		
-		/*
-		if( name ){
-			for(i in this.list){
-				var invader = this.list[i];
-				if( name == invader.name ) { 
-					delete this.list[i];
-					invader.destroy();
-				}
-			}
+	}, 
+	
+	remove : function( name ){
+		
+		var invader = this.get( name );
+		
+		if( !invader ){
+			// do nothing
+		} else {
+			delete this.list[name];
 		}
-		*/
+		
 	}, 
 	
 	reset : function( players ){

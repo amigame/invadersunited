@@ -27,9 +27,9 @@ Arena = function() {
 				invaders.reset( users );
 			});
 			
-			socket.on('dead-invader', function( user ) {
+			socket.on('dead-invader', function( name ) {
 				// can't delete the player with a socket call
-				if( user != player.name) invaders.remove( user );
+				if( name != player.name) invaders.destroy( name );
 			});
 			
 			// create hud

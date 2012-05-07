@@ -26,19 +26,21 @@ return $.extend({}, (new User()), {
 			// show an explosion
 			this.explosion.start( this.pos );
 			var self = this;
+			/*
 			setTimeout(function(){
 				// delete object
 				delete self;
 			}, 2000);
+			*/
 		}
 	}, 
 	
 	update : function(){
 		if( this.active ){ 
 			this.render();
-			//calculate the 
-			if( neo == player.name && this.type == "ai" && this.isColliding( player.control.bullet ) ){
-				console.log( player.control.bullet );
+			//calculate the collision
+			if( neo == player.name && this.type == "ai" && this.checkCollision( player.control.bullet )  ){
+				this.destroy();
 				socket.emit("kill-ai", { name: this.name });
 			}
 		}

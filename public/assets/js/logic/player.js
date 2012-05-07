@@ -63,6 +63,7 @@ return $.extend({}, (new User()), {
 			socket.emit("kill", { id: player.id, name: player.name});
 			// show an explosion
 			this.control.destroy();
+			/*
 			var self = this;
 			setTimeout(function(){
 				// reset pos
@@ -70,6 +71,7 @@ return $.extend({}, (new User()), {
 				// delete object
 				delete self.control;
 			}, 2000);
+			*/
 		}
 	}, 
 	// Player Updates
