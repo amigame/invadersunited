@@ -5,7 +5,7 @@ var express = require('express'), // Include express engine
 	config = require( __dirname +'/config/app.js'), // create node server
 	app = express.createServer(), // create node server
 	io = require('socket.io').listen(app), 
-	iu = require( __dirname +'/lib/invadersunited.js');
+	iu = require( __dirname +'/lib/game.js');
 
 // Default APP Configuration
 app.configure(function(){
