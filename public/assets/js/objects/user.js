@@ -33,7 +33,7 @@ User = function() {
 			this.y = Math.floor( this.pos.y * SPRITE_HEIGHT );
 		}, 
 		isAI : function(){
-			return  (this.name).substring(0,3) == "AI-";
+			return (this.name).substring(0,3) == "AI-";
 		}, 
 		checkCollision : function( obj ) {
 			if( obj.x >= this.x && obj.x <= (this.x+SPRITE_WIDTH)  && obj.y >= this.y && obj.y <= (this.y+SPRITE_HEIGHT)){
