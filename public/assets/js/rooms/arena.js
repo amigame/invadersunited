@@ -16,9 +16,9 @@ Arena = function() {
 				self.update( user );
 			});
 			
-			socket.on('left-game', function(name) {
+			socket.on('remove', function( name ) {
 				//console.log("Left: " + name);
-				invaders.remove( user );
+				invaders.remove( name );
 			});
 			
 			// this calls is used to normalize the local data with the server data

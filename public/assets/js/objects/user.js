@@ -11,6 +11,7 @@ User = function() {
 		icon : encodeURIComponent("http://invadersunited.com/apple-touch-icon-114x114-precomposed.png"), 
 		sprite : null, 
 		canShoot: false, 
+		type: false, 
 		
 		render: function(){
 			// update coordinates
@@ -30,7 +31,18 @@ User = function() {
 		coords : function() {
 			this.x = Math.floor( this.pos.x * SPRITE_WIDTH );
 			this.y = Math.floor( this.pos.y * SPRITE_HEIGHT );
-		}	
+		}, 
+		isAI : function(){
+			return  (this.name).substring(0,3) == "AI-";
+		}, 
+		checkCollision : function( obj ) {
+			var pos = player.pos;
+			if( this.x >= obj.x && this.x <= (obj.x+SPRITE_WIDTH) && this.y <= obj.y+SPRITE_HEIGHT && this.y >= obj.y){
+				return true;
+			} else {
+				return false;
+			}
+		}
 	};
 }
 

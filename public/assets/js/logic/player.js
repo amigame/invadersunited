@@ -82,10 +82,9 @@ return $.extend({}, (new User()), {
 		} else if( state == "defender" ) {
 			this.control = new Defender();
 		}
-		this.control.init( this.root );
 		this.control.style = SPRITE["styles"].player;
-		this.control.active = true;
 		this.control.name = this.name;
+		this.control.init( this.root );
 		// register the initial position with the server
 		this.sendPosition();
 	},

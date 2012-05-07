@@ -30,8 +30,8 @@ return {
 		}
 		// either way...
 		// tranfer the root canvas element
-		invader.init( this.root );
 		invader.name = name;
+		invader.init( this.root );
 		this.list[name] = invader;
 	}, 
 	get : function ( name ){
