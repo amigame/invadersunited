@@ -86,6 +86,8 @@ return $.extend({}, (new User()), {
 		this.control.style = SPRITE["styles"].player;
 		this.control.active = true;
 		this.control.name = this.name;
+		// register the initial position with the server
+		this.sendPosition();
 	},
 	
 	moveLeft : function() {
@@ -114,10 +116,9 @@ return $.extend({}, (new User()), {
 			this.sendPosition();
 		}
 		// shoot if available
-		//if ( INPUT.keys["Space"] && this.control.canShoot ){
-		if ( input.trigger["Fire"] && typeof(this.control.shoot()) != "undefined" ){
+		if ( input.trigger["Fire"] && this.control.canShoot ){
 			this.control.shoot();
-			socket.emit('player-shoot');
+			socket.emit('shoot');
 		}
 		
 		
