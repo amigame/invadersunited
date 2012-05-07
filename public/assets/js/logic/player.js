@@ -6,7 +6,6 @@ return $.extend({}, (new User()), {
 	isAlive : true,
 	style: SPRITE["styles"].player, 
     score : 0,
-	explosion : Explosion,
 	control: null, 
 	input: new Input(),
 	
@@ -31,8 +30,6 @@ return $.extend({}, (new User()), {
 			}
 		});
 		
-		//this.explosion = Explosion.initialize(root);
-		
 		return this;
 	},
 	
@@ -50,11 +47,12 @@ return $.extend({}, (new User()), {
 			// update player coordinates
 			this.coords();
 			// pass position to the controlled object
-			this.control.pos = this.pos;
-			// update sprite
-			this.control.update();
+			if( typeof(this.control) != null ){ 
+				this.control.pos = this.pos;
+				// update sprite
+				this.control.update();
+			}
 		}
-		//this.render();
 		
 	},
 	
@@ -64,9 +62,14 @@ return $.extend({}, (new User()), {
 			this.active = false;
 			socket.emit("kill", { id: player.id, name: player.name});
 			// show an explosion
-			//this.explosion.update();
-			// reset pos
-			this.pos = { x: -1, y: -1 };
+			this.control.destroy();
+			var self = this;
+			setTimeout(function(){
+				// reset pos
+				self.pos = { x: -1, y: -1 };
+				// delete object
+				delete self.control;
+			}, 2000);
 		}
 	}, 
 	// Player Updates
