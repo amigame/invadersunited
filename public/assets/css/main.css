@@ -35,7 +35,7 @@ aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgb
 #hud #current-score { float:left; }
 #hud #top-score { float: right; }
 #about { width:800px; margin:0 auto; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; overflow:scroll }
-#about h1 a { display:block; background:url(../img/logo-righttext.png) no-repeat; background-size:contain; text-indent:-9999px; width:600px; height:300px; text-align:center; margin: 0 auto }
+#about h1 a { display:block; background:url(../img/logo-notext.png) no-repeat 0px 0; font-family: 'VT323', cursive; font-size:2.8em; color:#000; text-decoration:none; text-transform:uppercase; background-size:contain; width:700px; height:200px; text-align:center; margin: 0 auto }
 #about h3 { margin:20px 0 0 }
 
 
