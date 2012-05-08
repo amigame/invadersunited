@@ -21,10 +21,9 @@ return $.extend({}, (new User()), {
 			self.set( user );
 		});
 		
-			
 		socket.on('died', function( score ) {
 			if( score ){ 
-				noty({text: 'You lost but you got a score of '+ score, layout: 'topCenter', type: 'error', force : true });
+				noty({text: 'You lost but you got a score of '+ score, layout: 'topCenter', type: 'success', force : true });
 			} else {
 				noty({text: 'You died with no score', layout: 'topCenter', type: 'error', force : true });
 			}
