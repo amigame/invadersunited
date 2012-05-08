@@ -34,8 +34,8 @@ aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgb
 #hud #current-score, #hud #top-score { padding: 4px 12px; font-size: 1.5em; font-weight: bold; color: #444; opacity: 0.8 }
 #hud #current-score { float:left; }
 #hud #top-score { float: right; }
-#about { width:600px; margin:0 auto; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-#about h1 a { display:block; background:url(../img/logo-righttext.png) no-repeat; background-size:contain; text-indent:-9999px; width:500px; height:250px; }
+#about { width:800px; margin:0 auto; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; overflow:scroll }
+#about h1 a { display:block; background:url(../img/logo-righttext.png) no-repeat; background-size:contain; text-indent:-9999px; width:600px; height:300px; text-align:center; margin: 0 auto }
 #about h3 { margin:20px 0 0 }
 
 
