@@ -8,13 +8,14 @@
   "scripts": {
     "start": "server.js"
   },
-  "version": "0.0.1-1",
+  "version": "0.1.0",
   "engines": {
     "node": "0.6.x"
   },
   "dependencies": {
-    "express": "*",
-    "socket.io": "*",
-	"jade": "*"
+    "express": ">2.5",
+    "socket.io": ">0.9",
+    "jade": ">0.20",
+    "node.extend": ">=1.0.0"
   }
 }
