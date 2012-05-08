@@ -20,7 +20,7 @@ PRELOAD = [ "/assets/svg/Defender.svg",
 
 
 SCREEN = { 
-	framerate 	: 12, 
+	framerate 	: 24, 
 	width 		: window.innerWidth, 
 	height 		: window.innerHeight, 
 	background 	: "#FFFFFF"
