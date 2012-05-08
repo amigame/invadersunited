@@ -7,6 +7,7 @@ return $.extend({}, (new User()), {
 	style: SPRITE["styles"].player, 
     score : 0,
 	control: null, 
+	move : true,
 	input: new Input(),
 	
     init : function(root) {
@@ -113,6 +114,18 @@ return $.extend({}, (new User()), {
 		// get the input from the local vars
 		var input = this.input;
 		
+		// shoot if available
+		if ( input.trigger["Fire"] && this.control.canShoot ){
+			this.control.shoot();
+			socket.emit('shoot');
+		}
+		
+		// update position only once a second
+		var second = Math.round((this.root.frameCount% SCREEN["framerate"])/ SCREEN["framerate"] );  // Use % to cycle through frames  
+		// console.log( second );
+		if( second == this.move ) return;	
+		this.move =	second;
+		
 		if ( input.trigger["Left"] ){
         	this.moveLeft();
         } else if ( input.trigger["Right"] ){
@@ -122,11 +135,7 @@ return $.extend({}, (new User()), {
 		if ( input.trigger["Left"] || input.trigger["Right"] ){
 			this.sendPosition();
 		}
-		// shoot if available
-		if ( input.trigger["Fire"] && this.control.canShoot ){
-			this.control.shoot();
-			socket.emit('shoot');
-		}
+		
 		
 		
 	}, 
