@@ -25,12 +25,14 @@ return $.extend({}, (new User()), {
 	},
 	
 	update : function() {
-		// update coordinates
-		this.coords();
-		// render the sprite
-		this.render();
-		// update the shoot flag
-		this.bullet.update();
+		if( this.active ){ 
+			// update coordinates
+			this.coords();
+			// render the sprite
+			this.render();
+			// update the shoot flag
+			this.bullet.update();
+		}
 		this.canShoot = !this.bullet.active;
 	}, 
 	shoot : function(){
@@ -39,6 +41,16 @@ return $.extend({}, (new User()), {
 			this.canShoot = false;
 		}
 	}, 
+	
+	destroy : function(){
+		if( this.active ){ 
+			// reset the active flag
+			this.active = false;
+			// no explosion for you...
+			//this.explosion.start( this.pos );
+		}
+	}, 
+	
 	coords : function() {
 		this.x = ( this.pos.x > 0 ) ? Math.floor( this.pos.x * SPRITE_WIDTH): 0;
 		//this.y = Math.floor( this.pos.y * SPRITE_HEIGHT);

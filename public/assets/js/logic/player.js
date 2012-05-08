@@ -28,6 +28,8 @@ return $.extend({}, (new User()), {
 			} else {
 				noty({text: 'You died with no score', layout: 'topCenter', type: 'error', force : true });
 			}
+			// FIX: Defender needs to trigger the destroy() method manually (why?)
+			if( self.name == neo) self.destroy();
 		});
 		
 		return this;
