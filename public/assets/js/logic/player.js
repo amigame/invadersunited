@@ -120,12 +120,13 @@ return $.extend({}, (new User()), {
 			socket.emit('shoot');
 		}
 		
-		// update position only once a second
-		var second = Math.round((this.root.frameCount% SCREEN["framerate"])/ SCREEN["framerate"] );  // Use % to cycle through frames  
-		// console.log( second );
-		if( second == this.move ) return;	
-		this.move =	second;
-		
+		// if an invader update position only once a second
+		if( this.state == "invader" ){ 
+			var second = Math.round((this.root.frameCount% SCREEN["framerate"])/ SCREEN["framerate"] );  // Use % to cycle through frames  
+			// console.log( second );
+			if( second == this.move ) return;	
+			this.move =	second;
+		}
 		if ( input.trigger["Left"] ){
         	this.moveLeft();
         } else if ( input.trigger["Right"] ){
