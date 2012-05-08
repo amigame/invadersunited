@@ -9,7 +9,7 @@ html, body { position: relative; width: 100%; height: 100%; overflow: hidden; fo
 canvas { position: absolute; left: 0; top: 0; border: 0; overflow: hidden; width: 100%; height: 100%; margin: 0 auto; z-index: -1;}
 aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgba(100,100,100,0.7); text-align: center; z-index: 100; }
 #load p { margin: 8px; }
-#load #enter{ background: rgba(255, 255, 255, 0.7); padding: 20px; }
+#load #enter{ background: url(../img/logo-notext.png) no-repeat right 0px rgba(255, 255, 255, 0.7); background-size: contain; padding: 20px; }
 #load #enter h1{ position: absolute; }
 #load #enter input[type="text"]{ width: 35%; min-height: 50%; padding: 4px; font-size: 2em; }
 #load #enter button{ width: 15%; min-height: 50%; margin: 8px; padding: 4px; font-size: 2em; font-weight: bold; }
