@@ -8,7 +8,7 @@ User = function() {
 		active : false,
 		x: 0, 
 		y: 0,
-		icon : encodeURIComponent("http://invadersunited.com/apple-touch-icon-114x114-precomposed.png"), 
+		icon : encodeURIComponent("http://invadersunited.com/default-player-icon.png"), 
 		sprite : null, 
 		canShoot: false, 
 		type: false, 
