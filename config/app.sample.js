@@ -7,7 +7,7 @@ module.exports = config = {
   "twitter_pass" : "{PASSWORD}",
   // game variables
   "timeout" : {
-	  "wave": 20, 
+	  "wave": 10, 
 	  "shoot": 2
   }
 }
