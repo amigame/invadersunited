@@ -1,9 +1,6 @@
 {
   "name": "dev.invadersunited",
   "subdomain": "dev.invadersunited",
-  "domains": [
-    "dev.invadersunited.com"
-  ],
   "scripts": {
     "start": "server.js"
   },
@@ -15,6 +12,6 @@
     "express": ">2.5",
     "socket.io": ">0.9",
     "jade": ">0.20",
-    "node.extend": ">=1.0.0"
+    "node.extend": ">0.0.1"
   }
 }
