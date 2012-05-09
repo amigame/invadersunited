@@ -46,7 +46,14 @@ return {
 			lobby.hide();
 		});
 
-
+		socket.on('left-game', function( name) {
+			console.log("Left: " + name);
+			// remove user from lobby
+			lobby.remove( name );
+			// remove user from arena
+			invaders.remove( name );
+		});
+		
 	}, 
 	
 	render : function( root ) {
