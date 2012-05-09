@@ -9,6 +9,8 @@ Lobby = function() {
 			
 			// user updates
 			socket.on('in-lobby', function(user) {
+				// de-activate the user
+				player.active = false;
 				// add user in lobby
 				self.add( user.name );
 				// show lobby
