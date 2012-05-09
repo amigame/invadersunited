@@ -2,6 +2,8 @@
 Lobby = function() {
 	return {
 		socket: io.connect(window.location.hostname+"/lobby"), 
+		//variables
+		is_Drafted: false,
 		init: function(){
 			
 			var self = this;
@@ -44,7 +46,10 @@ Lobby = function() {
 			var img = '<img src="'+ getGravatar( user, 32 ) +'" width="32" height="32" alt="'+ user +'" />';
 			$("#waiting").append("<li>"+ img + user + "</li>");
 			// check if it's the user
-			if( player.name == user ) this.checkPosition();
+			if( player.name == user ) {
+				this.is_Drafted == false;
+				this.checkPosition();
+			}
 		}, 
 		remove: function( user ){
 			// remove user from the waiting list
@@ -56,7 +61,7 @@ Lobby = function() {
 		}, 
 		checkPosition: function(){
 			var index = $("#waiting li:contains("+player.name+")").index();
-			if( index != -1 && index < DRAFT) 
+			if( !this.is_Drafted && index != -1 && index < DRAFT) 
 				noty({text: 'You are drafted to be in the next wave! Get ready... '});
 		}, 
 		chat: function(){
