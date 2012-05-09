@@ -3,6 +3,7 @@ Lobby = function() {
 	return {
 		socket: io.connect(window.location.hostname+"/lobby"), 
 		//variables
+		draft: 5, 
 		is_Drafted: false,
 		init: function(){
 			
@@ -47,7 +48,7 @@ Lobby = function() {
 			$("#waiting").append("<li>"+ img + user + "</li>");
 			// check if it's the user
 			if( player.name == user ) {
-				this.is_Drafted == false;
+				this.is_Drafted = false;
 				this.checkPosition();
 			}
 		}, 
@@ -61,8 +62,10 @@ Lobby = function() {
 		}, 
 		checkPosition: function(){
 			var index = $("#waiting li:contains("+player.name+")").index();
-			if( !this.is_Drafted && index != -1 && index < DRAFT) 
+			if( !this.is_Drafted && index != -1 && index < this.draft){ 
+				this.is_Drafted = true;
 				noty({text: 'You are drafted to be in the next wave! Get ready... '});
+			}
 		}, 
 		chat: function(){
 			
