@@ -28,6 +28,7 @@ Bullet = {
 	
 	destroy : function() {
 		this.y = -1;
+		this.x = -1;
 		this.active = false;
 	}, 
 	

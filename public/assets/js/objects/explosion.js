@@ -35,7 +35,7 @@ return $.extend({}, (new User()), {
 		   if (self.radius > 2*self.endRadius) {
 			   window.clearInterval(self.expTime);
 		   }
-		}, 100);
+		}, 48);
 		
 	}, 
 	
