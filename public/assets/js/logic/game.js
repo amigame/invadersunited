@@ -119,7 +119,7 @@ return {
 	wave: {
 		current: 0, 
 		vars: {
-			timeout: 20, 
+			timeout: 10, 
 			count: 0
 		}, 
 		timer: false, 
