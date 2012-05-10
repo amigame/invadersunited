@@ -16,7 +16,7 @@ Login = function() {
 					// move this to a socket response 
 					lobby.init();
 				} else {
-					alert("Please enter a valid email");
+					alert("A valid email is needed to Paypal the top score");
 				}
 			});
 		}, 
