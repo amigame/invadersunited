@@ -22,12 +22,16 @@ Input = function()  {
 			document.addEventListener("keypress", self.ignore, 		false);
 			document.addEventListener("keydown",  self.keydown, 	false);
 			document.addEventListener("keyup",    self.keyup, 		false);
+			document.addEventListener('touchstart', self.keydown, 	false);
+			document.addEventListener('touchend', self.keyup, 		false);
 		}
 		else if (document.attachEvent)
 		{
 			document.attachEvent("onkeypress", self.ignore);
 			document.attachEvent("onkeydown",  self.keydown);
 			document.attachEvent("onkeyup",    self.keyup);
+			document.attachEvent('touchstart', self.keydown);
+			document.attachEvent('touchend', 	self.keyup);
 		}
 		else
 		{
@@ -48,17 +52,20 @@ Input = function()  {
 			ax = event.accelerationIncludingGravity.x * 5;
 			ay = event.accelerationIncludingGravity.y * 5;
 			 
-			if(ax > 14){ //move right on device
+			if( (game.orientation == "landscapeRight" && ay > 14) || (game.orientation == "landscapeLeft" && ay < -14)){ //move right on device
 				self.set(1,"Right");
 			}
-			if(ax < -14){ //move left on device
+			if((game.orientation == "landscapeLeft" && ay > 14) || (game.orientation == "landscapeRight" && ay < -14) ){ //move left on device
 				self.set(1,"Left");
 			}
-			if(ax > -14 && ax < 14){ //device held steady
+			if(ay > -14 && ay < 14){ //device held steady
 				self.set(0,"Right");
 				self.set(0,"Left");
 			}
 		}
+		// Point to the updateOrientation function when iPhone switches between portrait and landscape modes.
+		updateOrientation();
+		window.onorientationchange=updateOrientation;
 		}
 	}, 
 	ignore : function(e) {
@@ -87,6 +94,9 @@ Input = function()  {
 		//if (e.preventDefault) e.preventDefault()
 		//if (e.stopPropagation) e.stopPropagation()
 		var KeyID = (window.event) ? event.keyCode : e.keyCode;
+		// get the touches
+		var touches = ( typeof(e.touches) != "undefined") ? e.touches.length : 0;
+		
 		switch(KeyID)
 		{
 			case 32:
@@ -104,7 +114,11 @@ Input = function()  {
 			case 40:
 				this.set(state,"Down")
 				break;
+			case 0:
+				if( touches > 0) this.set(state,"Fire");
+				break;
 		}
+		
 	}
 }
 
