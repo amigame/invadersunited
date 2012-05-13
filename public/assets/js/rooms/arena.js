@@ -17,7 +17,7 @@ Arena = function() {
 			});
 			
 			socket.on('remove', function( name ) {
-				console.log("Remove: " + name);
+				//console.log("Remove: " + name);
 				invaders.remove( name );
 			});
 			
