@@ -11,5 +11,5 @@
 
 /* SITE */
   Standards: HTML5, JavaScript
-  Components: jQuery, Node.js, CakeJS
-  Software: Nodester
+  Components: jQuery, Node.js, Processing.js, Socket.io
+  Platform: Nodejitsu

@@ -5,6 +5,7 @@ CACHE MANIFEST
 CACHE:
 favicon.ico
 apple-touch-icon.png
+default-player-icon.png
 /assets/css/main.css
 /assets/css/add2home.css
 /assets/css/jquery.noty.css
