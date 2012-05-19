@@ -1,0 +1,60 @@
+CACHE MANIFEST
+# 2012-05-19
+
+# Explicitly cache assets.
+CACHE:
+favicon.ico
+apple-touch-icon.png
+/assets/css/main.css
+/assets/css/add2home.css
+/assets/css/jquery.noty.css
+/assets/css/noty_theme_default.css
+/assets/img/logo-notext.png
+/assets/img/loading.gif
+/assets/fonts/visitor1-webfont.eot
+/assets/fonts/visitor1-webfont.ttf
+/assets/fonts/visitor1-webfont.woff
+/socket.io/socket.io.js
+/assets/js/order.js
+/assets/js/libs/require.js
+/assets/js/main.js
+/assets/js/libs/jquery-1.6.4.min.js
+/assets/js/libs/processing-1.3.6.min.js
+/assets/js/libs/md5.js
+/assets/js/libs/jquery.noty.js
+/assets/js/libs/add2home.js
+/assets/js/misc/helpers.js
+/assets/js/misc/tracking.js
+/assets/js/config.js
+/assets/js/objects/sprite.js
+/assets/js/objects/bullet.js
+/assets/js/objects/user.js 
+/assets/js/objects/invader.js
+/assets/js/objects/defender.js
+/assets/js/objects/explosion.js
+/assets/js/logic/sockets.js
+/assets/js/logic/input.js
+/assets/js/logic/player.js
+/assets/js/logic/invaders.js
+/assets/js/logic/game.js
+/assets/js/rooms/login.js
+/assets/js/rooms/lobby.js
+/assets/js/rooms/arena.js
+/assets/svg/Defender.svg
+/assets/svg/Dorky1.svg
+/assets/svg/Dorky2.svg
+/assets/svg/Evily1.svg
+/assets/svg/Evily2.svg
+/assets/svg/Scully1.svg
+/assets/svg/Scully2.svg
+http://fonts.googleapis.com/css?family=VT323
+http://pagead2.googlesyndication.com/pagead/show_ads.js
+/about
+
+
+# All other "local" resources require a connection.
+NETWORK:
+*
+
+# served if web services are inaccessible
+FALLBACK:
