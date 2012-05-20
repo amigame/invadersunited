@@ -60,6 +60,8 @@ return {
 			this.add( user.name , state );
 		} 
 		
+		// se the active state (again)
+		this.list[user.name].active = true;
 		// set the given position to the object
 		this.list[user.name].pos = user.pos;
 			

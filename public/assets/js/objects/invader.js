@@ -25,13 +25,6 @@ return $.extend({}, (new User()), {
 			this.active = false;
 			// show an explosion
 			this.explosion.start( this.pos );
-			var self = this;
-			/*
-			setTimeout(function(){
-				// delete object
-				delete self;
-			}, 2000);
-			*/
 		}
 	}, 
 	
@@ -39,10 +32,13 @@ return $.extend({}, (new User()), {
 		if( this.active ){ 
 			this.render();
 			//calculate the collision
-			if( neo == player.name && this.type == "ai" && this.checkCollision( player.control.bullet )  ){
-				socket.emit("kill-ai", { name: this.name });
+			if( neo == player.name && this.checkCollision( player.control.bullet )  ){
+				// neo can only kill AI invaders
+				if( this.type == "ai") socket.emit("kill-ai", { name: this.name });
+				// you can see the validated 
 				player.control.bullet.destroy();
 				this.destroy();
+				
 			}
 		}
 	}, 
