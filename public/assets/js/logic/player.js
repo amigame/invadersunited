@@ -28,8 +28,6 @@ return $.extend({}, (new User()), {
 			} else {
 				noty({text: 'You died with no score', layout: 'topCenter', type: 'error', force : true });
 			}
-			// FIX: Defender needs to trigger the destroy() method manually (why?)
-			//if( self.name == neo) self.destroy();
 		});
 		
 		return this;
@@ -64,17 +62,8 @@ return $.extend({}, (new User()), {
 			this.active = false;
 			socket.emit("kill", { id: player.id, name: player.name});
 			// show an explosion
-			//console.log("Destroy");
+			if(CONFIG['geek-o-vision']) console.log("I Died");
 			this.control.destroy();
-			/*
-			var self = this;
-			setTimeout(function(){
-				// reset pos
-				self.pos = { x: -1, y: -1 };
-				// delete object
-				delete self.control;
-			}, 2000);
-			*/
 		}
 	}, 
 	// Player Updates
@@ -90,8 +79,9 @@ return $.extend({}, (new User()), {
 		} else if( state == "defender" ) {
 			this.control = new Defender();
 		}
-		//console.log("In ARENA as "+ state);
+		if(CONFIG['geek-o-vision']) console.log("I'm entering the ARENA as "+ state);
 		this.control.style = SPRITE["styles"].player;
+		// set the player's name on the controlled "ship"
 		this.control.name = this.name;
 		this.control.init( this.root );
 		// register the initial position with the server
@@ -123,7 +113,6 @@ return $.extend({}, (new User()), {
 		// if an invader update position only once a second
 		if( this.state == "invader" ){ 
 			var second = Math.round((this.root.frameCount% SCREEN["framerate"])/ SCREEN["framerate"] );  // Use % to cycle through frames  
-			// console.log( second );
 			if( second == this.move ) return;	
 			this.move =	second;
 		}

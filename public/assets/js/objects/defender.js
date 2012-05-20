@@ -32,6 +32,14 @@ return $.extend({}, (new User()), {
 			this.render();
 			// update the shoot flag
 			this.bullet.update();
+			// geek-o-vision...
+			if( CONFIG['geek-o-vision'] ) {
+				if( this.name == player.name ){ 
+					console.log("ME: "+this.x+", "+this.y );
+				}else {
+					console.log("DEFENDER: "+this.x+", "+this.y );
+				}
+			}
 		}
 		this.canShoot = !this.bullet.active;
 	}, 

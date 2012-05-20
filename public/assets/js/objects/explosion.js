@@ -26,7 +26,7 @@ return $.extend({}, (new User()), {
 		this.pos = pos;
 		this.coords();
 		
-		//console.log("!!!EXPLODE!!!");
+		if(CONFIG['geek-o-vision']) console.log("!!!EXPLODE!!!");
 		
 		this.expTime = setInterval(function () {
 		  

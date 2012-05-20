@@ -12,12 +12,10 @@ Arena = function() {
 			});
 			
 			socket.on('move', function( user ) {
-				//console.log( user );
 				self.update( user );
 			});
 			
 			socket.on('remove', function( name ) {
-				//console.log("Remove: " + name);
 				invaders.remove( name );
 			});
 			
@@ -28,6 +26,7 @@ Arena = function() {
 			});
 			
 			socket.on('dead-invader', function( name ) {
+				if(CONFIG['geek-o-vision']) console.log("Killed: " + name);
 				// can't delete the player with a socket call
 				if( name != player.name) invaders.destroy( name );
 			});
@@ -43,8 +42,6 @@ Arena = function() {
 			
 		}, 
 		update: function( user ){
-			//console.log(user);
-			//console.log(neo.name);
 			// don't update if there is no defender set
 			if (typeof(neo) == "undefined") return;
 			// don't update if it's the player

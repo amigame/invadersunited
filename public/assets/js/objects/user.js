@@ -24,9 +24,6 @@ User = function() {
   			this.root.stroke( this.style.stroke );
 			// render the sprite
 			this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
-			
-			// geekovision...
-			//console.log( frame+", "+this.x+", "+this.y+", "+SPRITE_WIDTH+", "+SPRITE_HEIGHT );
 		},
 		coords : function() {
 			this.x = Math.floor( this.pos.x * SPRITE_WIDTH );

@@ -36,7 +36,7 @@ return {
 				noty({text: name +' is the next defender', layout: 'topCenter', type: 'information'});
 				invaders.add(name, "defender");
 			}
-			//console.log("Defender: " + data);	
+			if(CONFIG['geek-o-vision']) console.log("New Defender: " + name);	
 			neo = name;
 		});
 		
@@ -45,9 +45,9 @@ return {
 			player.enterArena("invader");
 			lobby.hide();
 		});
-
-		socket.on('left-game', function( name) {
-			console.log("Left: " + name);
+		
+		socket.on('left-game', function( name ) {
+			if(CONFIG['geek-o-vision']) console.log("Left the game: " + name);
 			// remove user from lobby
 			lobby.remove( name );
 			// remove user from arena

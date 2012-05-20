@@ -40,6 +40,8 @@ return $.extend({}, (new User()), {
 				this.destroy();
 				
 			}
+			// geek-o-vision...
+			if( this.name == player.name && CONFIG['geek-o-vision'] ) console.log("ME: "+this.x+", "+this.y);
 		}
 	}, 
 
