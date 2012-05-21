@@ -34,7 +34,7 @@ return $.extend({}, (new User()), {
 			//calculate the collision
 			if( neo == player.name && this.checkCollision( player.control.bullet )  ){
 				// neo can only kill AI invaders
-				if( this.type == "ai") socket.emit("kill-ai", { name: this.name });
+				if( this.type == "ai") socket.emit("kill-ai", this.name);
 				// you can see the validated 
 				player.control.bullet.destroy();
 				this.destroy();
