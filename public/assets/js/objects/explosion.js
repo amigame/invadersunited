@@ -60,8 +60,8 @@ return $.extend({}, (new User()), {
 	},
 	
 	coords : function() {
-		this.x = Math.floor( (this.pos.x * SPRITE_WIDTH ) + (SPRITE_WIDTH/2 ) );
-		this.y = Math.floor( (this.pos.y * SPRITE_HEIGHT) + (SPRITE_HEIGHT/2) );
+		this.x = Math.floor( (this.pos.x * SPRITE["width"] ) + (SPRITE["width"]/2 ) );
+		this.y = Math.floor( (this.pos.y * SPRITE["height"]) + (SPRITE["height"]/2) );
 	} 
 	
 });

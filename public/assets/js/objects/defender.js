@@ -2,7 +2,7 @@ Defender = function(){
 
 return $.extend({}, (new User()), {
 
-	y : WINDOW_HEIGHT-2*SPRITE_HEIGHT,
+	y : SCREEN["height"] - (SPRITE["height"]+SPRITE["padding"].y),
 	canShoot: true, 
 	bullet : null, 
 	style: SPRITE["styles"].defender, 
@@ -45,7 +45,7 @@ return $.extend({}, (new User()), {
 	}, 
 	shoot : function(){
 		if( this.canShoot ){
-			this.bullet.create( this.x+(SPRITE_WIDTH/2) );
+			this.bullet.create( this.x+(SPRITE["width"]/2) );
 			this.canShoot = false;
 		}
 	}, 
@@ -60,7 +60,7 @@ return $.extend({}, (new User()), {
 	}, 
 	
 	coords : function() {
-		this.x = ( this.pos.x > 0 ) ? Math.floor( this.pos.x * SPRITE_WIDTH): 0;
+		this.x = ( this.pos.x > -1 ) ? Math.floor( this.pos.x * ( SPRITE["width"] + 2*SPRITE["padding"].x ) + SPRITE["padding"].x ): 0;
 		//this.y = Math.floor( this.pos.y * SPRITE_HEIGHT);
 	}
 	

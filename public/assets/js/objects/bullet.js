@@ -15,10 +15,10 @@ Bullet = {
 			this.destroy();
 		} else {
 			
-			this.y -= SPRITE_HEIGHT;
+			this.y -= SPRITE["height"];
 			this.root.fill(50, 50, 50);
   			this.root.stroke(50);
-			this.root.ellipse(this.x, this.y, SPRITE_WIDTH/10, SPRITE_HEIGHT);
+			this.root.ellipse(this.x, this.y, SPRITE["width"]/10, SPRITE["height"]);
 			
 			// check collision with invaders
 			this.checkCollision();
@@ -34,13 +34,13 @@ Bullet = {
 	
 	create : function( x ) {
 		this.x = x;
-		this.y = WINDOW_HEIGHT-1.5*SPRITE_HEIGHT;
+		this.y = SCREEN["height"]-1.5*SPRITE["height"];
 		this.active = true;
 	}, 
 	
 	checkCollision : function( ) {
 		var pos = player.pos;
-		if( player.state == "invader" && this.x >= player.x && this.x <= (player.x+SPRITE_WIDTH) && this.y <= player.y+SPRITE_HEIGHT && this.y >= player.y){
+		if( player.state == "invader" && this.x >= player.x && this.x <= (player.x+SPRITE["width"]) && this.y <= player.y+SPRITE["height"] && this.y >= player.y){
 			this.destroy();	
 			player.destroy();
 		}

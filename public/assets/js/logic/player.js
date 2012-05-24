@@ -95,7 +95,7 @@ return $.extend({}, (new User()), {
 	},
 	
 	moveRight : function() {
-		if ( (this.pos.x*SPRITE_WIDTH) < (WINDOW_WIDTH-SPRITE_WIDTH) ){
+		if ( this.pos.x + 1 < SCREEN["grid"].x ){
 			this.pos.x++;
 		}
 	},

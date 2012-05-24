@@ -61,7 +61,7 @@ return {
 		this.root = root;
 		
 		root.setup = function() {
-			root.frameRate( SCREEN.framerate );
+			root.frameRate( SCREEN["framerate"] );
 			
 			sprites = game.preload(root);
 			
@@ -72,14 +72,20 @@ return {
 		// Override draw function abd add updates of the game classes
 		root.draw = function() {
 			//update window size
-			root.size(WINDOW_WIDTH, WINDOW_HEIGHT);  
+			root.size( SCREEN["width"], SCREEN["height"] );  
 			// erase background
-			root.background( SCREEN.background );
+			root.background( SCREEN["background"] );
 			// draw main actors
 			invaders.update();
 			// render player last so it's over all other objects
 			player.update();
+			
 		};
+		/*
+		root.resize = function(width, height) {
+			size(width, height);
+		}*/
+
 		
 	},
 	

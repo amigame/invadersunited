@@ -23,17 +23,17 @@ User = function() {
 			this.root.fill( this.style.color );
   			this.root.stroke( this.style.stroke );
 			// render the sprite
-			this.root.shape(this.sprite[frame], this.x, this.y, SPRITE_WIDTH, SPRITE_HEIGHT);
+			this.root.shape(this.sprite[frame], this.x, this.y, SPRITE["width"], SPRITE["height"]);
 		},
 		coords : function() {
-			this.x = Math.floor( this.pos.x * SPRITE_WIDTH );
-			this.y = Math.floor( this.pos.y * SPRITE_HEIGHT );
+			this.x = Math.floor( this.pos.x * ( SPRITE["width"] + 2*SPRITE["padding"].x ) + SPRITE["padding"].x );
+			this.y = Math.floor( this.pos.y * ( SPRITE["height"] + 2*SPRITE["padding"].y ) + SPRITE["padding"].y );
 		}, 
 		isAI : function(){
 			return (this.name).substring(0,3) == "AI-";
 		}, 
 		checkCollision : function( obj ) {
-			if( obj.x >= this.x && obj.x <= (this.x+SPRITE_WIDTH)  && obj.y >= this.y && obj.y <= (this.y+SPRITE_HEIGHT)){
+			if( obj.x >= this.x && obj.x <= (this.x+SPRITE["width"])  && obj.y >= this.y && obj.y <= (this.y+SPRITE["height"])){
 				return true;
 			} else {
 				return false;
