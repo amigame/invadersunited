@@ -8,8 +8,6 @@ var CONFIG, SPRITE, SCREEN,
 	SOCKETS = false, 
 	SPRITES = {};
 
-//var INPUT, PLAYER, INVADERS;
-
 // Dependencies
 require({ 
     baseUrl: "/assets/js/" 
@@ -64,7 +62,7 @@ require({
 			var iu = new Processing(canvas, game.render);
 			
 			// vector preloads
-			iu.externals.sketch.options.preload = PRELOAD.join(",");
+			iu.externals.sketch.options.preload = CONFIG["preload"].join(",");
 			
 	
 		});

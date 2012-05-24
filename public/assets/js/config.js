@@ -1,23 +1,7 @@
-//WINDOW_WIDTH 		= window.innerWidth;
-//WINDOW_HEIGHT 		= window.innerHeight;
-//BG_COLOR = "#FFF";
-DRAFT = 5;
-
-
-PRELOAD = [ "/assets/svg/Defender.svg",
-			"/assets/svg/Dorky1.svg",
-			"/assets/svg/Dorky2.svg",
-			"/assets/svg/Evily1.svg",
-			"/assets/svg/Evily2.svg",
-			"/assets/svg/Scully1.svg",
-			"/assets/svg/Scully2.svg" ]
-
-
-//ANIMATION_SPEED = 0.8;
-
 CONFIG = {
 	"geek-o-vision": false, 
-	
+	"draft": 5, 
+	 
 	"screen": { 
 		grid : { x: 16, y: 12 },  
 		framerate : 24, 
@@ -47,5 +31,15 @@ CONFIG = {
 			}
 			
 		}
-	}
+	}, 
+	
+	"preload" : [ "/assets/svg/Defender.svg",
+				"/assets/svg/Dorky1.svg",
+				"/assets/svg/Dorky2.svg",
+				"/assets/svg/Evily1.svg",
+				"/assets/svg/Evily2.svg",
+				"/assets/svg/Scully1.svg",
+				"/assets/svg/Scully2.svg" ]
+
+
 }

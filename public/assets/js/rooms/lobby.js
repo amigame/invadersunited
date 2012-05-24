@@ -3,7 +3,7 @@ Lobby = function() {
 	return {
 		socket: io.connect(window.location.hostname+"/lobby"), 
 		//variables
-		draft: 5, 
+		draft: CONFIG["draft"], 
 		is_Drafted: false,
 		init: function(){
 			
