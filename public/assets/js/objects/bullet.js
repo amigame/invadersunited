@@ -34,7 +34,7 @@ Bullet = {
 	
 	create : function( x ) {
 		this.x = x;
-		this.y = SCREEN["height"]-1.5*SPRITE["height"];
+		this.y = SCREEN["height"]-1.5*(SPRITE["height"]+SPRITE["padding"].y);
 		this.active = true;
 	}, 
 	
