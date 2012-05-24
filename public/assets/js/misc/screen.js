@@ -16,10 +16,8 @@ Screen = function(){
 		return this;
 	}, 
 	update		: function(){ 
-		this.width = window.innerWidth;
-		this.height = window.innerHeight;
-		
-		SPRITE.update();
+		SCREEN["width"] = window.innerWidth;
+		SCREEN["height"] = window.innerHeight;
 	}
 });
 

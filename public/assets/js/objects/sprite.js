@@ -19,6 +19,7 @@ Sprite = function(){
 			return this;
 		}, 
 		update: function(){
+			var self = (SPRITE) ? SPRITE : this;
 			// game has a definite 16x12 grid (4/3 aspect ratio)
 			var cell_width  = window.innerWidth / CONFIG["screen"]["grid"].x;
 			var cell_height = window.innerHeight / CONFIG["screen"]["grid"].y;
@@ -27,19 +28,19 @@ Sprite = function(){
 			// (replace with SCREEN.width...)
 			var ratio = cell_width / cell_height;
 			
-			if( ratio > this.ratio ){
+			if( ratio > self.ratio ){
 				// widescreen...
 				// - x padding  required
-				this.height = cell_height;
-				this.width =  this.height * this.ratio;
-				this.padding.x = (cell_width - this.width) / 2;
-				this.padding.y = 0;
+				self.height = cell_height;
+				self.width =  self.height * self.ratio;
+				self.padding.x = (cell_width - self.width) / 2;
+				self.padding.y = 0;
 			} else {
 				// - y padding  required
-				this.width = cell_width;
-				this.height =  this.width * (1/this.ratio);
-				this.padding.x = 0;
-				this.padding.y = (cell_height - this.height) / 2;
+				self.width = cell_width;
+				self.height =  self.width * (1/self.ratio);
+				self.padding.x = 0;
+				self.padding.y = (cell_height - self.height) / 2;
 			}
 			
 		}

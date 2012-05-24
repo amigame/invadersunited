@@ -41,7 +41,6 @@ require({
 		//INVADERS = [];
 		SPRITE = ( new Sprite() ).init();
 		SCREEN = ( new Screen() ).init()
-		
 			
 		$(document).ready(function(){
 			
