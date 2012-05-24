@@ -19,7 +19,6 @@ require({
 		"order!libs/add2home", 
 		"order!misc/screen", 
 		"order!misc/helpers", 
-		"order!misc/tracking", 
 		"order!config", 
 		"order!objects/sprite", 
 		"order!objects/bullet", 
@@ -34,7 +33,9 @@ require({
 		"order!logic/game", 
 		"order!rooms/login", 
 		"order!rooms/lobby", 
-		"order!rooms/arena"
+		"order!rooms/arena", 
+		"misc/tracking", 
+		"misc/social"
 	], function () {
 		
 		// properties

@@ -34,7 +34,7 @@ aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgb
 #load #banner{ padding: 20px; }
 #lobby { position: absolute; display: none; padding: 20px; height: 100%; }
 #lobby #wave { height: 5%; }
-#lobby #draft { margin: 20px 0; height: 40%; }
+#lobby #draft { margin: 20px 0; height: 30%; }
 #lobby #waiting{ list-style-type: none; text-align: left; }
 #lobby #waiting img { margin-right: 12px; margin-bottom: -8px; }
 #chat-component { height: 30%; padding: 0 10px; }
@@ -46,8 +46,8 @@ aside { position: absolute; right: 0; width: 100%; height: 100%; background: rgb
 #lobby #info { text-align: left; height: 25%; overflow: hidden; }
 #lobby .pull { position: absolute; left: 0; top: 0; }
 #lobby .pull a { display: block; width: 20px; height: 30px; background: #eee; color: #999; text-align: center; }
-#lobby #social { text-align: center; }
-#lobby #social > div { display: inline-block; margin: 4px 8px; }
+#lobby #social { height: 10%; text-align: center; }
+#lobby #social > div { float: left; margin: 4px 8px; width: 96px; height: 20px; overflow: hidden; }
 #hud { position: absolute; width: 100%; }
 #hud #current-score, #hud #top-score { padding: 4px 12px; font-size: 1.5em; font-weight: bold; color: #444; opacity: 0.8 }
 #hud #current-score { float:left; }

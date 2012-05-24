@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2012-05-20
+# 2012-05-24
 
 # Explicitly cache assets.
 CACHE:
@@ -25,8 +25,9 @@ default-player-icon.png
 /assets/js/libs/jquery.noty.js
 /assets/js/libs/add2home.js
 /assets/js/misc/helpers.js
-/assets/js/misc/tracking.js
 /assets/js/misc/screen.js
+/assets/js/misc/social.js
+/assets/js/misc/tracking.js
 /assets/js/config.js
 /assets/js/objects/sprite.js
 /assets/js/objects/bullet.js

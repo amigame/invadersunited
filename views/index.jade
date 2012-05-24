@@ -27,6 +27,14 @@
 			div.pull 
 				a &lt;
 			
+			div#social
+				div
+					fb:like(href="http://invadersunited.com", send="false", layout="button_count", width="60", show_faces="true", font="")
+				div
+					g:plusone(size="medium")
+				div
+					a(href="http://twitter.com/share", class="twitter-share-button", data-count="horizontal", data-via="kdiweb", data-related="Invaders United - HTML5 Multiplayer Experiment (www.invadersunited.com)") Tweet
+				
 			div#wave
 				p next wave in ~<span>X</span> seconds
 			
@@ -48,15 +56,6 @@
 				p Hey! You don't have to wait for your turn. Download the code and setup your own game :P 
 					a(href="https://github.com/amigame/invadersunited", title="this link will open a new window", target="_blank") Available on Github
 				
-				div#social
-					div
-						a(href="http://twitter.com/share", class="twitter-share-button", data-count="vertical", data-via="tracend", data-related="kdiweb:Invaders United is an am.i-ga.me production sponsored by K&D Interactive") Tweet
-						script(type="text/javascript", src="http://platform.twitter.com/widgets.js")
-					div
-						fb:like(href="http://invadersunited.com", send="false", layout="box_count", width="60", show_faces="true", font="")
-					div
-						g:plusone(size="tall")
-
 div#loading
 
 script(type='text/javascript', src='/socket.io/socket.io.js')
