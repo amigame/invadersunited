@@ -4,6 +4,10 @@ var game, player, invaders, neo;
 // - rooms
 var login, lobby, arena;
 // - data
+var CONFIG, SPRITE, SCREEN, 
+	SOCKETS = false, 
+	SPRITES = {};
+
 //var INPUT, PLAYER, INVADERS;
 
 // Dependencies
@@ -15,6 +19,7 @@ require({
 		"order!libs/md5", 
 		"order!libs/jquery.noty", 
 		"order!libs/add2home", 
+		"order!misc/screen", 
 		"order!misc/helpers", 
 		"order!misc/tracking", 
 		"order!config", 
@@ -34,6 +39,12 @@ require({
 		"order!rooms/arena"
 	], function () {
 		
+		// properties
+		//INVADERS = [];
+		SPRITE = ( new Sprite() ).init();
+		SCREEN = ( new Screen() ).init()
+		
+			
 		$(document).ready(function(){
 			
 			// setup globals
@@ -44,8 +55,6 @@ require({
 			login = new Login();
 			lobby = new Lobby();
 			arena = new Arena();
-			
-			INVADERS = [];
 			
 			// initialise game
 			game.init();

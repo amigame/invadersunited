@@ -1,73 +1,49 @@
-Sprite = {
+/*
+Sprite = makeClass();
+Sprite.prototype.init = function(){
+  //
+};
+*/
 
-	frame : 1, 
-	animation : null, 
-	color : 0, 
-	zIndex : 0, 
-	sprite : null,
-	
-	initialize : function(root){
-		
-		this.root = root;
-		
-		this.animation = animations['invaders']['dorky'];
-		
-		this.sprite = new Path(animation[1],{
-				fill: this.color,
-				fillOpacity:1
-			});
-        //this.sprite = new Rectangle(SPRITE_WIDTH, SPRITE_HEIGHT);
-        this.sprite.w = SPRITE_SCALE*SPRITE_WIDTH;
-        this.sprite.h = SPRITE_SCALE*SPRITE_HEIGHT;
-        
-		this.sprite.x = x;
-        this.sprite.y = y;
-        this.sprite.zIndex = this.zIndex;
+Sprite = function(){ 
 
-        // Reset the x/y since the position is relative to the wrapper:
-        //x = 0;
-        //y = SPRITE_HEIGHT;
-		
-		this.sprite.every(1000*ANIMATION_SPEED, 
-			function( ) 
-			{
-				if( this.frame == 1) { 
-					this.compiled = animation[2];
-					this.frame = 2;
-				} else {
-					this.compiled = animation[1];
-					this.frame = 1;
-				}
-			},
-			true
-		);
-		
-		root.append(this.sprite);
-		
-		/*
-		invader.addFrameListener(
-			function(t, dt) 
-			{
-				this.scale = Math.sin(t / 1000);
+	return $.extend({}, CONFIG['sprite'], { 
+		ratio 		: CONFIG["screen"]["grid"].x / CONFIG["screen"]["grid"].y,
+		width 		: 48, 
+		height  	: 32,
+		padding  	: { x: 0, y: 0 },
+		init: function(){
+			var self = this;
+			this.update();
+			window.addEventListener("resize", self.update, false);
+			return this;
+		}, 
+		update: function(){
+			// game has a definite 16x12 grid (4/3 aspect ratio)
+			var cell_width  = window.innerWidth / CONFIG["screen"]["grid"].x;
+			var cell_height = window.innerHeight / CONFIG["screen"]["grid"].y;
+			
+			// calculate sprite size based on 
+			// (replace with SCREEN.width...)
+			var ratio = cell_width / cell_height;
+			
+			if( ratio > this.ratio ){
+				// widescreen...
+				// - x padding  required
+				this.height = cell_height;
+				this.width =  this.height * this.ratio;
+				this.padding.x = (cell_width - this.width) / 2;
+				this.padding.y = 0;
+			} else {
+				// - y padding  required
+				this.width = cell_width;
+				this.height =  this.width * (1/this.ratio);
+				this.padding.x = 0;
+				this.padding.y = (cell_height - this.height) / 2;
 			}
-		);
-		*/
+			
+		}
 		
-		//this.addFrameListener(this.animate);
-		
-	},
-	
-	update : function(x, y){
-		//console.log(y);
-		this.sprite.x = x;
-		this.sprite.y = y;
-	}, 
-	
-	destroy : function(){
-		//console.log(y);
-		root.remove(this.sprite);
-		delete this;
-		//this.sprite.y = y;
-	}
-	
+	});
+
 }
