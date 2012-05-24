@@ -28,6 +28,8 @@ Login = function() {
 		}, 
 		remove: function(){
 			$("#load").fadeOut(1000, function(){ $(this).remove() });
+			// add tracking
+			_gaq.push(['_trackEvent', 'Game', 'Login', 'Success']);
 		}, 
 		
 	}
