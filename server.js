@@ -49,7 +49,7 @@ app.get('/about', function(req, res){
 // Scores page
 app.get('/scores', function(req, res){ 
 	// consider replacing this "hard" call to the file with a memory seek
-	var file = fs.readFileSync('./data/score.json');
+	var file = fs.readFileSync('./data/scores.json');
 	var scores = JSON.parse(file);
 		
 	res.render('scores', {
