@@ -1,4 +1,4 @@
 node_modules
 .DS_Store
-public/assets/js/_bin
+data/*
 config/app.js
