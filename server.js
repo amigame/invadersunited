@@ -4,6 +4,7 @@
 var express = require('express'), // Include express engine
 	config = require( __dirname +'/config/app.js'), // create node server
 	app = express.createServer(), // create node server
+	fs = require('fs'),
 	io = require('socket.io').listen(app), 
 	iu = require( __dirname +'/lib/game.js');
 
@@ -41,6 +42,20 @@ app.get('/about', function(req, res){
 	res.render('about', {
 		locals: {
 			title: config.name
+		}
+	});
+});
+
+// Scores page
+app.get('/scores', function(req, res){ 
+	// consider replacing this "hard" call to the file with a memory seek
+	var file = fs.readFileSync('./data/score.json');
+	var scores = JSON.parse(file);
+		
+	res.render('scores', {
+		locals: {
+			title: config.name, 
+			scores: scores
 		}
 	});
 });

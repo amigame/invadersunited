@@ -1,0 +1,8 @@
+#scores
+	h1 
+		a(href="/", title="back to the game...") Invaders United
+	dl
+	each user in scores
+		dt #{user.date}
+		dd #{user.score}
+	
