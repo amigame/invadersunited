@@ -4,5 +4,5 @@
 	dl
 	each user in scores
 		dt #{user.date}
-		dd #{user.score}
+		dd(title=user.name) #{user.score}
 	
