@@ -10,11 +10,9 @@ Login = function() {
 				var input = $(this).find("input[type='text']");
 				if( input.val() != "" ){
 				//if( validateEmail(input.val() ) ){
-					player.name = noSpecialChars( input.val() );
-					socket.emit('login', player.name );
+					var name = noSpecialChars( input.val() );
+					socket.emit('login', name );
 					self.remove();
-					// move this to a socket response 
-					lobby.init();
 				} else {
 					//alert("A valid email is needed to Paypal the top score");
 					alert("Enter your username - any text string will do...");

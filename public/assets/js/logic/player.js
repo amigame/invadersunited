@@ -20,6 +20,7 @@ return $.extend({}, (new User()), {
 		// events
 		socket.on('id', function( user ) {
 			self.set( user );
+			lobby.init();
 		});
 		
 		socket.on('died', function( score ) {
