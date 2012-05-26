@@ -35,7 +35,9 @@ require({
 		"order!rooms/lobby", 
 		"order!rooms/arena", 
 		"misc/tracking", 
-		"misc/social"
+		"misc/social",
+		"misc/ios-orientationchange-fix"
+		
 	], function () {
 		
 		// properties
