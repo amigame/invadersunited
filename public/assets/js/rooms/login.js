@@ -8,15 +8,17 @@ Login = function() {
 				e.preventDefault();
 				e.stopPropagation();
 				var input = $(this).find("input[type='text']");
-				if( validateEmail(input.val() ) ){
-					player.name = input.val();
+				if( input.val() != "" ){
+				//if( validateEmail(input.val() ) ){
+					player.name = noSpecialChars( input.val() );
+					console.log( noSpecialChars( input.val() ) );
 					socket.emit('login', player.name );
 					self.remove();
-					//socket.send(JSON.stringify({text:$("#chat-text").val()}));
 					// move this to a socket response 
 					lobby.init();
 				} else {
-					alert("A valid email is needed to Paypal the top score");
+					//alert("A valid email is needed to Paypal the top score");
+					alert("Enter your username - any text string will do...");
 				}
 			});
 		}, 

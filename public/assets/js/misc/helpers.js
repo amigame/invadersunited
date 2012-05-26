@@ -26,6 +26,10 @@ function getGravatar(email, size){
 	return "http://www.gravatar.com/avatar/" + MD5( email ) + "?s="+ size +"&d="+ (new User).icon;
 }
 
+function noSpecialChars(string) { 
+    return string.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\#|\?|\$|\^|\&|\*|\`|\+|\-/g,"");
+} 
+
 /* updateOrientation checks the current orientation, sets the body's class attribute to portrait, landscapeLeft, or landscapeRight, 
    and displays a descriptive message on "Handling iPhone or iPod touch Orientation Events".  */
 function updateOrientation()
