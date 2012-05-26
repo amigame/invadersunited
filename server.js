@@ -32,6 +32,7 @@ app.configure('production', function(){
 app.get('/', function(req, res){ 
 	res.render('index', {
 		locals: {
+			name: 'index', 
 			title: config.name
 		}
 	});
@@ -41,6 +42,7 @@ app.get('/', function(req, res){
 app.get('/about', function(req, res){ 
 	res.render('about', {
 		locals: {
+			name: 'about', 
 			title: config.name
 		}
 	});
@@ -54,6 +56,7 @@ app.get('/scores', function(req, res){
 		
 	res.render('scores', {
 		locals: {
+			name: 'scores', 
 			title: config.name, 
 			scores: scores
 		}
