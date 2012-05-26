@@ -11,7 +11,6 @@ Login = function() {
 				if( input.val() != "" ){
 				//if( validateEmail(input.val() ) ){
 					player.name = noSpecialChars( input.val() );
-					console.log( noSpecialChars( input.val() ) );
 					socket.emit('login', player.name );
 					self.remove();
 					// move this to a socket response 

@@ -52,13 +52,13 @@ Input = function()  {
 			ax = event.accelerationIncludingGravity.x * 5;
 			ay = event.accelerationIncludingGravity.y * 5;
 			 
-			if( (game.orientation == "landscapeRight" && ay > 14) || (game.orientation == "landscapeLeft" && ay < -14)){ //move right on device
+			if( (game.orientation == "portrait" && ax > 10) || (game.orientation == "portraitDown" && ax < -10) || (game.orientation == "landscapeRight" && ay > 10) || (game.orientation == "landscapeLeft" && ay < -10)){ //move right on device
 				self.set(1,"Right");
 			}
-			if((game.orientation == "landscapeLeft" && ay > 14) || (game.orientation == "landscapeRight" && ay < -14) ){ //move left on device
+			if( (game.orientation == "portraitDown" && ax > 10) || (game.orientation == "portrait" && ax < -10) || (game.orientation == "landscapeLeft" && ay > 10) || (game.orientation == "landscapeRight" && ay < -10) ){ //move left on device
 				self.set(1,"Left");
 			}
-			if(ay > -14 && ay < 14){ //device held steady
+			if( (ay > -10 && ay < 10) || (ax > -10 && ax < 10) ){ //device held steady
 				self.set(0,"Right");
 				self.set(0,"Left");
 			}
