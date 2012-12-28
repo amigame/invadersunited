@@ -4,9 +4,12 @@
 
 var express = require('express'), // Include express engine
 	config = require( __dirname +'/config/app.js'), // get configuration
-	app = express.createServer(), // create node server
+	app = express(), // create node server
 	fs = require('fs'),
-	io = require('socket.io').listen(app), 
+	jade = require('jade'), 
+	http = require('http'), 
+	server = http.createServer(app);
+	io = require('socket.io').listen(server), 
 	iu = require( __dirname +'/lib/game.js');
 
 // Default APP Configuration
@@ -14,12 +17,12 @@ app.configure(function(){
   app.set('view engine', 'jade'); // uses JADE templating engine
   app.set('views', __dirname + '/views'); // default dir for views
   app.use(express.methodOverride());
-  app.use(express.logger());
   app.use(app.router);
 });
 
 app.configure('development', function(){
    app.use(express.static(__dirname + '/public'));
+   app.use(express.logger());
    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
