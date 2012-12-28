@@ -6,17 +6,19 @@ var express = require('express'), // Include express engine
 	config = require( __dirname +'/config/app.js'), // get configuration
 	app = express(), // create node server
 	fs = require('fs'),
-	jade = require('jade'), 
+	hbs = require('hbs'), 
 	http = require('http'), 
-	server = http.createServer(app);
+	server = http.createServer(app),
 	io = require('socket.io').listen(server), 
 	iu = require( __dirname +'/lib/game.js');
 
 // Default APP Configuration
 app.configure(function(){
-  app.set('view engine', 'jade'); // uses JADE templating engine
-  app.set('views', __dirname + '/views'); // default dir for views
-  app.use(express.methodOverride());
+  app
+  .set('views', __dirname + '/views')
+  .set('view engine', 'html')
+  .engine("html",  require('hbs').__express )
+  .use(express.methodOverride());
   app.use(app.router);
 });
 
