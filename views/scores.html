@@ -1,8 +1,11 @@
-#scores
-	h1 
-		a(href="/", title="back to the game...") Invaders United
-	dl
-	each user in scores
-		dt #{user.date}
-		dd(title=user.name) #{user.score}
-	
+<div id="scores">
+	<h1><a href="/" title="back to the game...">Invaders United</a></h1> 
+		
+	<dl>
+	{{#each scores}}
+		<dt id="{{date}}">
+		<dd title="{{name}}" id="{{user.score}}"></dd>
+        </dt>
+     {{/each}}
+	</dl>
+</div>

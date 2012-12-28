@@ -1,63 +1,71 @@
-#wrapper
-	
-	canvas#arena 
-	
-	aside 
-		
-		section#load
-			div#enter
-				
-				div#title
-					h1 Invaders United
-					a(href="/about#faq-1", title="this link will refresh the current window", id="howto", title="Read instructions how to play the game...") How do I play?
-				
-				p Enter an email or other alias to join the game (<a href="/about#faq-2" title="Read why we're asking for an email...">email?</a>): 
-				form#login
-					input(type="text", placeholder="Enter your invader alias...")
-					button(type="submit") PLAY
-					
-				
-			div#banner
-				p Every time you click on this banner a little invader gets its wings ;)
-				script(type="text/javascript")
+<div id="wrapper">
+	<canvas id="arena"></canvas>
+	<aside>
+		<section id="load">
+			<div id="enter">
+				<div id="title">
+					<h1>Invaders United</h1>
+					<a href="/about#faq-1" title="this link will refresh the current window" id="howto" title="Read instructions how to play the game...">How do I play?</a>
+				</div>
+				<p>Enter an email or other alias to join the game (<a href="/about#faq-2" title="Read why we're asking for an email...">email?</a>):</p>
+				<form id="login">
+					<input type="text" placeholder="Enter your invader alias..." />
+					<button type="submit">PLAY</button>
+				</form>		
+			</div>
+            	
+			<div id="banner">
+				<p>Every time you click on this banner a little invader gets its wings ;)</p>
+				<script type="text/javascript">
 					google_ad_client = "ca-pub-4881462406903539"; google_ad_slot = "2924317585"; google_ad_width = 336; google_ad_height = 280;
-				script(type="text/javascript", src="http://pagead2.googlesyndication.com/pagead/show_ads.js")
-	
-		section#lobby
-			div.pull 
-				a &lt;
-			
-			div#social
-				div
-					fb:like(href="http://invadersunited.com", send="false", layout="button_count", width="60", show_faces="true", font="")
-				div
-					g:plusone(size="medium")
-				div
-					a(href="http://twitter.com/share", class="twitter-share-button", data-count="horizontal", data-via="kdiweb", data-related="Invaders United - HTML5 Multiplayer Experiment (www.invadersunited.com)") Tweet
-				
-			div#wave
-				p next wave in ~<span>X</span> seconds
-			
-			div#chat-component
-				ul(id="chat-stream")
-				
-				form(id="chat", name="chat-form", action="javascript:void()", method="post")
-					input(type="text", name="chat-text", value="", placeholder="talk to others while waiting...")
-					button(type="submit") Chat
-			
-			div#draft
-				h3 Waiting list: 
-				
-				ul#waiting
-			
-			div#info
-				p Invaders United is an HTML5 multiplayer game inspired from an old classic... 
-					a(href="/about", title="this link will refresh the current window") learn more
-				p Hey! You don't have to wait for your turn. Download the code and setup your own game :P 
-					a(href="https://github.com/amigame/invadersunited", title="this link will open a new window", target="_blank") Available on Github
-				
-div#loading
+				</script>
+				<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+             </div>
+        </section>
+		<section id="lobby">
+			<div class="pull">
+				<a>&lt;</a>
+			</div>
+            <div id="social">
+				<div>
+					<fb:like href="http://invadersunited.com" send="false" layout="button_count" width="60" show_faces="true" font=""></fb:like>
+				</div>
+                <div>
+					<g:plusone size="medium"></g:plusone>
+                </div>
+				<div>
+					<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="kdiweb" data-related="Invaders United - HTML5 Multiplayer Experiment (www.invadersunited.com)">Tweet</a>
+				</div>
+            </div>
+			<div id="wave">
+				<p>next wave in ~<span>X</span> seconds</p>
+			</div>
+			<div id="chat-component">
+				<ul id="chat-stream">
+				</ul>
+				<form id="chat" name="chat-form" action="javascript:void()" method="post">
+					<input type="text" name="chat-text" value="" placeholder="talk to others while waiting..." />
+					<button type="submit">Chat</button>
+				</form>
+            </div>
+			<div id="draft">
+				<h3>Waiting list:</h3> 
+				<ul id="waiting">
+                </ul>
+			</div>
+			<div id="info">
+				<p>Invaders United is an HTML5 multiplayer game inspired from an old classic... 
+					<a href="/about" title="this link will refresh the current window">learn more</a>
+                </p>
+				<p>Hey! You don't have to wait for your turn. Download the code and setup your own game :P 
+					<a href="https://github.com/amigame/invadersunited" title="this link will open a new window" target="_blank">Available on Github</a>
+                </p>
+			</div>
+		</section>
+    </aside>
+</div>
+<div id="loading"></div>
 
-script(type='text/javascript', src='/socket.io/socket.io.js')
-script(type='text/javascript', src='/assets/js/libs/require.js')
-script(type='text/javascript', src='/assets/js/main.js')
+<script type='text/javascript' src='/socket.io/socket.io.js'></script>
+<script type='text/javascript' src='/assets/js/libs/require.js'></script>
+<script type='text/javascript' src='/assets/js/main.js'></script>
