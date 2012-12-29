@@ -2,36 +2,38 @@
 // Include important JS helpers
 //require( __dirname +'/helpers.js');
 
-var express = require('express'), // Include express engine
-	config = require( __dirname +'/config/app.js'), // get configuration
-	app = express(), // create node server
-	fs = require('fs'),
-	hbs = require('hbs'), 
+var fs = require('fs'), 
 	http = require('http'), 
-	server = http.createServer(app),
+	config = require( __dirname +'/config/app.js'), // get configuration
+	express = require('express'), // Include express engine
+	hbs = require('hbs'), 
+	app = express(), // create node server
+	server = http.createServer(app), 
 	io = require('socket.io').listen(server), 
 	iu = require( __dirname +'/lib/game.js');
 
 // Default APP Configuration
 app.configure(function(){
-  app
-  .set('views', __dirname + '/views')
-  .set('view engine', 'html')
-  .engine("html",  require('hbs').__express )
-  .use(express.methodOverride());
-  app.use(app.router);
+	app
+		.set('views', __dirname + '/views')
+		.set('view engine', 'html')
+		.engine("html",  require('hbs').__express )
+		.use(app.router);
+		//.use(express.methodOverride());
 });
 
 app.configure('development', function(){
-   app.use(express.static(__dirname + '/public'));
-   app.use(express.logger());
-   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+	app
+		.use(express.static(__dirname + '/public'))
+		.use(express.logger())
+		.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('production', function(){
   var oneYear = 31557600000;
-  app.use(express.static(__dirname + '/public', { maxAge: oneYear }));
-  app.use(express.errorHandler());
+		app
+		.use(express.static(__dirname + '/public', { maxAge: oneYear }))
+		.use(express.errorHandler());
 });
 
 // Index Route
@@ -94,6 +96,6 @@ hbs.registerHelper('block', function(name) {
 // start the game
 iu.init( io );
 
-exports.app = app;
+exports.app = server;
 
 
