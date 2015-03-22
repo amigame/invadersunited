@@ -1,21 +1,41 @@
 {
-  "name": "invadersunited",
-  "subdomain": "invadersunited",
-  "domains": [
-    "invadersunited.com",
-    "www.invadersunited.com"
-  ],
-  "scripts": {
-    "start": "server.js"
-  },
-  "version": "0.4.5",
-  "engines": {
-    "node": "0.6.x"
-  },
-  "dependencies": {
-    "express": "4.7.2",
-    "hbs": "3.0.1",
-    "node.extend": "1.1.3",
-    "socket.io": "1.3.5"
-  }
+	"name": "invadersunited",
+	"version": "1.0.0",
+	"private": true,
+	"author": "amigame",
+	"contributors": [
+		{ "name": "Makis Tracend", "email": "makis@kdi.co" },
+		{ "name": "Lyndel Thomas", "email": "lyndel@kdi.co" }
+	],
+	"homepage": "http://invadersunited.com",
+	"domains": [
+		"invadersunited.com",
+		"www.invadersunited.com"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/amigame/invadersunited.git"
+	},
+	"bugs": {
+		"url": "https://github.com/amigame/invadersunited/issues"
+	},
+	"licenses": [
+		{
+		"type": "Creative Commons - BY-NC 4.0",
+		"url": "http://creativecommons.org/licenses/by-nc/4.0/"
+		}
+	],
+	"engines": {
+		"node": ">0.8.x"
+	},
+	"main": "index",
+	"scripts": {
+		"start": "server.js"
+	},
+	"dependencies": {
+		"express": "4.7.2",
+		"hbs": "3.0.1",
+		"node.extend": "1.1.3",
+		"socket.io": "1.3.5"
+	}
 }
